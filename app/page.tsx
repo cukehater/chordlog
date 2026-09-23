@@ -1,69 +1,99 @@
-import Image from "next/image";
+import Link from 'next/link';
+import { SiteHeader } from '@/components/chrome/SiteHeader';
+import { Wordmark } from '@/components/chrome/Wordmark';
+import { ContinueCard } from '@/components/song/ContinueCard';
+import { TrackList } from '@/components/song/TrackList';
+import { FilterChips } from '@/components/song/FilterChips';
+import { SearchIcon, ThemeIcon, PlusIcon } from '@/components/icons';
+import { MOCK_SONGS, MOCK_STATS, CONTINUE_SONG } from '@/lib/mock/songs';
+import { IS_ADMIN } from '@/lib/mock/flags';
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="min-h-dvh flex flex-col bg-bg">
+      <SiteHeader
+        variant="list"
+        actions={
+          <>
+            <div className="w-[280px] relative flex items-center">
+              <SearchIcon className="absolute left-3 text-ink-5" />
+              <label htmlFor="q" className="sr-only">곡 검색</label>
+              <input
+                id="q" type="search" placeholder="제목 · 아티스트"
+                className="w-full h-[36px] pl-9 pr-3 border border-line rounded-md bg-surface-2 text-[13.5px] text-ink outline-none"
+              />
+            </div>
+            {IS_ADMIN ? (
+              <Link
+                href="/songs/new"
+                className="h-[36px] flex items-center gap-[7px] px-4 bg-accent text-accent-ink rounded-md text-[13.5px] font-bold no-underline"
+              >
+                <PlusIcon />새 곡
+              </Link>
+            ) : null}
+          </>
+        }
+      />
+
+      {/* 모바일 상단 — 상태바 자리 52px를 비워 둔다 */}
+      <header className="md:hidden shrink-0 pt-[56px] px-5 pb-4 flex flex-col gap-[18px]">
+        <div className="flex items-center gap-[10px]">
+          <Wordmark />
+          <button
+            type="button" aria-label="화면 테마 전환"
+            className="ml-auto w-11 h-11 flex items-center justify-center border-0 bg-transparent text-ink-3 cursor-pointer"
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <ThemeIcon size={18} />
+          </button>
         </div>
+        <div className="flex flex-col gap-2">
+          <span className="font-mono text-[10px] tracking-[0.18em] text-accent">{MOCK_STATS.total} SONGS</span>
+          <h1 className="m-0 font-display text-[32px] font-bold tracking-[-0.03em] leading-none">내 코드 악보</h1>
+        </div>
+        <div className="relative flex items-center">
+          <SearchIcon className="absolute left-[14px] text-ink-5" />
+          <label htmlFor="mq" className="sr-only">곡 검색</label>
+          <input
+            id="mq" type="search" placeholder="제목 · 아티스트"
+            className="w-full h-[46px] pl-10 pr-[14px] border border-line rounded-lg bg-surface-2 text-[15px] text-ink outline-none"
+          />
+        </div>
+      </header>
+
+      <main className="grow flex flex-col gap-[26px] px-5 md:px-[48px] pt-0 md:pt-10 pb-[44px]">
+        <div className="hidden md:flex items-end justify-between gap-6">
+          <div className="flex flex-col gap-[10px]">
+            <span className="font-mono text-[11px] tracking-[0.16em] text-accent">
+              {MOCK_STATS.total} SONGS · {MOCK_STATS.practicing} IN PRACTICE
+            </span>
+            <h1 className="m-0 font-display text-[46px] font-bold tracking-[-0.03em] leading-none">내 코드 악보</h1>
+          </div>
+          <div className="flex items-center gap-[10px] pb-[6px]">
+            <label htmlFor="sort" className="font-mono text-[11px] tracking-[0.1em] text-dim">SORT</label>
+            <select id="sort" className="h-[34px] px-[10px] border border-line rounded-lg bg-surface-2 text-[13px] text-ink-2">
+              <option>최근 수정순</option><option>제목순</option><option>등록순</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="hidden md:block">
+          <ContinueCard song={CONTINUE_SONG} />
+        </div>
+
+        <FilterChips groups={[{ items: ['전체', '포크', '발라드', '시티팝'] }, { items: ['연습중', '완성', '보관'] }]} />
+
+        <TrackList songs={MOCK_SONGS} />
       </main>
+
+      {IS_ADMIN ? (
+        <Link
+          href="/songs/new"
+          aria-label="새 곡 등록"
+          className="md:hidden fixed right-5 bottom-[30px] w-14 h-14 rounded-[18px] bg-accent text-accent-ink flex items-center justify-center no-underline shadow-fab"
+        >
+          <PlusIcon size={22} />
+        </Link>
+      ) : null}
     </div>
   );
 }
