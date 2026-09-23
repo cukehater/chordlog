@@ -47,6 +47,7 @@
   --color-hairline:    #3A3E47;
   --color-rest:        #33373F;
   --color-dock-well:   #0F1116;
+  --color-danger-ink:  #1A0A08;
 
   /* 타이포 — 실제 패밀리는 next/font가 --font-* 변수로 주입 */
   --font-display: var(--font-hahmlet), 'Nanum Myeongjo', serif;

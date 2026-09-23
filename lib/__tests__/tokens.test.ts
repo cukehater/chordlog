@@ -11,7 +11,7 @@ const REQUIRED = [
   '--color-ink-3', '--color-ink-4', '--color-ink-5', '--color-dim',
   '--color-faint', '--color-lyric', '--color-tab', '--color-accent',
   '--color-accent-ink', '--color-accent-mute', '--color-done',
-  '--color-archived', '--color-danger', '--color-danger-text',
+  '--color-archived', '--color-danger', '--color-danger-text', '--color-danger-ink',
   '--font-display', '--font-sans', '--font-mono',
 ];
 
