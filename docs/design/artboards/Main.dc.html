@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>곡 목록</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;700&amp;family=Hahmlet:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0;font-family:'Gothic A1',system-ui,sans-serif;background:#0C0D10;color:#F4F4F5;-webkit-font-smoothing:antialiased}
+a{color:#FF9D4D}a:hover{color:#FFBC86}
+button,input,select,textarea{font-family:inherit}
+::selection{background:rgba(255,157,77,0.28)}
+</style>
+</helmet>
+<div style="width:1440px;height:1120px;box-sizing:border-box;display:flex;flex-direction:column;background:#0C0D10;overflow:hidden">
+
+<header style="flex-shrink:0;height:60px;box-sizing:border-box;padding:0 48px;border-bottom:1px solid #1A1C22;display:flex;align-items:center;gap:28px">
+<a href="Main.dc.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#F4F4F5">
+<span style="width:16px;height:16px;border-radius:4px;background:{{accent}};display:block"></span>
+<span style="font-family:'Hahmlet',serif;font-size:17px;font-weight:700;letter-spacing:-0.01em">코드집</span>
+</a>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:0.12em;color:#565C68">PERSONAL ARCHIVE</span>
+<div style="margin-left:auto;display:flex;align-items:center;gap:12px">
+<div style="width:280px;position:relative;display:flex;align-items:center">
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6E7480" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="position:absolute;left:12px"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.2-3.2"></path></svg>
+<label for="q" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">곡 검색</label>
+<input id="q" type="search" placeholder="제목 · 아티스트" style="width:100%;height:36px;box-sizing:border-box;padding:0 12px 0 36px;border:1px solid #24262E;border-radius:9px;background:#141519;font-size:13.5px;color:#F4F4F5">
+</div>
+<button type="button" aria-label="화면 테마 전환" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:#141519;border:1px solid #24262E;border-radius:9px;cursor:pointer">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A1A6B0" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 3v1.5"></path><path d="M12 19.5V21"></path><path d="M4.9 4.9l1.1 1.1"></path><path d="M18 18l1.1 1.1"></path><path d="M3 12h1.5"></path><path d="M19.5 12H21"></path><path d="M6 18l-1.1 1.1"></path><path d="M19.1 4.9L18 6"></path></svg>
+</button>
+<a href="Editor.dc.html" style="height:36px;box-sizing:border-box;display:flex;align-items:center;gap:7px;padding:0 16px;background:{{accent}};color:#1A1206;border-radius:9px;font-size:13.5px;font-weight:700;text-decoration:none">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1A1206" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg>
+새 곡
+</a>
+</div>
+</header>
+
+<main style="flex-grow:1;box-sizing:border-box;padding:40px 48px 44px;display:flex;flex-direction:column;gap:26px;overflow:hidden">
+
+<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px">
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:0.16em;color:{{accent}}">32 SONGS · 12 IN PRACTICE</span>
+<h1 style="margin:0;font-family:'Hahmlet',serif;font-size:46px;font-weight:700;letter-spacing:-0.03em;line-height:1">내 코드 악보</h1>
+</div>
+<div style="display:flex;align-items:center;gap:10px;padding-bottom:6px">
+<label for="sort" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:0.1em;color:#565C68">SORT</label>
+<select id="sort" style="height:34px;box-sizing:border-box;padding:0 10px;border:1px solid #24262E;border-radius:8px;background:#141519;font-size:13px;color:#C9CDD5">
+<option>최근 수정순</option>
+<option>제목순</option>
+<option>등록순</option>
+</select>
+</div>
+</div>
+
+<section style="flex-shrink:0;background:#141519;border:1px solid #24262E;border-radius:16px;padding:26px 30px;display:flex;align-items:center;gap:36px">
+<div style="display:flex;flex-direction:column;gap:9px;flex-grow:1;min-width:0">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;letter-spacing:0.16em;color:{{accent}}">CONTINUE PRACTICE</span>
+<h2 style="margin:0;font-family:'Hahmlet',serif;font-size:30px;font-weight:700;letter-spacing:-0.025em;line-height:1.2">새벽 두 시의 골목</h2>
+<div style="display:flex;align-items:center;gap:10px">
+<span style="font-size:14px;color:#A1A6B0">무렵</span>
+<span style="width:3px;height:3px;border-radius:50%;background:#3A3E47"></span>
+<span style="font-size:12.5px;color:#8A909C">3일 전 · Bridge 구간 연습 중</span>
+</div>
+</div>
+
+<div style="flex-shrink:0;display:flex;flex-direction:column;gap:7px;align-items:center;padding:0 22px;border-left:1px solid #24262E">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.14em;color:#565C68">ORIGINAL KEY</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:30px;font-weight:700;line-height:1;color:#F4F4F5">G</span>
+</div>
+
+<div style="flex-shrink:0;display:flex;flex-direction:column;gap:9px;align-items:center;padding:0 22px;border-left:1px solid #24262E;border-right:1px solid #24262E">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.14em;color:#565C68">TUNING</span>
+<span style="display:flex;align-items:center;gap:5px">
+<span style="width:25px;height:27px;display:flex;align-items:center;justify-content:center;border:1px solid #2A2D36;border-radius:6px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:#C9CDD5">E</span>
+<span style="width:25px;height:27px;display:flex;align-items:center;justify-content:center;border:1px solid #2A2D36;border-radius:6px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:#C9CDD5">A</span>
+<span style="width:25px;height:27px;display:flex;align-items:center;justify-content:center;border:1px solid #2A2D36;border-radius:6px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:#C9CDD5">D</span>
+<span style="width:25px;height:27px;display:flex;align-items:center;justify-content:center;border:1px solid #2A2D36;border-radius:6px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:#C9CDD5">G</span>
+<span style="width:25px;height:27px;display:flex;align-items:center;justify-content:center;border:1px solid #2A2D36;border-radius:6px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:#C9CDD5">B</span>
+<span style="width:25px;height:27px;display:flex;align-items:center;justify-content:center;border:1px solid #2A2D36;border-radius:6px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;color:#C9CDD5">E</span>
+</span>
+<span style="font-size:11px;color:#565C68">표준</span>
+</div>
+
+<div style="flex-shrink:0;display:flex;flex-direction:column;gap:9px;align-items:center">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.14em;color:#565C68">CAPO</span>
+<svg width="92" height="30" viewBox="0 0 92 30" fill="none" aria-hidden="true">
+<rect x="3" y="2" width="4" height="26" rx="1.5" fill="#4A4F5A"></rect>
+<path d="M26 2v26M46 2v26M66 2v26M86 2v26" stroke="#2A2D36" stroke-width="1.4"></path>
+<path d="M7 5h85M7 10h85M7 15h85M7 20h85M7 25h85" stroke="#2F333C" stroke-width="1"></path>
+<rect x="35" y="0" width="7" height="30" rx="3.5" fill="{{accent}}"></rect>
+</svg>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:500;color:#C9CDD5">2프렛</span>
+</div>
+
+<a href="SongDetail.dc.html" style="flex-shrink:0;height:44px;box-sizing:border-box;display:flex;align-items:center;gap:8px;padding:0 20px;background:{{accent}};color:#1A1206;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="#1A1206" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"></path></svg>
+연주 시작
+</a>
+</section>
+
+<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+<button type="button" style="height:32px;padding:0 13px;border:1px solid {{accent}};border-radius:8px;background:rgba(255,157,77,0.12);color:{{accent}};font-size:13px;font-weight:700;cursor:pointer">전체</button>
+<button type="button" style="height:32px;padding:0 13px;border:1px solid #24262E;border-radius:8px;background:transparent;color:#A1A6B0;font-size:13px;cursor:pointer">포크</button>
+<button type="button" style="height:32px;padding:0 13px;border:1px solid #24262E;border-radius:8px;background:transparent;color:#A1A6B0;font-size:13px;cursor:pointer">발라드</button>
+<button type="button" style="height:32px;padding:0 13px;border:1px solid #24262E;border-radius:8px;background:transparent;color:#A1A6B0;font-size:13px;cursor:pointer">시티팝</button>
+<span style="width:1px;height:18px;background:#24262E;margin:0 6px"></span>
+<button type="button" style="height:32px;padding:0 13px;border:1px solid #24262E;border-radius:8px;background:transparent;color:#A1A6B0;font-size:13px;cursor:pointer">연습중</button>
+<button type="button" style="height:32px;padding:0 13px;border:1px solid #24262E;border-radius:8px;background:transparent;color:#A1A6B0;font-size:13px;cursor:pointer">완성</button>
+<button type="button" style="height:32px;padding:0 13px;border:1px solid #24262E;border-radius:8px;background:transparent;color:#A1A6B0;font-size:13px;cursor:pointer">보관</button>
+</div>
+
+<div style="display:flex;flex-direction:column">
+
+<div style="display:grid;grid-template-columns:36px minmax(0, 1fr) 64px 92px 104px 84px;align-items:center;gap:16px;height:30px;padding:0 20px;border-bottom:1px solid #24262E;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.14em;color:#565C68">
+<span>#</span><span>TITLE</span><span style="text-align:center">KEY</span><span>CAPO</span><span>STATUS</span><span style="text-align:right">UPDATED</span>
+</div>
+
+<a href="SongDetail.dc.html" style="display:grid;grid-template-columns:36px minmax(0, 1fr) 64px 92px 104px 84px;align-items:center;gap:16px;height:62px;padding:0 20px;border-bottom:1px solid #16181D;text-decoration:none;color:#F4F4F5">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#565C68">01</span>
+<span style="display:flex;align-items:baseline;gap:10px;min-width:0"><span style="font-family:'Hahmlet',serif;font-size:17px;font-weight:600;letter-spacing:-0.015em">새벽 두 시의 골목</span><span style="font-size:13px;color:#8A909C">무렵</span><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;font-weight:700;letter-spacing:0.08em;color:#C9A183;border:1px solid rgba(255,157,77,0.35);border-radius:4px;padding:1px 5px">TAB</span></span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;font-weight:500;color:#C9CDD5;border:1px solid #262A33;border-radius:6px;padding:4px 0;text-align:center">G</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#8A909C">2프렛</span>
+<span style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:#C9CDD5"><span style="width:6px;height:6px;border-radius:50%;background:{{accent}}"></span>연습중</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#565C68;text-align:right">3일 전</span>
+</a>
+
+<a href="SongDetail.dc.html" style="display:grid;grid-template-columns:36px minmax(0, 1fr) 64px 92px 104px 84px;align-items:center;gap:16px;height:62px;padding:0 20px;border-bottom:1px solid #16181D;text-decoration:none;color:#F4F4F5">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#565C68">02</span>
+<span style="display:flex;align-items:baseline;gap:10px;min-width:0"><span style="font-family:'Hahmlet',serif;font-size:17px;font-weight:600;letter-spacing:-0.015em">겨울 정류장</span><span style="font-size:13px;color:#8A909C">이하루</span><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;font-weight:700;letter-spacing:0.08em;color:#8A909C;border:1px solid #2A2D36;border-radius:4px;padding:1px 5px">DROP D</span></span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;font-weight:500;color:#C9CDD5;border:1px solid #262A33;border-radius:6px;padding:4px 0;text-align:center">F</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#8A909C">1프렛</span>
+<span style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:#C9CDD5"><span style="width:6px;height:6px;border-radius:50%;background:{{accent}}"></span>연습중</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#565C68;text-align:right">오늘</span>
+</a>
+
+<a href="SongDetail.dc.html" style="display:grid;grid-template-columns:36px minmax(0, 1fr) 64px 92px 104px 84px;align-items:center;gap:16px;height:62px;padding:0 20px;border-bottom:1px solid #16181D;text-decoration:none;color:#F4F4F5">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#565C68">03</span>
+<span style="display:flex;align-items:baseline;gap:10px;min-width:0"><span style="font-family:'Hahmlet',serif;font-size:17px;font-weight:600;letter-spacing:-0.015em">늦은 편지</span><span style="font-size:13px;color:#8A909C">무렵</span></span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;font-weight:500;color:#C9CDD5;border:1px solid #262A33;border-radius:6px;padding:4px 0;text-align:center">C</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#565C68">—</span>
+<span style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:#C9CDD5"><span style="width:6px;height:6px;border-radius:50%;background:{{accent}}"></span>연습중</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#565C68;text-align:right">오늘</span>
+</a>
+
+<a href="SongDetail.dc.html" style="display:grid;grid-template-columns:36px minmax(0, 1fr) 64px 92px 104px 84px;align-items:center;gap:16px;height:62px;padding:0 20px;border-bottom:1px solid #16181D;text-decoration:none;color:#F4F4F5">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#565C68">04</span>
+<span style="display:flex;align-items:baseline;gap:10px;min-width:0"><span style="font-family:'Hahmlet',serif;font-size:17px;font-weight:600;letter-spacing:-0.015em">목요일의 창</span><span style="font-size:13px;color:#8A909C">밤섬편지</span><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;font-weight:700;letter-spacing:0.08em;color:#C9A183;border:1px solid rgba(255,157,77,0.35);border-radius:4px;padding:1px 5px">TAB</span></span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;font-weight:500;color:#C9CDD5;border:1px solid #262A33;border-radius:6px;padding:4px 0;text-align:center">Am</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#8A909C">1프렛</span>
+<span style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:#C9CDD5"><span style="width:6px;height:6px;border-radius:50%;background:{{accent}}"></span>연습중</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#565C68;text-align:right">어제</span>
+</a>
+
+<a href="SongDetail.dc.html" style="display:grid;grid-template-columns:36px minmax(0, 1fr) 64px 92px 104px 84px;align-items:center;gap:16px;height:62px;padding:0 20px;border-bottom:1px solid #16181D;text-decoration:none;color:#F4F4F5">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#565C68">05</span>
+<span style="display:flex;align-items:baseline;gap:10px;min-width:0"><span style="font-family:'Hahmlet',serif;font-size:17px;font-weight:600;letter-spacing:-0.015em">오래된 라디오</span><span style="font-size:13px;color:#8A909C">청계삼가</span></span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;font-weight:500;color:#C9CDD5;border:1px solid #262A33;border-radius:6px;padding:4px 0;text-align:center">A</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#565C68">—</span>
+<span style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:#C9CDD5"><span style="width:6px;height:6px;border-radius:50%;background:{{accent}}"></span>연습중</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#565C68;text-align:right">5일 전</span>
+</a>
+
+<a href="SongDetail.dc.html" style="display:grid;grid-template-columns:36px minmax(0, 1fr) 64px 92px 104px 84px;align-items:center;gap:16px;height:62px;padding:0 20px;border-bottom:1px solid #16181D;text-decoration:none;color:#F4F4F5">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#565C68">06</span>
+<span style="display:flex;align-items:baseline;gap:10px;min-width:0"><span style="font-family:'Hahmlet',serif;font-size:17px;font-weight:600;letter-spacing:-0.015em">우산 없이</span><span style="font-size:13px;color:#8A909C">이하루</span></span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;font-weight:500;color:#C9CDD5;border:1px solid #262A33;border-radius:6px;padding:4px 0;text-align:center">C</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#565C68">—</span>
+<span style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:#C9CDD5"><span style="width:6px;height:6px;border-radius:50%;background:#5BD0A0"></span>완성</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#565C68;text-align:right">1주 전</span>
+</a>
+
+<a href="SongDetail.dc.html" style="display:grid;grid-template-columns:36px minmax(0, 1fr) 64px 92px 104px 84px;align-items:center;gap:16px;height:62px;padding:0 20px;border-bottom:1px solid #16181D;text-decoration:none;color:#F4F4F5">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#565C68">07</span>
+<span style="display:flex;align-items:baseline;gap:10px;min-width:0"><span style="font-family:'Hahmlet',serif;font-size:17px;font-weight:600;letter-spacing:-0.015em">여름이 길었다</span><span style="font-size:13px;color:#8A909C">소금북</span></span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;font-weight:500;color:#C9CDD5;border:1px solid #262A33;border-radius:6px;padding:4px 0;text-align:center">D</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#565C68">—</span>
+<span style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:#C9CDD5"><span style="width:6px;height:6px;border-radius:50%;background:#5BD0A0"></span>완성</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#565C68;text-align:right">2주 전</span>
+</a>
+
+<a href="SongDetail.dc.html" style="display:grid;grid-template-columns:36px minmax(0, 1fr) 64px 92px 104px 84px;align-items:center;gap:16px;height:62px;padding:0 20px;border-bottom:1px solid #16181D;text-decoration:none;color:#F4F4F5">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#565C68">08</span>
+<span style="display:flex;align-items:baseline;gap:10px;min-width:0"><span style="font-family:'Hahmlet',serif;font-size:17px;font-weight:600;letter-spacing:-0.015em">파란 여름</span><span style="font-size:13px;color:#8A909C">밤섬편지</span></span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;font-weight:500;color:#C9CDD5;border:1px solid #262A33;border-radius:6px;padding:4px 0;text-align:center">E</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#8A909C">2프렛</span>
+<span style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:#C9CDD5"><span style="width:6px;height:6px;border-radius:50%;background:#5BD0A0"></span>완성</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#565C68;text-align:right">2주 전</span>
+</a>
+
+<a href="SongDetail.dc.html" style="display:grid;grid-template-columns:36px minmax(0, 1fr) 64px 92px 104px 84px;align-items:center;gap:16px;height:62px;padding:0 20px;border-bottom:1px solid #16181D;text-decoration:none;color:#F4F4F5">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#565C68">09</span>
+<span style="display:flex;align-items:baseline;gap:10px;min-width:0"><span style="font-family:'Hahmlet',serif;font-size:17px;font-weight:600;letter-spacing:-0.015em">첫 차를 놓치고</span><span style="font-size:13px;color:#8A909C">무렵</span></span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;font-weight:500;color:#C9CDD5;border:1px solid #262A33;border-radius:6px;padding:4px 0;text-align:center">Em</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#8A909C">3프렛</span>
+<span style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:#8A909C"><span style="width:6px;height:6px;border-radius:50%;background:#4A4F5A"></span>보관</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#565C68;text-align:right">3주 전</span>
+</a>
+
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#FF9D4D","options":["#FF9D4D","#7AA2FF","#5BD0A0","#E4E4E7"]},"$preview":{"width":1440,"height":1120}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#FF9D4D' };
+  }
+}
+</script>
+</body>
+</html>
