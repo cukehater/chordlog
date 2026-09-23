@@ -43,13 +43,20 @@ export function usePlayView({ tempo, initialSemi = 0 }: { tempo: number; initial
     if (!scrolling) return;
     let raf = 0;
     let last = performance.now();
+    let target: HTMLDivElement | null = null;
+    let pos = 0;
     const step = (now: number) => {
       const el = [...sheets.current].find((n) => n.clientHeight > 0);
       if (!el) { raf = requestAnimationFrame(step); return; }
+      // 보이는 시트가 바뀌면(뷰포트 전환) 누적 위치를 그 요소 기준으로 다시 잡는다.
+      if (el !== target) { target = el; pos = el.scrollTop; }
       const dt = (now - last) / 1000;
       last = now;
-      el.scrollTop += SPEEDS[speedIdx] * BASE_PX_PER_SEC * dt;
-      if (el.scrollTop + el.clientHeight >= el.scrollHeight - 1) {
+      // scrollTop은 브라우저가 정수로 반올림하므로 프레임당 1px 미만(1.0× = 0.42px)을
+      // 더하면 누적되지 않는다. 실수 위치를 따로 들고 그 값을 대입한다.
+      pos += SPEEDS[speedIdx] * BASE_PX_PER_SEC * dt;
+      el.scrollTop = pos;
+      if (pos + el.clientHeight >= el.scrollHeight - 1) {
         setScrolling(false);
         return;
       }

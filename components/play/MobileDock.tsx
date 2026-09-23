@@ -3,6 +3,7 @@
 import type { Song } from '@/lib/types';
 import type { usePlayView } from '@/lib/ui/playView';
 import { transposeChord, keyLabel } from '@/lib/chordpro/transpose';
+import { MicroLabel } from '@/components/ui/MicroLabel';
 import { Stepper } from '@/components/ui/Stepper';
 import { PlayIcon, PauseIcon, MetronomeIcon } from '@/components/icons';
 
@@ -60,7 +61,7 @@ export function MobileDock({ song, view }: { song: Song; view: View }) {
         <button type="button" aria-label="키 반음 내리기" onClick={view.keyDown}
           className={`${dockBtn} bg-control text-ink text-[20px]`}>−</button>
         <span className="grow flex flex-col items-center gap-px">
-          <span className="font-mono text-[9.5px] tracking-[0.16em] text-ink-5">KEY</span>
+          <MicroLabel>KEY</MicroLabel>
           <span className="font-mono text-[19px] font-bold leading-[1.1] text-accent">
             {current}{' '}
             {view.semi !== 0 ? <span className="text-[11px] text-ink-4">{keyLabel(view.semi)}</span> : null}

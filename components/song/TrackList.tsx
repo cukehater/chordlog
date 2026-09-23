@@ -1,16 +1,10 @@
 import Link from 'next/link';
 import type { Song } from '@/lib/types';
 import { STANDARD_TUNING, STATUS_LABEL } from '@/lib/types';
-import { StatusMark } from '@/components/ui/StatusMark';
+import { StatusMark, DOT } from '@/components/ui/StatusMark';
 import { Badge } from '@/components/ui/Badge';
 
 const GRID = 'grid-cols-[36px_minmax(0,1fr)_64px_92px_104px_84px] gap-4';
-
-const STATUS_DOT: Record<Song['status'], string> = {
-  practicing: 'bg-accent',
-  done: 'bg-done',
-  archived: 'bg-archived',
-};
 
 function tuningBadge(tuning: string): string | null {
   if (tuning === STANDARD_TUNING) return null;
@@ -78,7 +72,7 @@ export function TrackList({ songs }: { songs: Song[] }) {
                 <span className="font-mono text-[11px] text-ink-5 truncate">{mobileMeta(song)}</span>
               </span>
               <span className="shrink-0 flex items-center">
-                <span aria-hidden="true" className={`w-[6px] h-[6px] rounded-full ${STATUS_DOT[song.status]}`} />
+                <span aria-hidden="true" className={`w-[6px] h-[6px] rounded-full ${DOT[song.status]}`} />
                 <span className="sr-only">{STATUS_LABEL[song.status]}</span>
               </span>
               <span className="shrink-0 font-mono text-[13px] font-medium text-ink-2 w-[30px] text-right">{song.key}</span>

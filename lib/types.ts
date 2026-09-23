@@ -34,6 +34,4 @@ export type Song = {
   blocks: Block[];
 };
 
-export type SongSummary = Omit<Song, 'blocks' | 'note' | 'reference'>;
-
 export const STANDARD_TUNING = 'E A D G B E';

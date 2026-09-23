@@ -85,7 +85,11 @@ describe('SongDetailView', () => {
     Object.defineProperty(desktopSheet, 'scrollTop', {
       configurable: true,
       get: () => desktopScrollTop,
-      set: (v: number) => { desktopScrollTop = v; },
+      // 실제 브라우저는 scrollTop을 정수로 반올림한다. 프레임당 증가분이 1px 미만
+      // (1.0× = 25px/s ÷ 60fps ≈ 0.42px)이라, 훅이 `el.scrollTop += dt*속도`처럼
+      // 요소 값에 직접 누적하면 매 프레임 0으로 깎여 영영 움직이지 않는다.
+      // 그 특성을 그대로 흉내 내 누적 실패를 잡는다.
+      set: (v: number) => { desktopScrollTop = Math.round(v); },
     });
     // 모바일 시트는 `md:hidden`(display:none)이라 실제 브라우저에서는 치수가 0이다.
     Object.defineProperty(mobileSheet, 'clientHeight', { value: 0, configurable: true });
@@ -106,11 +110,17 @@ describe('SongDetailView', () => {
       expect(desktop().getByRole('button', { name: '멈춤' })).toBeInTheDocument();
 
       // 프레임 몇 개가 실제로 흘러가게 둔다.
-      await new Promise((resolve) => setTimeout(resolve, 30));
+      await new Promise((resolve) => setTimeout(resolve, 150));
+      const first = desktopSheet.scrollTop;
+      await new Promise((resolve) => setTimeout(resolve, 150));
+      const second = desktopSheet.scrollTop;
 
       // 버그가 있었다면 첫 프레임에 즉시 꺼져 '오토스크롤' 라벨로 되돌아간다.
       expect(desktop().getByRole('button', { name: '멈춤' })).toBeInTheDocument();
-      expect(desktopSheet.scrollTop).toBeGreaterThan(0);
+      expect(first).toBeGreaterThan(0);
+      // 요소의 scrollTop에 직접 누적하면 정수 반올림에 매 프레임 깎여 한 자리에
+      // 멈춘다. 계속 "자라는지"를 봐야 그 구현과 구분된다.
+      expect(second).toBeGreaterThan(first);
       expect(mobileSheet.scrollTop).toBe(0); // 숨은 쪽은 건드리지 않는다
     } finally {
       rafSpy.mockRestore();

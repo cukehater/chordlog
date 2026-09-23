@@ -1,11 +1,9 @@
 'use client';
 
-import { MicroLabel } from './MicroLabel';
-
 export function Stepper({
-  label, value, sub, onDec, onInc, decLabel, incLabel, size = 'bar',
+  value, sub, onDec, onInc, decLabel, incLabel, size = 'bar',
 }: {
-  label?: string; value: string; sub?: string;
+  value: string; sub?: string;
   onDec: () => void; onInc: () => void;
   decLabel: string; incLabel: string; size?: 'bar' | 'dock';
 }) {
@@ -27,7 +25,6 @@ export function Stepper({
       </span>
       <button type="button" aria-label={incLabel} onClick={onInc}
         className={`${btn} flex items-center justify-center text-ink-2 cursor-pointer`}>+</button>
-      {label ? <span className="sr-only"><MicroLabel>{label}</MicroLabel></span> : null}
     </div>
   );
 }

@@ -56,7 +56,7 @@ export function SongEditor({ song }: { song?: Song }) {
         <span className="grow text-center font-mono text-[11px] tracking-[0.14em] text-ink-5">
           {song ? 'EDIT SONG' : 'NEW SONG'}
         </span>
-        <button type="button" className="h-9 px-4 border-0 rounded-md bg-accent text-accent-ink text-[13.5px] font-bold cursor-pointer">저장</button>
+        <button type="button" className="h-11 md:h-9 px-4 border-0 rounded-md bg-accent text-accent-ink text-[13.5px] font-bold cursor-pointer">저장</button>
       </header>
 
       <div className="md:hidden px-5 pb-[14px]">

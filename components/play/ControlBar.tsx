@@ -46,7 +46,7 @@ export function ControlBar({ song, view }: { song: Song; view: View }) {
         </span>
 
         <span className="flex items-center gap-[7px] font-mono text-[11.5px] text-ink-4">
-          <span className="text-[9.5px] tracking-[0.12em] text-dim">TUNING</span>{song.tuning}
+          <MicroLabel>TUNING</MicroLabel>{song.tuning}
         </span>
 
         <Divider />

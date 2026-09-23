@@ -33,7 +33,7 @@ describe('Stepper', () => {
     const dec = vi.fn();
     const inc = vi.fn();
     render(
-      <Stepper label="KEY" value="A" onDec={dec} onInc={inc}
+      <Stepper value="A" onDec={dec} onInc={inc}
         decLabel="키 반음 내리기" incLabel="키 반음 올리기" />
     );
     await userEvent.click(screen.getByRole('button', { name: '키 반음 내리기' }));
@@ -44,7 +44,7 @@ describe('Stepper', () => {
 
   it('dock 크기는 터치 타깃 44px 이상을 유지한다', () => {
     render(
-      <Stepper label="BPM" value="72" size="dock" onDec={() => {}} onInc={() => {}}
+      <Stepper value="72" size="dock" onDec={() => {}} onInc={() => {}}
         decLabel="BPM 낮추기" incLabel="BPM 높이기" />
     );
     expect(screen.getByRole('button', { name: 'BPM 낮추기' }).className).toContain('h-[44px]');

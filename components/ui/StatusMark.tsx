@@ -1,6 +1,6 @@
 import { STATUS_LABEL, type SongStatus } from '@/lib/types';
 
-const DOT: Record<SongStatus, string> = {
+export const DOT: Record<SongStatus, string> = {
   practicing: 'bg-accent',
   done: 'bg-done',
   archived: 'bg-archived',

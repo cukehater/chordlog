@@ -28,7 +28,7 @@ export function SongDetailView({ song, initialSemi }: { song: Song; initialSemi:
   return (
     <>
       <div className="hidden md:contents" data-desktop-view>
-        <div className="min-h-dvh flex flex-col bg-bg">
+        <div className="h-dvh flex flex-col bg-bg">
       {!view.focus ? (
         <SiteHeader
           variant="detail"
