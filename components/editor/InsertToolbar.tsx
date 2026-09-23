@@ -25,7 +25,7 @@ export function InsertToolbar({ onInsert }: { onInsert: (snippet: string) => voi
           key={b.key}
           type="button"
           onClick={() => onInsert(SNIPPETS[b.key])}
-          className={`shrink-0 h-[28px] px-[10px] border rounded-sm font-mono text-[11.5px] cursor-pointer ${
+          className={`shrink-0 h-[44px] md:h-[28px] px-[10px] border rounded-sm font-mono text-[11.5px] cursor-pointer ${
             b.accent ? 'border-accent/40 bg-accent/10 text-accent' : 'border-line bg-transparent text-ink-2'
           }`}
         >

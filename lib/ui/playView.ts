@@ -26,7 +26,15 @@ export function usePlayView({ tempo, initialSemi = 0 }: { tempo: number; initial
   const [bpm, setBpmState] = useState(tempo);
   const [muted, setMuted] = useState(false);
 
-  const sheetRef = useRef<HTMLDivElement | null>(null);
+  // SongDetailView가 데스크톱·모바일 트리를 동시에 마운트하고 둘 다에
+  // 이 ref를 넘기므로(display:none인 쪽도 포함), 단일 useRef로는 마지막에
+  // 커밋된 쪽이 덮어써 버린다. 콜백 ref로 두 요소를 모두 모아두고
+  // rAF 루프에서 실제로 보이는(clientHeight > 0) 쪽을 골라 스크롤한다.
+  const sheets = useRef(new Set<HTMLDivElement>());
+  const sheetRef = useCallback((el: HTMLDivElement) => {
+    sheets.current.add(el);
+    return () => { sheets.current.delete(el); };
+  }, []);
   const taps = useRef<number[]>([]);
 
   /* ── 오토스크롤 ── 실제 스크롤은 rAF로 굴린다.
@@ -36,7 +44,7 @@ export function usePlayView({ tempo, initialSemi = 0 }: { tempo: number; initial
     let raf = 0;
     let last = performance.now();
     const step = (now: number) => {
-      const el = sheetRef.current;
+      const el = [...sheets.current].find((n) => n.clientHeight > 0);
       if (!el) { raf = requestAnimationFrame(step); return; }
       const dt = (now - last) / 1000;
       last = now;

@@ -16,7 +16,7 @@ export function Segmented({
             type="button"
             aria-pressed={on}
             onClick={() => onChange(o.value)}
-            className={`h-[32px] px-[13px] text-[13px] cursor-pointer ${grow ? 'grow' : ''} ${
+            className={`h-[44px] md:h-[32px] px-[13px] text-[13px] cursor-pointer ${grow ? 'grow' : ''} ${
               on ? 'bg-accent text-accent-ink font-bold' : 'bg-transparent text-ink-4 font-medium'
             }`}
           >
