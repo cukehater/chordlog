@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>곡 작성 · 편집</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;700&amp;family=Hahmlet:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0;font-family:'Gothic A1',system-ui,sans-serif;background:#0C0D10;color:#F4F4F5;-webkit-font-smoothing:antialiased}
+a{color:#FF9D4D}a:hover{color:#FFBC86}
+button,input,select,textarea{font-family:inherit}
+::selection{background:rgba(255,157,77,0.28)}
+</style>
+</head>
+<body>
+<div style="width:1440px;height:1120px;box-sizing:border-box;display:flex;flex-direction:column;background:#0C0D10;overflow:hidden">
+
+<header style="flex-shrink:0;height:60px;box-sizing:border-box;padding:0 48px;border-bottom:1px solid #1A1C22;display:flex;align-items:center;gap:18px">
+<a href="Main.dc.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#F4F4F5">
+<span style="width:16px;height:16px;border-radius:4px;background:#FF9D4D;display:block"></span>
+<span style="font-family:'Hahmlet',serif;font-size:17px;font-weight:700;letter-spacing:-0.01em">코드집</span>
+</a>
+<span style="color:#3A3E47">/</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.08em;color:#8A909C">NEW SONG</span>
+<span style="display:flex;align-items:center;gap:7px;font-size:12px;color:#565C68"><span style="width:5px;height:5px;border-radius:50%;background:#565C68"></span>저장되지 않음</span>
+<div style="margin-left:auto;display:flex;align-items:center;gap:10px">
+<a href="Main.dc.html" style="height:34px;box-sizing:border-box;display:flex;align-items:center;padding:0 14px;border:1px solid #24262E;border-radius:8px;background:transparent;color:#8A909C;font-size:13px;text-decoration:none">취소</a>
+<button type="button" style="height:34px;padding:0 20px;border:0;border-radius:8px;background:#FF9D4D;color:#1A1206;font-size:13.5px;font-weight:700;cursor:pointer">저장</button>
+</div>
+</header>
+
+<section style="flex-shrink:0;box-sizing:border-box;padding:22px 48px 20px;border-bottom:1px solid #1A1C22;display:grid;grid-template-columns:repeat(12, minmax(0, 1fr));gap:20px 24px">
+
+<div style="grid-column:span 4;display:flex;flex-direction:column;gap:7px">
+<label for="title" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.16em;color:#565C68">TITLE *</label>
+<input id="title" type="text" value="새벽 두 시의 골목" style="height:34px;box-sizing:border-box;padding:0;border:0;border-bottom:1px solid #2A2D36;background:transparent;font-family:'Hahmlet',serif;font-size:20px;font-weight:600;color:#F4F4F5;outline:none">
+</div>
+<div style="grid-column:span 2;display:flex;flex-direction:column;gap:7px">
+<label for="artist" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.16em;color:#565C68">ARTIST</label>
+<input id="artist" type="text" value="무렵" style="height:34px;box-sizing:border-box;padding:0;border:0;border-bottom:1px solid #2A2D36;background:transparent;font-size:16px;color:#F4F4F5;outline:none">
+</div>
+<div style="grid-column:span 1;display:flex;flex-direction:column;gap:7px">
+<label for="key" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.16em;color:#565C68">KEY</label>
+<select id="key" style="height:34px;box-sizing:border-box;padding:0;border:0;border-bottom:1px solid #2A2D36;background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:16px;font-weight:500;color:#F4F4F5;outline:none">
+<option selected>G</option><option>C</option><option>D</option><option>Am</option><option>Em</option>
+</select>
+</div>
+<div style="grid-column:span 1;display:flex;flex-direction:column;gap:7px">
+<label for="tempo" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.16em;color:#565C68">TEMPO</label>
+<input id="tempo" type="number" value="72" style="height:34px;box-sizing:border-box;padding:0;border:0;border-bottom:1px solid #2A2D36;background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:16px;color:#F4F4F5;outline:none">
+</div>
+<div style="grid-column:span 2;display:flex;flex-direction:column;gap:7px">
+<label for="status" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.16em;color:#565C68">STATUS</label>
+<select id="status" style="height:34px;box-sizing:border-box;padding:0;border:0;border-bottom:1px solid #2A2D36;background:transparent;font-size:15px;color:#F4F4F5;outline:none">
+<option selected>연습중</option><option>완성</option><option>보관</option>
+</select>
+</div>
+<div style="grid-column:span 2;display:flex;flex-direction:column;gap:7px">
+<label for="ref" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.16em;color:#565C68">REFERENCE</label>
+<input id="ref" type="url" placeholder="원본 영상 주소" style="height:34px;box-sizing:border-box;padding:0;border:0;border-bottom:1px solid #2A2D36;background:transparent;font-size:14px;color:#F4F4F5;outline:none">
+</div>
+
+<div style="grid-column:span 3;display:flex;flex-direction:column;gap:9px">
+<label for="tuning" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.16em;color:#565C68">TUNING</label>
+<div style="display:flex;align-items:center;gap:12px;background:#141519;border:1px solid #24262E;border-radius:12px;padding:11px 14px">
+<select id="tuning" style="height:38px;box-sizing:border-box;padding:0 8px;border:1px solid #2A2D36;border-radius:8px;background:#0C0D10;font-size:13.5px;color:#F4F4F5;outline:none">
+<option selected>표준</option><option>Drop D</option><option>반음 내림</option><option>오픈 G</option><option>직접 입력</option>
+</select>
+<span style="display:flex;align-items:center;gap:5px">
+<span style="width:24px;height:26px;display:flex;align-items:center;justify-content:center;border:1px solid #2A2D36;border-radius:6px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#C9CDD5">E</span>
+<span style="width:24px;height:26px;display:flex;align-items:center;justify-content:center;border:1px solid #2A2D36;border-radius:6px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#C9CDD5">A</span>
+<span style="width:24px;height:26px;display:flex;align-items:center;justify-content:center;border:1px solid #2A2D36;border-radius:6px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#C9CDD5">D</span>
+<span style="width:24px;height:26px;display:flex;align-items:center;justify-content:center;border:1px solid #2A2D36;border-radius:6px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#C9CDD5">G</span>
+<span style="width:24px;height:26px;display:flex;align-items:center;justify-content:center;border:1px solid #2A2D36;border-radius:6px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#C9CDD5">B</span>
+<span style="width:24px;height:26px;display:flex;align-items:center;justify-content:center;border:1px solid #2A2D36;border-radius:6px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#C9CDD5">E</span>
+</span>
+</div>
+</div>
+
+<div style="grid-column:span 5;display:flex;flex-direction:column;gap:9px">
+<label for="capo" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.16em;color:#565C68">CAPO — 끼우는 위치만 기록합니다</label>
+<div style="display:flex;align-items:center;gap:16px;background:#141519;border:1px solid #24262E;border-radius:12px;padding:11px 14px">
+<select id="capo" style="height:38px;box-sizing:border-box;padding:0 10px;border:1px solid #2A2D36;border-radius:8px;background:#0C0D10;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:15px;font-weight:700;color:#F4F4F5;outline:none">
+<option>0프렛</option><option>1프렛</option><option selected>2프렛</option><option>3프렛</option><option>4프렛</option><option>5프렛</option><option>6프렛</option><option>7프렛</option>
+</select>
+<svg width="200" height="38" viewBox="0 0 200 38" fill="none" aria-hidden="true">
+<rect x="4" y="4" width="4" height="30" rx="2" fill="#5A606C"></rect>
+<path d="M46 4v30M88 4v30M130 4v30M172 4v30" stroke="#2A2D36" stroke-width="1.4"></path>
+<path d="M8 7h189M8 13h189M8 19h189M8 25h189M8 31h189" stroke="#2F333C" stroke-width="1"></path>
+<rect x="73" y="1" width="9" height="36" rx="4.5" fill="#FF9D4D"></rect>
+</svg>
+<span style="font-size:12.5px;line-height:1.6;color:#8A909C">악보 코드는 바뀌지 않아요.<br>연주할 때 참고용으로만 보입니다.</span>
+</div>
+</div>
+
+<div style="grid-column:span 4;display:flex;flex-direction:column;gap:9px">
+<label for="tags" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.16em;color:#565C68">TAGS</label>
+<div style="display:flex;align-items:center;gap:8px;min-height:62px;box-sizing:border-box;padding:4px 12px;border:1px solid #24262E;border-radius:12px;background:#141519">
+<span style="display:flex;align-items:center;gap:7px;font-size:13px;color:#FF9D4D;border:1px solid rgba(255,157,77,0.35);background:rgba(255,157,77,0.1);padding:4px 10px;border-radius:7px">포크<button type="button" aria-label="포크 태그 제거" style="border:0;background:transparent;color:#FF9D4D;font-size:13px;line-height:1;cursor:pointer;padding:0">×</button></span>
+<span style="display:flex;align-items:center;gap:7px;font-size:13px;color:#FF9D4D;border:1px solid rgba(255,157,77,0.35);background:rgba(255,157,77,0.1);padding:4px 10px;border-radius:7px">핑거스타일<button type="button" aria-label="핑거스타일 태그 제거" style="border:0;background:transparent;color:#FF9D4D;font-size:13px;line-height:1;cursor:pointer;padding:0">×</button></span>
+<input id="tags" type="text" placeholder="입력 후 Enter" style="flex-grow:1;height:28px;border:0;background:transparent;font-size:13px;color:#F4F4F5;outline:none">
+</div>
+</div>
+
+</section>
+
+<div style="flex-grow:1;display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));overflow:hidden">
+
+<section style="display:flex;flex-direction:column;background:#0A0B0E;border-right:1px solid #1A1C22;overflow:hidden">
+<div style="flex-shrink:0;height:40px;box-sizing:border-box;padding:0 20px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #16181D">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;letter-spacing:0.16em;color:#565C68">SOURCE · CHORDPRO</span>
+</div>
+<div style="flex-shrink:0;display:flex;align-items:center;gap:7px;padding:9px 20px;border-bottom:1px solid #16181D">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:0.14em;color:#3A3E47;margin-right:3px">INSERT</span>
+<button type="button" style="height:28px;padding:0 10px;border:1px solid #24262E;border-radius:7px;background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#C9CDD5;cursor:pointer">[코드]</button>
+<button type="button" style="height:28px;padding:0 10px;border:1px solid #24262E;border-radius:7px;background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#C9CDD5;cursor:pointer">섹션</button>
+<button type="button" style="height:28px;padding:0 10px;border:1px solid rgba(255,157,77,0.4);border-radius:7px;background:rgba(255,157,77,0.1);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#FF9D4D;cursor:pointer">스트러밍</button>
+<button type="button" style="height:28px;padding:0 10px;border:1px solid rgba(255,157,77,0.4);border-radius:7px;background:rgba(255,157,77,0.1);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#FF9D4D;cursor:pointer">TAB 6줄</button>
+<button type="button" style="height:28px;padding:0 10px;border:1px solid #24262E;border-radius:7px;background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#C9CDD5;cursor:pointer">메모</button>
+<span style="margin-left:auto;font-size:11px;color:#3A3E47">D 다운 · U 업 · &gt; 강세</span>
+</div>
+<div style="flex-grow:1;display:flex;overflow:hidden">
+<div aria-hidden="true" style="flex-shrink:0;width:48px;box-sizing:border-box;padding:16px 12px 16px 0;text-align:right;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;line-height:24px;color:#3A3E47;display:flex;flex-direction:column">
+<span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span style="color:#FF6B5A;font-weight:700">24</span><span>25</span>
+</div>
+<label for="src" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">악보 원문</label>
+<textarea id="src" spellcheck="false" style="flex-grow:1;box-sizing:border-box;border:0;resize:none;padding:16px 20px 16px 0;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;line-height:24px;color:#C9CDD5;background:transparent;outline:none">{title: 새벽 두 시의 골목}
+{artist: 무렵}
+{key: G}
+{capo: 2}
+{tuning: E A D G B E}
+{tempo: 72}
+
+{sos: Intro (첫 G 두 번), Verse 1, Pre-Chorus}
+D - D - D U D - D - D - D U - -
+&gt;               &gt;
+{eos}
+
+{sot: 메인 리프  x3}
+E|-------------10------------|
+B|--13-11----11----11----11--|
+G|-------10----------10------|
+D|---------------------------|
+A|---------------------------|
+E|---------------------------|
+{eot}
+
+{soc: Verse 1}
+[G]가로등 하나 [Em]꺼지고 남은 자리
+[Am7 우린 아직 [D7]여기 앉아 있어
+{eoc}</textarea>
+</div>
+<div style="flex-shrink:0;display:flex;align-items:center;gap:11px;padding:12px 20px;border-top:1px solid #16181D;background:rgba(255,107,90,0.07)">
+<span style="flex-shrink:0;width:18px;height:18px;border-radius:5px;background:#FF6B5A;color:#1A0A08;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center">!</span>
+<span style="font-size:12.5px;color:#FF9A8E"><strong style="font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:700">24행</strong> · 닫히지 않은 대괄호 <strong style="font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:700">[Am7</strong> — 이 줄은 코드 없이 가사로만 렌더링됩니다</span>
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;background:#131418;overflow:hidden">
+<div style="flex-shrink:0;height:40px;box-sizing:border-box;padding:0 28px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #1E2027">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;letter-spacing:0.16em;color:#565C68">PREVIEW</span>
+<span style="font-size:11.5px;color:#3A3E47">입력을 멈추면 0.3초 뒤 갱신</span>
+<span style="margin-left:auto;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:#565C68">G · CAPO 2프렛 · EADGBE</span>
+</div>
+<div style="flex-grow:1;padding:22px 28px;overflow:hidden;display:flex;flex-direction:column;gap:16px">
+
+<div style="display:flex;flex-direction:column;gap:9px;background:#0C0D10;border:1px solid #22242B;border-radius:12px;padding:12px 14px">
+<div style="display:flex;align-items:baseline;gap:9px">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;font-weight:700;letter-spacing:0.16em;color:#FF9D4D">PATTERN A</span>
+<span style="font-size:11.5px;color:#8A909C">Intro (첫 G 두 번) · Verse 1 · Pre-Chorus</span>
+</div>
+<div style="display:flex">
+<span style="width:25px;display:flex;flex-direction:column;align-items:center;gap:7px;"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;color:#A1A6B0;font-weight:700;">1</span><span style="line-height:1;font-size:18px;color:#E9EAEC;">↓</span><span style="width:14px;height:2px;border-radius:1px;background:transparent;"></span></span>
+<span style="width:25px;display:flex;flex-direction:column;align-items:center;gap:7px;"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;color:#4A4F5A;">e</span><span style="line-height:1;font-size:13px;color:#33373F;">·</span><span style="width:14px;height:2px;border-radius:1px;background:transparent;"></span></span>
+<span style="width:25px;display:flex;flex-direction:column;align-items:center;gap:7px;"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;color:#4A4F5A;">&amp;</span><span style="line-height:1;font-size:18px;color:#E9EAEC;">↓</span><span style="width:14px;height:2px;border-radius:1px;background:transparent;"></span></span>
+<span style="width:25px;display:flex;flex-direction:column;align-items:center;gap:7px;"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;color:#4A4F5A;">a</span><span style="line-height:1;font-size:13px;color:#33373F;">·</span><span style="width:14px;height:2px;border-radius:1px;background:transparent;"></span></span>
+<span style="width:25px;display:flex;flex-direction:column;align-items:center;gap:7px;border-left:1px solid #22242B;"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;color:#A1A6B0;font-weight:700;">2</span><span style="line-height:1;font-size:18px;color:#FF9D4D;font-weight:700;">↓</span><span style="width:14px;height:2px;border-radius:1px;background:#FF9D4D;"></span></span>
+<span style="width:25px;display:flex;flex-direction:column;align-items:center;gap:7px;"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;color:#4A4F5A;">e</span><span style="line-height:1;font-size:18px;color:#E9EAEC;">↑</span><span style="width:14px;height:2px;border-radius:1px;background:transparent;"></span></span>
+<span style="width:25px;display:flex;flex-direction:column;align-items:center;gap:7px;"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;color:#4A4F5A;">&amp;</span><span style="line-height:1;font-size:18px;color:#E9EAEC;">↓</span><span style="width:14px;height:2px;border-radius:1px;background:transparent;"></span></span>
+<span style="width:25px;display:flex;flex-direction:column;align-items:center;gap:7px;"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;color:#4A4F5A;">a</span><span style="line-height:1;font-size:13px;color:#33373F;">·</span><span style="width:14px;height:2px;border-radius:1px;background:transparent;"></span></span>
+<span style="width:25px;display:flex;flex-direction:column;align-items:center;gap:7px;border-left:1px solid #22242B;"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;color:#A1A6B0;font-weight:700;">3</span><span style="line-height:1;font-size:18px;color:#E9EAEC;">↓</span><span style="width:14px;height:2px;border-radius:1px;background:transparent;"></span></span>
+<span style="width:25px;display:flex;flex-direction:column;align-items:center;gap:7px;"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;color:#4A4F5A;">e</span><span style="line-height:1;font-size:13px;color:#33373F;">·</span><span style="width:14px;height:2px;border-radius:1px;background:transparent;"></span></span>
+<span style="width:25px;display:flex;flex-direction:column;align-items:center;gap:7px;"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;color:#4A4F5A;">&amp;</span><span style="line-height:1;font-size:18px;color:#E9EAEC;">↓</span><span style="width:14px;height:2px;border-radius:1px;background:transparent;"></span></span>
+<span style="width:25px;display:flex;flex-direction:column;align-items:center;gap:7px;"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;color:#4A4F5A;">a</span><span style="line-height:1;font-size:13px;color:#33373F;">·</span><span style="width:14px;height:2px;border-radius:1px;background:transparent;"></span></span>
+<span style="width:25px;display:flex;flex-direction:column;align-items:center;gap:7px;border-left:1px solid #22242B;"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;color:#A1A6B0;font-weight:700;">4</span><span style="line-height:1;font-size:18px;color:#FF9D4D;font-weight:700;">↓</span><span style="width:14px;height:2px;border-radius:1px;background:#FF9D4D;"></span></span>
+<span style="width:25px;display:flex;flex-direction:column;align-items:center;gap:7px;"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;color:#4A4F5A;">e</span><span style="line-height:1;font-size:18px;color:#E9EAEC;">↑</span><span style="width:14px;height:2px;border-radius:1px;background:transparent;"></span></span>
+<span style="width:25px;display:flex;flex-direction:column;align-items:center;gap:7px;"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;color:#4A4F5A;">&amp;</span><span style="line-height:1;font-size:13px;color:#33373F;">·</span><span style="width:14px;height:2px;border-radius:1px;background:transparent;"></span></span>
+<span style="width:25px;display:flex;flex-direction:column;align-items:center;gap:7px;"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;color:#4A4F5A;">a</span><span style="line-height:1;font-size:13px;color:#33373F;">·</span><span style="width:14px;height:2px;border-radius:1px;background:transparent;"></span></span>
+</div>
+</div>
+
+<div style="display:flex;align-items:center;gap:12px"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;font-weight:700;letter-spacing:0.18em;color:#6E7480">INTRO</span><span style="flex-grow:1;height:1px;background:#22242B"></span></div>
+
+<div style="background:#0C0D10;border:1px solid #22242B;border-radius:10px;padding:11px 13px;display:flex;flex-direction:column;gap:7px">
+<div style="display:flex;align-items:center;gap:9px">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;font-weight:700;letter-spacing:0.16em;color:#FF9D4D">TAB</span>
+<span style="font-size:11.5px;color:#A1A6B0">메인 리프</span>
+<span style="margin-left:auto;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;font-weight:700;color:#C9CDD5;border:1px solid #2A2D36;border-radius:5px;padding:2px 7px">×3</span>
+</div>
+<div style="display:flex;flex-direction:column;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;line-height:1.65">
+<span style="display:flex"><span style="width:1.3em;color:#6E7480">E</span><span style="color:#4A4F5A">|</span><span style="white-space:pre;color:#D8DBE0">-------------10------------</span><span style="color:#4A4F5A">|</span></span>
+<span style="display:flex"><span style="width:1.3em;color:#6E7480">B</span><span style="color:#4A4F5A">|</span><span style="white-space:pre;color:#D8DBE0">--13-11----11----11----11--</span><span style="color:#4A4F5A">|</span></span>
+<span style="display:flex"><span style="width:1.3em;color:#6E7480">G</span><span style="color:#4A4F5A">|</span><span style="white-space:pre;color:#D8DBE0">-------10----------10------</span><span style="color:#4A4F5A">|</span></span>
+<span style="display:flex"><span style="width:1.3em;color:#6E7480">D</span><span style="color:#4A4F5A">|</span><span style="white-space:pre;color:#D8DBE0">---------------------------</span><span style="color:#4A4F5A">|</span></span>
+<span style="display:flex"><span style="width:1.3em;color:#6E7480">A</span><span style="color:#4A4F5A">|</span><span style="white-space:pre;color:#D8DBE0">---------------------------</span><span style="color:#4A4F5A">|</span></span>
+<span style="display:flex"><span style="width:1.3em;color:#6E7480">E</span><span style="color:#4A4F5A">|</span><span style="white-space:pre;color:#D8DBE0">---------------------------</span><span style="color:#4A4F5A">|</span></span>
+</div>
+</div>
+
+<div style="display:flex;align-items:center;gap:12px"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;font-weight:700;letter-spacing:0.18em;color:#6E7480">VERSE 1</span><span style="flex-grow:1;height:1px;background:#22242B"></span></div>
+
+<div style="font-size:17px;line-height:1.5;color:#E9EAEC">
+<div style="display:flex;flex-wrap:wrap;align-items:flex-end;margin-bottom:12px"><span style="display:inline-flex;flex-direction:column;align-items:flex-start"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;font-weight:700;color:#FF9D4D;min-height:22px">G</span><span style="white-space:pre">가로등 하나 </span></span><span style="display:inline-flex;flex-direction:column;align-items:flex-start"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;font-weight:700;color:#FF9D4D;min-height:22px">Em</span><span style="white-space:pre">꺼지고 남은 자리</span></span></div>
+<div style="display:flex;flex-wrap:wrap;align-items:flex-end;border-left:2px solid #FF6B5A;background:rgba(255,107,90,0.07);padding:6px 0 6px 12px"><span style="display:inline-flex;flex-direction:column;align-items:flex-start"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;font-weight:700;color:#4A4F5A;min-height:22px">·</span><span style="white-space:pre;color:#A1A6B0">[Am7 우린 아직 </span></span><span style="display:inline-flex;flex-direction:column;align-items:flex-start"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;font-weight:700;color:#FF9D4D;min-height:22px">D7</span><span style="white-space:pre">여기 앉아 있어</span></span></div>
+</div>
+
+</div>
+</section>
+
+</div>
+</div>
+</body>
+</html>

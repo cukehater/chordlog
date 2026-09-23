@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>모바일 연주 뷰</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;700&amp;family=Hahmlet:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0;font-family:'Gothic A1',system-ui,sans-serif;background:#0C0D10;color:#F4F4F5;-webkit-font-smoothing:antialiased}
+a{color:#FF9D4D}a:hover{color:#FFBC86}
+button{font-family:inherit}
+::selection{background:rgba(255,157,77,0.28)}
+</style>
+</helmet>
+<div style="width:390px;height:844px;box-sizing:border-box;position:relative;display:flex;flex-direction:column;background:#0C0D10;overflow:hidden">
+
+<header style="flex-shrink:0;box-sizing:border-box;padding:52px 12px 10px;display:flex;flex-direction:column;gap:8px;border-bottom:1px solid #16181D">
+<div style="display:flex;align-items:center;gap:4px">
+<a href="MobileList.dc.html" aria-label="목록으로" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;text-decoration:none">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A1A6B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+</a>
+<span style="display:flex;flex-direction:column;gap:2px;flex-grow:1;min-width:0">
+<span style="font-family:'Hahmlet',serif;font-size:17px;font-weight:600;letter-spacing:-0.015em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">새벽 두 시의 골목</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;letter-spacing:0.06em;color:#6E7480">무렵 · 원키 G</span>
+</span>
+<button type="button" onClick="{{toggleMute}}" style="{{muteBtnStyle}}" aria-label="메트로놈 소리 켜고 끄기">
+<sc-if value="{{muted}}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"></path><path d="m17 9 4 6"></path><path d="m21 9-4 6"></path></svg></sc-if>
+<sc-if value="{{notMuted}}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"></path><path d="M16 9a4 4 0 0 1 0 6"></path><path d="M19 6.5a8 8 0 0 1 0 11"></path></svg></sc-if>
+</button>
+</div>
+<div style="display:flex;align-items:center;gap:8px;padding:0 4px">
+<span style="display:flex;align-items:center;gap:7px;border:1px solid #262A33;border-radius:9px;padding:5px 9px">
+<svg width="34" height="16" viewBox="0 0 34 16" fill="none" aria-hidden="true">
+<rect x="1" y="2" width="2.6" height="12" rx="1.3" fill="#5A606C"></rect>
+<path d="M12 2v12M22 2v12M32 2v12" stroke="#2A2D36" stroke-width="1"></path>
+<path d="M4 4h29M4 7h29M4 10h29M4 13h29" stroke="#2F333C" stroke-width="0.8"></path>
+<rect x="6.5" y="0" width="4" height="16" rx="2" fill="{{accent}}"></rect>
+</svg>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:700;color:#C9CDD5">2F</span>
+</span>
+<span style="display:flex;align-items:center;gap:7px;border:1px solid #262A33;border-radius:9px;padding:7px 10px">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;letter-spacing:0.12em;color:#565C68">TUNING</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:500;color:#C9CDD5">E A D G B E</span>
+</span>
+</div>
+</header>
+
+<section id="dcSheetMobile" style="{{sheetBoxStyle}}">
+
+<div style="display:flex;flex-direction:column;gap:9px;background:#131418;border:1px solid #1E2027;border-radius:14px;padding:12px 13px;margin-bottom:16px">
+<div style="display:flex;align-items:center;gap:8px">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9.5px;font-weight:700;letter-spacing:0.16em;color:{{accent}}">{{pat.name}}</span>
+<span style="font-size:10.5px;color:#6E7480;flex-grow:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{pat.use}}</span>
+<span style="display:flex;align-items:center;border:1px solid #2A2D36;border-radius:7px;overflow:hidden;flex-shrink:0">
+<button type="button" onClick="{{showA}}" style="{{aStyle}}">A</button>
+<button type="button" onClick="{{showB}}" style="{{bStyle}}">B</button>
+</span>
+</div>
+<div style="display:flex;background:#0C0D10;border:1px solid #22242B;border-radius:10px;padding:9px 4px">
+<sc-for list="{{pat.slots}}" as="s" hint-placeholder-count="16">
+<span style="{{s.colStyle}}"><span style="{{s.labStyle}}">{{s.label}}</span><span style="{{s.glyphStyle}}">{{s.glyph}}</span><span style="{{s.barStyle}}"></span></span>
+</sc-for>
+</div>
+<span style="font-size:10.5px;color:#4A4F5A">↓ 다운 · ↑ 업 · 주황은 강세</span>
+</div>
+
+<div style="{{sheetStyle}}">
+<sc-for list="{{blocks}}" as="b" hint-placeholder-count="8">
+<div style="margin-bottom:12px">
+<sc-if value="{{b.isLabel}}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;align-items:center;gap:10px;margin:14px 0 8px">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:0.58em;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#6E7480">{{b.label}}</span>
+<span style="flex-grow:1;height:1px;background:#22242B"></span>
+</div>
+</sc-if>
+<sc-if value="{{b.isComment}}" hint-placeholder-val="{{ true }}">
+<div style="font-size:0.74em;color:#6E7480;border-left:2px solid #2A2D36;padding-left:10px;margin:10px 0">{{b.text}}</div>
+</sc-if>
+<sc-if value="{{b.isTab}}" hint-placeholder-val="{{ true }}">
+<div style="background:#0C0D10;border:1px solid #22242B;border-radius:10px;padding:10px 11px;margin:8px 0;display:flex;flex-direction:column;gap:7px">
+<div style="display:flex;align-items:center;gap:8px">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:0.5em;font-weight:700;letter-spacing:0.16em;color:{{accent}}">TAB</span>
+<span style="font-size:0.62em;color:#A1A6B0">{{b.title}}</span>
+<span style="margin-left:auto;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:0.56em;font-weight:700;color:#C9CDD5;border:1px solid #2A2D36;border-radius:5px;padding:2px 6px">{{b.repeat}}</span>
+</div>
+<div style="display:flex;flex-direction:column">
+<sc-for list="{{b.tabLines}}" as="t" hint-placeholder-count="6">
+<span style="display:flex;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:0.6em;line-height:1.6"><span style="width:1.3em;color:#6E7480">{{t.s}}</span><span style="color:#4A4F5A">|</span><span style="white-space:pre;color:#D8DBE0">{{t.t}}</span><span style="color:#4A4F5A">|</span></span>
+</sc-for>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{b.isLine}}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-wrap:wrap;align-items:flex-end;line-height:1.5;color:#E9EAEC">
+<sc-for list="{{b.pairs}}" as="p" hint-placeholder-count="3"><span style="display:inline-flex;flex-direction:column;align-items:flex-start"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:0.76em;font-weight:700;color:{{accent}};min-height:1.5em;letter-spacing:-0.01em">{{p.chord}}</span><span style="white-space:pre">{{p.text}}</span></span></sc-for>
+</div>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</section>
+
+<div style="position:absolute;left:14px;right:14px;bottom:24px;display:flex;flex-direction:column;gap:6px;background:#181A20;border:1px solid #2A2D36;border-radius:20px;padding:8px;box-shadow:0 14px 34px rgba(0,0,0,0.6)">
+
+<div style="display:flex;align-items:center;gap:5px">
+<button type="button" onClick="{{toggleScroll}}" style="{{scrollBtnStyle}}" aria-label="오토스크롤 켜고 끄기">
+<sc-if value="{{scrolling}}" hint-placeholder-val="{{ true }}"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4.5" width="4" height="15" rx="1.2"></rect><rect x="14" y="4.5" width="4" height="15" rx="1.2"></rect></svg></sc-if>
+<sc-if value="{{notScrolling}}" hint-placeholder-val="{{ true }}"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"></path></svg></sc-if>
+</button>
+<div style="display:flex;align-items:center;gap:1px;background:#0F1116;border:1px solid #24262E;border-radius:11px;padding:2px">
+<button type="button" onClick="{{spdDown}}" aria-label="스크롤 속도 낮추기" style="width:32px;height:38px;display:flex;align-items:center;justify-content:center;border:0;border-radius:9px;background:transparent;font-size:17px;color:#C9CDD5;cursor:pointer">−</button>
+<span style="width:46px;text-align:center;display:flex;flex-direction:column;line-height:1.1">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;font-weight:700;color:#F4F4F5">{{spdLabel}}</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:8px;letter-spacing:0.08em;color:#565C68">SCROLL</span>
+</span>
+<button type="button" onClick="{{spdUp}}" aria-label="스크롤 속도 높이기" style="width:32px;height:38px;display:flex;align-items:center;justify-content:center;border:0;border-radius:9px;background:transparent;font-size:17px;color:#C9CDD5;cursor:pointer">+</button>
+</div>
+
+<span style="width:1px;height:26px;background:#2A2D36;margin:0 1px"></span>
+
+<button type="button" onClick="{{toggleMetro}}" style="{{metroBtnStyle}}" aria-label="메트로놈 켜고 끄기">
+<sc-if value="{{metro}}" hint-placeholder-val="{{ true }}"><span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:17px;font-weight:700">{{beatLabel}}</span></sc-if>
+<sc-if value="{{notMetro}}" hint-placeholder-val="{{ true }}"><svg width="16" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6l4 18H5L9 3Z"></path><path d="m12 18 4-11"></path></svg></sc-if>
+</button>
+<div style="display:flex;align-items:center;gap:1px;background:#0F1116;border:1px solid #24262E;border-radius:11px;padding:2px">
+<button type="button" onClick="{{bpmDown}}" aria-label="BPM 낮추기" style="width:32px;height:38px;display:flex;align-items:center;justify-content:center;border:0;border-radius:9px;background:transparent;font-size:17px;color:#C9CDD5;cursor:pointer">−</button>
+<span style="width:42px;text-align:center;display:flex;flex-direction:column;line-height:1.1">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;font-weight:700;color:#F4F4F5">{{bpm}}</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:8px;letter-spacing:0.08em;color:#565C68">BPM</span>
+</span>
+<button type="button" onClick="{{bpmUp}}" aria-label="BPM 높이기" style="width:32px;height:38px;display:flex;align-items:center;justify-content:center;border:0;border-radius:9px;background:transparent;font-size:17px;color:#C9CDD5;cursor:pointer">+</button>
+</div>
+</div>
+
+<div style="display:flex;align-items:center;gap:6px">
+<button type="button" onClick="{{keyDown}}" aria-label="키 반음 내리기" style="width:46px;height:44px;display:flex;align-items:center;justify-content:center;border:0;border-radius:12px;background:#22252C;font-size:20px;color:#F4F4F5;cursor:pointer">−</button>
+<span style="flex-grow:1;display:flex;flex-direction:column;align-items:center;gap:1px">
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:0.16em;color:#6E7480">KEY</span>
+<span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:19px;font-weight:700;line-height:1.1;color:{{accent}}">{{soundKey}} <span style="font-size:11px;color:#8A909C">{{keyLabel}}</span></span>
+</span>
+<button type="button" onClick="{{keyUp}}" aria-label="키 반음 올리기" style="width:46px;height:44px;display:flex;align-items:center;justify-content:center;border:0;border-radius:12px;background:#22252C;font-size:20px;color:#F4F4F5;cursor:pointer">+</button>
+<span style="width:1px;height:26px;background:#2A2D36;margin:0 2px"></span>
+<button type="button" onClick="{{fsDown}}" aria-label="글자 작게" style="width:46px;height:44px;display:flex;align-items:center;justify-content:center;border:0;border-radius:12px;background:#22252C;font-size:12px;color:#C9CDD5;cursor:pointer">가−</button>
+<button type="button" onClick="{{fsUp}}" aria-label="글자 크게" style="width:46px;height:44px;display:flex;align-items:center;justify-content:center;border:0;border-radius:12px;background:#22252C;font-size:16px;color:#C9CDD5;cursor:pointer">가+</button>
+</div>
+
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#FF9D4D","options":["#FF9D4D","#7AA2FF","#5BD0A0","#E4E4E7"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { keyShift: 2, fs: 18, pat: 0, scrolling: false, spd: 2, metro: false, bpm: 72, beat: -1, muted: false };
+  }
+
+  componentWillUnmount() {
+    if (this.scrollTimer) { clearInterval(this.scrollTimer); this.scrollTimer = null; }
+    if (this.metroTimer) { clearInterval(this.metroTimer); this.metroTimer = null; }
+  }
+
+  speeds() { return [0.5, 0.75, 1, 1.25, 1.5, 2, 2.5, 3]; }
+
+  startScroll() {
+    var self = this;
+    if (this.scrollTimer) { clearInterval(this.scrollTimer); }
+    this.setState({ scrolling: true });
+    this.scrollTimer = setInterval(function () {
+      var el = document.getElementById('dcSheetMobile');
+      if (!el) return;
+      el.scrollTop = el.scrollTop + self.speeds()[self.state.spd];
+      if (el.scrollTop + el.clientHeight >= el.scrollHeight - 1) { self.stopScroll(); }
+    }, 40);
+  }
+
+  stopScroll() {
+    if (this.scrollTimer) { clearInterval(this.scrollTimer); this.scrollTimer = null; }
+    if (this.state.scrolling) { this.setState({ scrolling: false }); }
+  }
+
+  click(strong) {
+    if (this.state.muted) return;
+    try {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return;
+      if (!this.ac) { this.ac = new AC(); }
+      var ctx = this.ac;
+      var t = ctx.currentTime;
+      var o = ctx.createOscillator();
+      var g = ctx.createGain();
+      o.frequency.value = strong ? 1560 : 1040;
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(strong ? 0.3 : 0.16, t + 0.002);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.07);
+      o.connect(g);
+      g.connect(ctx.destination);
+      o.start(t);
+      o.stop(t + 0.09);
+    } catch (e) { /* 소리를 못 내도 숫자 박자는 계속 */ }
+  }
+
+  runMetro(bpm) {
+    var self = this;
+    if (this.metroTimer) { clearInterval(this.metroTimer); }
+    var b = 0;
+    this.metroTimer = setInterval(function () {
+      b = (b + 1) % 4;
+      self.setState({ beat: b });
+      self.click(b === 0);
+    }, 60000 / bpm);
+  }
+
+  startMetro() {
+    this.setState({ metro: true, beat: 0 });
+    this.click(true);
+    this.runMetro(this.state.bpm);
+  }
+
+  stopMetro() {
+    if (this.metroTimer) { clearInterval(this.metroTimer); this.metroTimer = null; }
+    if (this.state.metro) { this.setState({ metro: false, beat: -1 }); }
+  }
+
+  setBpm(v) {
+    var b = Math.max(40, Math.min(240, v));
+    this.setState({ bpm: b });
+    if (this.state.metro) { this.runMetro(b); }
+  }
+
+  tr(name, semi) {
+    var SH = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+    var FL = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+    var IDX = { 'C': 0, 'C#': 1, 'Db': 1, 'D': 2, 'D#': 3, 'Eb': 3, 'E': 4, 'F': 5, 'F#': 6, 'Gb': 6, 'G': 7, 'G#': 8, 'Ab': 8, 'A': 9, 'A#': 10, 'Bb': 10, 'B': 11 };
+    var m = /^([A-G][#b]?)([\s\S]*)$/.exec(name || '');
+    if (!m) return name;
+    var root = m[1];
+    var rest = m[2] || '';
+    var bass = '';
+    var slash = rest.indexOf('/');
+    if (slash >= 0) { bass = rest.slice(slash + 1); rest = rest.slice(0, slash); }
+    var i = IDX[root];
+    if (i === undefined) return name;
+    var pick = semi >= 0 ? SH : FL;
+    var out = pick[((i + semi) % 12 + 12) % 12] + rest;
+    if (bass) {
+      var bi = IDX[bass];
+      out = out + '/' + (bi === undefined ? bass : pick[((bi + semi) % 12 + 12) % 12]);
+    }
+    return out;
+  }
+
+  pattern(name, use, spec, accents, w) {
+    var accent = this.props.accent ?? '#FF9D4D';
+    var labels = ['1', 'e', '&', 'a', '2', 'e', '&', 'a', '3', 'e', '&', 'a', '4', 'e', '&', 'a'];
+    var slots = [];
+    for (var i = 0; i < 16; i++) {
+      var c = spec.charAt(i);
+      var isBeat = i % 4 === 0;
+      var acc = accents.indexOf(i) >= 0;
+      var rest = c !== 'D' && c !== 'U';
+      slots.push({
+        label: labels[i],
+        glyph: c === 'D' ? '↓' : (c === 'U' ? '↑' : '·'),
+        colStyle: 'width:' + w + 'px;display:flex;flex-direction:column;align-items:center;gap:6px;' + (isBeat && i > 0 ? 'border-left:1px solid #22242B;' : ''),
+        labStyle: "font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9.5px;color:" + (isBeat ? '#A1A6B0' : '#4A4F5A') + ';' + (isBeat ? 'font-weight:700;' : ''),
+        glyphStyle: 'line-height:1;font-size:' + (rest ? '12px' : '16px') + ';color:' + (rest ? '#33373F' : (acc ? accent : '#E9EAEC')) + ';' + (acc ? 'font-weight:700;' : ''),
+        barStyle: 'width:12px;height:2px;border-radius:1px;background:' + (acc ? accent : 'transparent') + ';'
+      });
+    }
+    return { name: name, use: use, slots: slots };
+  }
+
+  tab(title, repeat, lines) {
+    var names = ['E', 'B', 'G', 'D', 'A', 'E'];
+    return {
+      k: 'tab',
+      title: title,
+      repeat: repeat,
+      tabLines: lines.map(function (t, i) { return { s: names[i], t: t }; })
+    };
+  }
+
+  song() {
+    return [
+      { k: 'label', label: 'Intro' },
+      this.tab('메인 리프', '×3', [
+        '-------------10------------',
+        '--13-11----11----11----11--',
+        '-------10----------10------',
+        '---------------------------',
+        '---------------------------',
+        '---------------------------'
+      ]),
+      { k: 'label', label: 'Verse 1' },
+      { k: 'line', pairs: [['G', '가로등 하나 '], ['Em', '꺼지고 남은 자리']] },
+      { k: 'line', pairs: [['Am', '우린 아직 '], ['D7', '여기 앉아 있어']] },
+      { k: 'line', pairs: [['G', '식은 커피를 '], ['Em', '사이에 두고']] },
+      { k: 'line', pairs: [['Am', '밤이 다 가도 '], ['D7', '모르는 채로']] },
+      { k: 'label', label: 'Chorus' },
+      { k: 'line', pairs: [['C', '나는 그 밤을 '], ['G/B', '오래 접어두고']] },
+      { k: 'line', pairs: [['Am7', '가끔 꺼내 '], ['D', '읽어요']] },
+      { k: 'comment', text: '간주 — Verse 코드 그대로 2번' }
+    ];
+  }
+
+  renderVals() {
+    var self = this;
+    var s = this.state;
+    var accent = this.props.accent ?? '#FF9D4D';
+    var semi = s.keyShift;
+    var blocks = this.song().map(function (b) {
+      return {
+        isLabel: b.k === 'label',
+        isLine: b.k === 'line',
+        isComment: b.k === 'comment',
+        isTab: b.k === 'tab',
+        label: b.label || '',
+        text: b.text || '',
+        title: b.title || '',
+        repeat: b.repeat || '',
+        tabLines: b.tabLines || [],
+        pairs: (b.pairs || []).map(function (p) {
+          return { chord: p[0] ? self.tr(p[0], semi) : '', text: p[1] };
+        })
+      };
+    });
+    var pats = [
+      this.pattern('PATTERN A', 'Intro · Verse 1 · Pre-Chorus', 'D-D-DUD-D-D-DU--', [4, 12], 20),
+      this.pattern('PATTERN B', 'Chorus · Verse 2 · Bridge · Outro', 'D-D-D-DUDUD-D-DU', [4, 8, 12], 20)
+    ];
+    var seg = "width:28px;height:26px;border:0;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;cursor:pointer;";
+    var tool = 'width:46px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:12px;cursor:pointer;';
+    var toolOn = tool + 'border:0;background:' + accent + ';color:#1A1206;';
+    var toolOff = tool + 'border:0;background:#22252C;color:#C9CDD5;';
+    var sp = this.speeds()[s.spd];
+    return {
+      accent: accent,
+      blocks: blocks,
+      pat: pats[s.pat],
+      aStyle: seg + (s.pat === 0 ? 'background:' + accent + ';color:#1A1206;' : 'background:transparent;color:#6E7480;'),
+      bStyle: seg + (s.pat === 1 ? 'background:' + accent + ';color:#1A1206;' : 'background:transparent;color:#6E7480;'),
+      soundKey: this.tr('G', s.keyShift),
+      keyLabel: (s.keyShift > 0 ? '+' : '') + s.keyShift,
+      sheetBoxStyle: 'flex-grow:1;box-sizing:border-box;padding:14px 16px 150px;overflow-y:auto;overflow-x:hidden;',
+      sheetStyle: 'font-size:' + s.fs + 'px;',
+      scrolling: s.scrolling,
+      notScrolling: !s.scrolling,
+      scrollBtnStyle: s.scrolling ? toolOn : toolOff,
+      spdLabel: sp.toFixed(2).replace(/0$/, '').replace(/\.$/, '') + '×',
+      metro: s.metro,
+      notMetro: !s.metro,
+      metroBtnStyle: s.metro ? (s.beat === 0 ? toolOn : tool + 'border:0;background:rgba(255,157,77,0.2);color:' + accent + ';') : toolOff,
+      beatLabel: String(s.beat + 1),
+      bpm: s.bpm,
+      muted: s.muted,
+      notMuted: !s.muted,
+      muteBtnStyle: 'width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:0;background:transparent;cursor:pointer;color:' + (s.muted ? '#4A4F5A' : '#A1A6B0') + ';',
+      showA: function () { self.setState({ pat: 0 }); },
+      showB: function () { self.setState({ pat: 1 }); },
+      toggleScroll: function () { if (self.state.scrolling) { self.stopScroll(); } else { self.startScroll(); } },
+      spdUp: function () { self.setState({ spd: Math.min(self.speeds().length - 1, self.state.spd + 1) }); },
+      spdDown: function () { self.setState({ spd: Math.max(0, self.state.spd - 1) }); },
+      toggleMetro: function () { if (self.state.metro) { self.stopMetro(); } else { self.startMetro(); } },
+      bpmUp: function () { self.setBpm(self.state.bpm + 1); },
+      bpmDown: function () { self.setBpm(self.state.bpm - 1); },
+      toggleMute: function () { self.setState({ muted: !self.state.muted }); },
+      keyUp: function () { self.setState({ keyShift: Math.min(11, self.state.keyShift + 1) }); },
+      keyDown: function () { self.setState({ keyShift: Math.max(-11, self.state.keyShift - 1) }); },
+      fsUp: function () { self.setState({ fs: Math.min(30, self.state.fs + 1) }); },
+      fsDown: function () { self.setState({ fs: Math.max(13, self.state.fs - 1) }); }
+    };
+  }
+}
+</script>
+</body>
+</html>
