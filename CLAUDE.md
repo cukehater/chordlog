@@ -23,3 +23,11 @@ UI 작업(새 화면, 컴포넌트, 스타일 수정) 전에 반드시 읽을 �
 지금은 UI 퍼블리싱 단계다. 파서·DB·인증·메트로놈 소리는 만들지 않는다.
 데이터는 `lib/mock/`에서만 온다. 경계는
 `docs/superpowers/plans/2026-09-23-chordlog-ui-publishing.md`의 "범위 경계"를 읽을 것.
+
+## 패키지 매니저
+
+이 레포는 **pnpm**을 쓴다(`package.json`의 `packageManager`에 버전 고정).
+
+- 설치: `pnpm install`. **`npm install` / `npm ci`를 돌리지 마라** — `package-lock.json`이 되살아나 전환이 깨진다.
+- 스크립트: `pnpm dev` · `pnpm build` · `pnpm lint` · `pnpm test`
+- `docs/superpowers/plans/`의 npm 명령은 전환 이전에 실제로 실행된 기록이라 그대로 둔다.
