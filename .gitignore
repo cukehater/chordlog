@@ -44,3 +44,6 @@ Thumbs.db
 # Claude Code 로컬 설정 (머신별)
 .claude/settings.local.json
 .claude/scheduled_tasks.lock
+
+# understand-anything 지식 그래프 캐시
+.ua/
