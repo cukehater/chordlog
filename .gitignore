@@ -47,3 +47,9 @@ Thumbs.db
 
 # understand-anything 지식 그래프 캐시
 .ua/
+
+# impeccable 작업 부산물
+.impeccable/mocks/
+.impeccable/review/
+.impeccable/questions/
+.impeccable/hook.cache.json
