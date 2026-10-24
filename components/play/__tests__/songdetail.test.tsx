@@ -19,20 +19,21 @@ describe('SongDetailView', () => {
     expect(container.querySelector('[data-current-key]')?.textContent).toBe('A'); // G +2
   });
 
-  it('집중 모드를 켜면 헤더·좌측 레일이 사라지고 컨트롤 바는 남는다', async () => {
+  it('집중 모드를 켜면 내비·곡 머리가 사라지고 툴바와 패턴 카드는 남는다', async () => {
     render(<SongDetailView song={song} initialSemi={0} />);
-    expect(screen.getByText('PRACTICE NOTE')).toBeInTheDocument();
+    expect(desktop().getByRole('heading', { level: 1 })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: '화면 테마 전환' })).toBeInTheDocument();
-    await userEvent.click(screen.getByRole('button', { name: /집중 모드/ }));
-    expect(screen.queryByText('PRACTICE NOTE')).toBeNull();
+    await userEvent.click(desktop().getByRole('button', { name: /집중 모드/ }));
+    expect(desktop().queryByRole('heading', { level: 1 })).toBeNull();
     expect(screen.queryByRole('button', { name: '화면 테마 전환' })).toBeNull();
-    expect(screen.getByText('PLAY')).toBeInTheDocument(); // 컨트롤 바는 유지
+    expect(desktop().getByRole('group', { name: 'Transpose' })).toBeInTheDocument(); // 툴바 유지
+    expect(desktop().getByText('패턴 A')).toBeInTheDocument();
   });
 
   it('스트러밍 패턴을 시트 밖에 A·B로 보여준다', () => {
     render(<SongDetailView song={song} initialSemi={0} />);
-    expect(desktop().getByText('PATTERN A')).toBeInTheDocument();
-    expect(desktop().getByText('PATTERN B')).toBeInTheDocument();
+    expect(desktop().getByText('패턴 A')).toBeInTheDocument();
+    expect(desktop().getByText('패턴 B')).toBeInTheDocument();
   });
 
   it('키를 바꾸면 악보 코드도 함께 이조된다', async () => {
@@ -64,13 +65,11 @@ describe('SongDetailView', () => {
   it('오토스크롤은 보이는(desktop) 시트만 움직이고, 숨은 모바일 시트에 속아 꺼지지 않는다', async () => {
     render(<SongDetailView song={song} initialSemi={0} />);
 
-    const sheetEls = Array.from(document.querySelectorAll('div')).filter(
-      (el) => el.className.includes('rounded-xl') && el.className.includes('overflow-x-hidden'),
-    );
+    const sheetEls = Array.from(document.querySelectorAll<HTMLDivElement>('[data-sheet]'));
     expect(sheetEls).toHaveLength(2); // 데스크톱 트리 + 모바일 트리, 각각의 Sheet
 
     const desktopRoot = document.querySelector('[data-desktop-view]') as HTMLElement;
-    const desktopSheet = desktopRoot.querySelector('.rounded-xl.overflow-x-hidden') as HTMLDivElement;
+    const desktopSheet = desktopRoot.querySelector('[data-sheet]') as HTMLDivElement;
     const mobileSheet = sheetEls.find((el) => el !== desktopSheet) as HTMLDivElement;
     expect(desktopSheet).not.toBeNull();
     expect(mobileSheet).not.toBeNull();

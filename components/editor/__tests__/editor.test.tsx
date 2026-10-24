@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { InsertToolbar, SNIPPETS } from '@/components/editor/InsertToolbar';
 import { SourcePane } from '@/components/editor/SourcePane';
@@ -33,6 +33,19 @@ describe('SourcePane', () => {
   it('줄번호 거터는 장식이므로 aria-hidden이다', () => {
     const { container } = render(<SourcePane value={'a\nb\nc'} onChange={() => {}} />);
     expect(container.querySelector('[data-gutter]')).toHaveAttribute('aria-hidden', 'true');
+  });
+
+  it('원문을 스크롤하면 줄번호 거터도 같은 위치로 따라간다', () => {
+    const { container } = render(<SourcePane value={'a\nb\nc'} onChange={() => {}} />);
+    const textarea = screen.getByLabelText('악보 원문');
+    textarea.scrollTop = 120;
+    fireEvent.scroll(textarea);
+    expect((container.querySelector('[data-gutter]') as HTMLElement).scrollTop).toBe(120);
+  });
+
+  it('원문은 줄바꿈하지 않는다 — 감싼 줄이 생기면 줄번호가 어긋난다', () => {
+    render(<SourcePane value="" onChange={() => {}} />);
+    expect(screen.getByLabelText('악보 원문')).toHaveAttribute('wrap', 'off');
   });
 
   it('오류 줄번호를 danger 색으로 표시하고 하단 스트립을 띄운다', () => {

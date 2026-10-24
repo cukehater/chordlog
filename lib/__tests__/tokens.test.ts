@@ -21,7 +21,7 @@ describe('디자인 토큰', () => {
   });
 
   it('액센트는 하나뿐이다 — 정본 hex 그대로', () => {
-    expect(css).toContain('--color-accent:      #FF9D4D;');
+    expect(css).toContain('--color-accent:      #2563EB;');
   });
 
   it('악보 원자 규칙이 있다', () => {

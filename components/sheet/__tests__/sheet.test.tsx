@@ -76,3 +76,48 @@ describe('Sheet errorLines', () => {
     expect(lines[1].className).toContain('border-danger');
   });
 });
+
+describe('Sheet 단 구성', () => {
+  const blocks: Block[] = [{ k: 'label', label: 'Verse 1' }, { k: 'comment', text: '메모' }];
+  const columns = (container: HTMLElement) => (container.querySelector('[data-sheet] > div') as HTMLElement).style;
+
+  it('2단은 시트 높이를 채운 뒤 다음 단으로 잇는다 — 균형 맞춤으로 아래가 잘리지 않게', () => {
+    const { container } = render(<Sheet blocks={blocks} semi={0} fontSize={18} cols={2} />);
+    expect(columns(container).columnFill).toBe('auto');
+    expect(columns(container).height).toBe('100%');
+  });
+
+  it('1단은 높이를 고정하지 않고 세로로 스크롤한다', () => {
+    const { container } = render(<Sheet blocks={blocks} semi={0} fontSize={18} cols={1} />);
+    expect(columns(container).height).toBe('');
+  });
+});
+
+describe('Sheet 2단 넘김', () => {
+  const blocks: Block[] = [{ k: 'label', label: 'Verse 1' }];
+  const proto = Element.prototype;
+  const orig = {
+    sw: Object.getOwnPropertyDescriptor(proto, 'scrollWidth')!,
+    cw: Object.getOwnPropertyDescriptor(proto, 'clientWidth')!,
+  };
+  // jsdom은 레이아웃이 없어 치수가 0이다 — 시트만 셋째 단이 넘친 것처럼 흉내 낸다
+  beforeEach(() => {
+    Object.defineProperty(proto, 'scrollWidth', { configurable: true, get() { return this.hasAttribute('data-sheet') ? 2000 : 0; } });
+    Object.defineProperty(proto, 'clientWidth', { configurable: true, get() { return this.hasAttribute('data-sheet') ? 800 : 0; } });
+  });
+  afterEach(() => {
+    Object.defineProperty(proto, 'scrollWidth', orig.sw);
+    Object.defineProperty(proto, 'clientWidth', orig.cw);
+  });
+
+  it('넘친 단이 있으면 다음 단 버튼을 보여준다', () => {
+    render(<Sheet blocks={blocks} semi={0} fontSize={18} cols={2} />);
+    expect(screen.getByRole('button', { name: '다음 단 →' })).toBeEnabled();
+    expect(screen.getByRole('button', { name: '← 이전 단' })).toBeDisabled();
+  });
+
+  it('1단에서는 넘김 버튼이 없다', () => {
+    render(<Sheet blocks={blocks} semi={0} fontSize={18} cols={1} />);
+    expect(screen.queryByRole('button', { name: '다음 단 →' })).toBeNull();
+  });
+});

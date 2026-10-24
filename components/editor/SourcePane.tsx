@@ -1,6 +1,6 @@
 'use client';
 
-import type { ReactNode, Ref } from 'react';
+import { useRef, type ReactNode, type Ref } from 'react';
 
 export function SourcePane({
   value, onChange, toolbar, errorLine, errorMessage, textareaRef,
@@ -11,6 +11,7 @@ export function SourcePane({
   textareaRef?: Ref<HTMLTextAreaElement>;
 }) {
   const lines = value.split('\n').length;
+  const gutterRef = useRef<HTMLDivElement>(null);
 
   return (
     <section className="flex flex-col bg-sunk md:border-r border-line-header overflow-hidden">
@@ -21,8 +22,8 @@ export function SourcePane({
       {toolbar}
 
       <div className="grow flex overflow-hidden">
-        <div data-gutter aria-hidden="true"
-          className="shrink-0 w-12 box-border pt-4 pr-3 pb-4 text-right font-mono text-[12.5px] leading-6 text-dim flex flex-col">
+        <div data-gutter aria-hidden="true" ref={gutterRef}
+          className="shrink-0 w-12 box-border pt-4 pr-3 pb-4 text-right font-mono text-[12.5px] leading-6 text-dim flex flex-col overflow-hidden">
           {Array.from({ length: lines }, (_, i) => {
             const n = i + 1;
             return <span key={n} className={n === errorLine ? 'text-danger font-bold' : ''}>{n}</span>;
@@ -33,9 +34,11 @@ export function SourcePane({
           id="src"
           ref={textareaRef}
           spellCheck={false}
+          wrap="off"
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="grow box-border border-0 resize-none pt-4 pr-5 pb-4 font-mono text-[12.5px] leading-6 text-ink-2 bg-transparent outline-none"
+          onScroll={(e) => { if (gutterRef.current) gutterRef.current.scrollTop = e.currentTarget.scrollTop; }}
+          className="grow box-border border-0 resize-none pt-4 pr-5 pb-4 font-mono text-[12.5px] leading-6 text-ink-2 bg-transparent outline-none focus-visible:outline-1 focus-visible:-outline-offset-1 focus-visible:outline-accent/35"
         />
       </div>
 

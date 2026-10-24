@@ -47,13 +47,13 @@ export function SongEditor({ song }: { song?: Song }) {
   );
 
   return (
-    <div className="min-h-dvh flex flex-col bg-bg">
+    <div className="min-h-dvh md:h-dvh flex flex-col bg-bg">
       <SiteHeader variant="editor" crumb={song ? song.title : 'NEW SONG'} actions={saveBar} />
 
       {/* 모바일 상단 — 상태바 자리 52px */}
       <header className="md:hidden shrink-0 pt-[52px] px-3 pb-[10px] flex items-center gap-2">
         <Link href={song ? `/songs/${song.slug}` : '/'} className="h-11 flex items-center px-2 text-[14px] text-ink-4 no-underline">취소</Link>
-        <span className="grow text-center font-mono text-[11px] tracking-[0.14em] text-ink-5">
+        <span className="grow text-center font-mono text-[11px] tracking-[0.14em] text-ink-4">
           {song ? 'EDIT SONG' : 'NEW SONG'}
         </span>
         <button type="button" className="h-11 md:h-9 px-4 border-0 rounded-md bg-accent text-accent-ink text-[13.5px] font-bold cursor-pointer">저장</button>
@@ -66,7 +66,7 @@ export function SongEditor({ song }: { song?: Song }) {
 
       <MetaForm song={song} />
 
-      <div className="grow grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+      <main className="grow grid grid-cols-1 md:grid-cols-2 overflow-hidden">
         <div className={`${tab === 'write' ? 'flex' : 'hidden'} md:flex flex-col overflow-hidden`}>
           <SourcePane
             value={source} onChange={setSource} textareaRef={textareaRef}
@@ -77,7 +77,7 @@ export function SongEditor({ song }: { song?: Song }) {
         <div className={`${tab === 'preview' ? 'flex' : 'hidden'} md:flex flex-col overflow-hidden`}>
           <PreviewPane song={preview} errorLines={error?.previewLineIndexes ?? []} />
         </div>
-      </div>
+      </main>
     </div>
   );
 }

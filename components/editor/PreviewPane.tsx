@@ -13,7 +13,7 @@ export function PreviewPane({ song, errorLines = [] }: { song: Song; errorLines?
     <section className="flex flex-col bg-surface overflow-hidden">
       <div className="shrink-0 h-10 px-7 flex items-center gap-3 border-b border-line-soft">
         <span className="font-mono text-[10.5px] tracking-[0.16em] text-dim">PREVIEW</span>
-        <span className="text-[11.5px] text-hairline">입력을 멈추면 0.3초 뒤 갱신</span>
+        <span className="text-[11.5px] text-ink-4">입력을 멈추면 0.3초 뒤 갱신</span>
         <span className="ml-auto font-mono text-[11px] text-dim">
           {song.key} · CAPO {song.capo}프렛 · {song.tuning.replace(/\s/g, '')}
         </span>

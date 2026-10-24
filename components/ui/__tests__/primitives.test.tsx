@@ -7,12 +7,17 @@ import { Segmented } from '@/components/ui/Segmented';
 import { ToolToggle } from '@/components/ui/ToolToggle';
 
 describe('MicroLabel', () => {
-  it('마이크로 라벨 조합(mono 10px / .16em / 대문자 / dim)을 적용한다', () => {
+  it('마이크로 라벨 조합(12px / 대문자 / dim)을 적용한다', () => {
     render(<MicroLabel>key</MicroLabel>);
     const el = screen.getByText('key');
-    expect(el.className).toContain('font-mono');
+    expect(el.className).toContain('text-[12px]');
     expect(el.className).toContain('uppercase');
     expect(el.className).toContain('text-dim');
+  });
+
+  it('폼 라벨은 읽어야 하는 텍스트라 한 단계 진하다', () => {
+    render(<MicroLabel as="label" htmlFor="x">title</MicroLabel>);
+    expect(screen.getByText('title').className).toContain('text-ink-4');
   });
 });
 
@@ -47,7 +52,9 @@ describe('Stepper', () => {
       <Stepper value="72" size="dock" onDec={() => {}} onInc={() => {}}
         decLabel="BPM 낮추기" incLabel="BPM 높이기" />
     );
-    expect(screen.getByRole('button', { name: 'BPM 낮추기' }).className).toContain('h-[44px]');
+    const cls = screen.getByRole('button', { name: 'BPM 낮추기' }).className;
+    expect(cls).toContain('w-11'); // 44px
+    expect(cls).toContain('h-11');
   });
 });
 

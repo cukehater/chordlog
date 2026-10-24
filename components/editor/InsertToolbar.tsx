@@ -19,7 +19,7 @@ const BUTTONS: { key: keyof typeof SNIPPETS; label: string; accent?: boolean }[]
 export function InsertToolbar({ onInsert }: { onInsert: (snippet: string) => void }) {
   return (
     <div className="shrink-0 flex items-center gap-[7px] p-[9px_20px] border-b border-line-hair overflow-x-auto">
-      <span className="font-mono text-[9.5px] tracking-[0.14em] text-hairline mr-[3px]">INSERT</span>
+      <span className="font-mono text-[9.5px] tracking-[0.14em] text-dim mr-[3px]">INSERT</span>
       {BUTTONS.map((b) => (
         <button
           key={b.key}
@@ -32,7 +32,7 @@ export function InsertToolbar({ onInsert }: { onInsert: (snippet: string) => voi
           {b.label}
         </button>
       ))}
-      <span className="ml-auto text-[11px] text-hairline whitespace-nowrap">D 다운 · U 업 · &gt; 강세</span>
+      <span className="ml-auto text-[11px] text-ink-4 whitespace-nowrap">D 다운 · U 업 · &gt; 강세</span>
     </div>
   );
 }

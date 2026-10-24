@@ -20,7 +20,7 @@ export default function HomePage() {
               <label htmlFor="q" className="sr-only">곡 검색</label>
               <input
                 id="q" type="search" placeholder="제목 · 아티스트"
-                className="w-full h-[36px] pl-9 pr-3 border border-line rounded-md bg-surface-2 text-[13.5px] text-ink outline-none"
+                className="w-full h-[36px] pl-9 pr-3 border border-line rounded-md bg-surface-2 text-[13.5px] text-ink outline-none focus:border-accent"
               />
             </div>
             {IS_ADMIN ? (
@@ -55,7 +55,7 @@ export default function HomePage() {
           <label htmlFor="mq" className="sr-only">곡 검색</label>
           <input
             id="mq" type="search" placeholder="제목 · 아티스트"
-            className="w-full h-[46px] pl-10 pr-[14px] border border-line rounded-lg bg-surface-2 text-[15px] text-ink outline-none"
+            className="w-full h-[46px] pl-10 pr-[14px] border border-line rounded-lg bg-surface-2 text-[15px] text-ink outline-none focus:border-accent"
           />
         </div>
       </header>

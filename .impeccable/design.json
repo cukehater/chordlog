@@ -1,0 +1,507 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-24T06:00:44+00:00",
+  "title": "Design System: 코드집",
+  "extensions": {
+    "colorMeta": {
+      "accent": {
+        "role": "primary",
+        "displayName": "악보 파랑",
+        "canonical": "#2563EB",
+        "tonalRamp": [
+          "#1E3A8A",
+          "#1E40AF",
+          "#1D4ED8",
+          "#2563EB",
+          "#3B82F6",
+          "#60A5FA",
+          "#93C5FD",
+          "#DBEAFE"
+        ]
+      },
+      "accent-deep": {
+        "role": "primary",
+        "displayName": "깊은 파랑",
+        "canonical": "#1E40AF",
+        "tonalRamp": [
+          "#1E3A8A",
+          "#1E40AF",
+          "#1D4ED8",
+          "#2563EB",
+          "#3B82F6",
+          "#60A5FA",
+          "#93C5FD",
+          "#DBEAFE"
+        ]
+      },
+      "accent-soft": {
+        "role": "primary",
+        "displayName": "옅은 파랑",
+        "canonical": "#DBEAFE",
+        "tonalRamp": [
+          "#1E3A8A",
+          "#1E40AF",
+          "#1D4ED8",
+          "#2563EB",
+          "#3B82F6",
+          "#60A5FA",
+          "#93C5FD",
+          "#DBEAFE"
+        ]
+      },
+      "accent-ink": {
+        "role": "primary",
+        "displayName": "파랑 위 글자",
+        "canonical": "#FFFFFF",
+        "tonalRamp": [
+          "#111827",
+          "#1F2937",
+          "#374151",
+          "#4B5563",
+          "#6B7280",
+          "#9CA3AF",
+          "#E5E7EB",
+          "#F9FAFB"
+        ]
+      },
+      "bg": {
+        "role": "neutral",
+        "displayName": "종이",
+        "canonical": "#FFFFFF",
+        "tonalRamp": [
+          "#111827",
+          "#1F2937",
+          "#374151",
+          "#4B5563",
+          "#6B7280",
+          "#9CA3AF",
+          "#E5E7EB",
+          "#F9FAFB"
+        ]
+      },
+      "surface-2": {
+        "role": "neutral",
+        "displayName": "회색 면",
+        "canonical": "#F3F4F6",
+        "tonalRamp": [
+          "#111827",
+          "#1F2937",
+          "#374151",
+          "#4B5563",
+          "#6B7280",
+          "#9CA3AF",
+          "#E5E7EB",
+          "#F9FAFB"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "선",
+        "canonical": "#E5E7EB",
+        "tonalRamp": [
+          "#111827",
+          "#1F2937",
+          "#374151",
+          "#4B5563",
+          "#6B7280",
+          "#9CA3AF",
+          "#E5E7EB",
+          "#F9FAFB"
+        ]
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "진한 선",
+        "canonical": "#D1D5DB",
+        "tonalRamp": [
+          "#111827",
+          "#1F2937",
+          "#374151",
+          "#4B5563",
+          "#6B7280",
+          "#9CA3AF",
+          "#E5E7EB",
+          "#F9FAFB"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "잉크 1",
+        "canonical": "#111827",
+        "tonalRamp": [
+          "#111827",
+          "#1F2937",
+          "#374151",
+          "#4B5563",
+          "#6B7280",
+          "#9CA3AF",
+          "#E5E7EB",
+          "#F9FAFB"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "잉크 2",
+        "canonical": "#1F2937",
+        "tonalRamp": [
+          "#111827",
+          "#1F2937",
+          "#374151",
+          "#4B5563",
+          "#6B7280",
+          "#9CA3AF",
+          "#E5E7EB",
+          "#F9FAFB"
+        ]
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "잉크 3",
+        "canonical": "#374151",
+        "tonalRamp": [
+          "#111827",
+          "#1F2937",
+          "#374151",
+          "#4B5563",
+          "#6B7280",
+          "#9CA3AF",
+          "#E5E7EB",
+          "#F9FAFB"
+        ]
+      },
+      "ink-4": {
+        "role": "neutral",
+        "displayName": "잉크 4",
+        "canonical": "#4B5563",
+        "tonalRamp": [
+          "#111827",
+          "#1F2937",
+          "#374151",
+          "#4B5563",
+          "#6B7280",
+          "#9CA3AF",
+          "#E5E7EB",
+          "#F9FAFB"
+        ]
+      },
+      "ink-5": {
+        "role": "neutral",
+        "displayName": "잉크 5",
+        "canonical": "#6B7280",
+        "tonalRamp": [
+          "#111827",
+          "#1F2937",
+          "#374151",
+          "#4B5563",
+          "#6B7280",
+          "#9CA3AF",
+          "#E5E7EB",
+          "#F9FAFB"
+        ]
+      },
+      "faint": {
+        "role": "neutral",
+        "displayName": "희미한 회색",
+        "canonical": "#9CA3AF",
+        "tonalRamp": [
+          "#111827",
+          "#1F2937",
+          "#374151",
+          "#4B5563",
+          "#6B7280",
+          "#9CA3AF",
+          "#E5E7EB",
+          "#F9FAFB"
+        ]
+      },
+      "fret-nut": {
+        "role": "neutral",
+        "displayName": "프렛 너트",
+        "canonical": "#374151",
+        "tonalRamp": [
+          "#111827",
+          "#1F2937",
+          "#374151",
+          "#4B5563",
+          "#6B7280",
+          "#9CA3AF",
+          "#E5E7EB",
+          "#F9FAFB"
+        ]
+      },
+      "done": {
+        "role": "status",
+        "displayName": "완료 초록",
+        "canonical": "#059669",
+        "tonalRamp": [
+          "#064E3B",
+          "#065F46",
+          "#047857",
+          "#059669",
+          "#10B981",
+          "#34D399",
+          "#6EE7B7",
+          "#D1FAE5"
+        ]
+      },
+      "done-soft": {
+        "role": "status",
+        "displayName": "옅은 초록",
+        "canonical": "#D1FAE5",
+        "tonalRamp": [
+          "#064E3B",
+          "#065F46",
+          "#047857",
+          "#059669",
+          "#10B981",
+          "#34D399",
+          "#6EE7B7",
+          "#D1FAE5"
+        ]
+      },
+      "done-deep": {
+        "role": "status",
+        "displayName": "깊은 초록",
+        "canonical": "#065F46",
+        "tonalRamp": [
+          "#064E3B",
+          "#065F46",
+          "#047857",
+          "#059669",
+          "#10B981",
+          "#34D399",
+          "#6EE7B7",
+          "#D1FAE5"
+        ]
+      },
+      "danger": {
+        "role": "status",
+        "displayName": "위험 빨강",
+        "canonical": "#DC2626",
+        "tonalRamp": [
+          "#7F1D1D",
+          "#991B1B",
+          "#B91C1C",
+          "#DC2626",
+          "#EF4444",
+          "#F87171",
+          "#FCA5A5",
+          "#FEE2E2"
+        ]
+      },
+      "danger-text": {
+        "role": "status",
+        "displayName": "위험 글자",
+        "canonical": "#B91C1C",
+        "tonalRamp": [
+          "#7F1D1D",
+          "#991B1B",
+          "#B91C1C",
+          "#DC2626",
+          "#EF4444",
+          "#F87171",
+          "#FCA5A5",
+          "#FEE2E2"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "wordmark": {
+        "displayName": "Wordmark",
+        "purpose": "상단 내비의 \"코드집\", 마지막 글자만 파랑."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "곡 제목 h1."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "카드 제목(카포, 패턴 A/B, 연습 메모)."
+      },
+      "sheet-lyric": {
+        "displayName": "Sheet lyric",
+        "purpose": "악보 가사. 기본 18px, 컨테이너 글자 크기로 조절."
+      },
+      "sheet-chord": {
+        "displayName": "Sheet chord",
+        "purpose": "가사와 같은 1em의 굵은 파랑 코드."
+      },
+      "section-label": {
+        "displayName": "Section label",
+        "purpose": "회색 굵은 \"[Verse 1]\"."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "카드 설명·연습 메모."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "버튼·토글·칩 글자."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "카드 메타, 보조 안내."
+      },
+      "tab": {
+        "displayName": "TAB",
+        "purpose": "TAB 줄 전용 모노."
+      }
+    },
+    "shadows": [
+      {
+        "name": "shadow-dock",
+        "value": "0 8px 24px rgba(17, 24, 39, 0.12), 0 1px 2px rgba(17, 24, 39, 0.06)",
+        "purpose": "모바일 하단 독."
+      },
+      {
+        "name": "shadow-fab",
+        "value": "0 6px 16px rgba(37, 99, 235, 0.3)",
+        "purpose": "모바일 새 곡 등록 FAB."
+      }
+    ],
+    "motion": [
+      {
+        "name": "sheet-page-turn",
+        "value": "scrollBy({ behavior: 'smooth' })",
+        "purpose": "2단 넘김 시 한 장(두 단 + 60px) 부드럽게 가로 이동."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "wide-gutter",
+        "value": "1100px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "파랑 면 주요 동작(새 곡). 화면당 하나.",
+      "html": "<button class=\"ds-btn-primary\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\"><path d=\"M8 3v10M3 8h10\"/></svg>새 곡</button>",
+      "css": ".ds-btn-primary { font-family: var(--font-sans); height: 36px; display: inline-flex; align-items: center; gap: 7px; padding: 0 16px; background: var(--color-accent); color: var(--color-accent-ink); border: none; border-radius: var(--radius-md); font-size: 14px; font-weight: 500; cursor: pointer; } .ds-btn-primary:hover { background: var(--color-accent-deep); } .ds-btn-primary:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "종이 면 + 1px 선의 보조 동작(편집, TAP, 원키로, 단 넘김).",
+      "html": "<button class=\"ds-btn-outline\">편집</button> <button class=\"ds-btn-outline\" disabled>← 이전 단</button>",
+      "css": ".ds-btn-outline { font-family: var(--font-sans); height: 36px; padding: 0 12px; background: var(--color-bg); color: var(--color-ink-3); border: 1px solid var(--color-line); border-radius: var(--radius-md); font-size: 13px; cursor: pointer; } .ds-btn-outline:hover { background: var(--color-surface-2); } .ds-btn-outline:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; } .ds-btn-outline:disabled { opacity: 0.4; cursor: default; background: var(--color-bg); }"
+    },
+    {
+      "name": "Tool Toggle",
+      "kind": "button",
+      "refersTo": "toggle-on",
+      "description": "데스크톱 툴바의 아이콘 + 라벨 토글. 켜지면 파랑 면.",
+      "html": "<button class=\"ds-toggle\" aria-pressed=\"false\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 12 12\"><path d=\"M3 2l7 4-7 4z\" fill=\"currentColor\"/></svg>오토스크롤</button> <button class=\"ds-toggle\" aria-pressed=\"true\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 12 12\"><path d=\"M3 2h2v8H3zM7 2h2v8H7z\" fill=\"currentColor\"/></svg>멈춤</button>",
+      "css": ".ds-toggle { font-family: var(--font-sans); height: 36px; padding: 0 12px; display: inline-flex; align-items: center; gap: 8px; background: var(--color-bg); color: var(--color-ink-2); border: 1px solid var(--color-line); border-radius: var(--radius-md); font-size: 13px; font-weight: 500; cursor: pointer; } .ds-toggle:hover { background: var(--color-surface-2); } .ds-toggle[aria-pressed=\"true\"] { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-accent-ink); } .ds-toggle:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }"
+    },
+    {
+      "name": "Stepper",
+      "kind": "input",
+      "refersTo": "button-outline",
+      "description": "−/+ 사이에 파란 현재 값과 회색 단위. 이조·속도·BPM.",
+      "html": "<div class=\"ds-stepper\"><button aria-label=\"키 반음 내리기\">−</button><span class=\"ds-stepper-val\"><b>G</b><small>원키</small></span><button aria-label=\"키 반음 올리기\">+</button></div>",
+      "css": ".ds-stepper { font-family: var(--font-sans); height: 36px; display: inline-flex; align-items: stretch; border: 1px solid var(--color-line); border-radius: var(--radius-md); overflow: hidden; background: var(--color-bg); } .ds-stepper button { width: 36px; border: none; background: var(--color-bg); color: var(--color-ink-2); font-size: 16px; cursor: pointer; } .ds-stepper button:hover { background: var(--color-surface-2); } .ds-stepper button:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -2px; } .ds-stepper-val { min-width: 56px; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.15; border-left: 1px solid var(--color-line); border-right: 1px solid var(--color-line); } .ds-stepper-val b { font-size: 13px; font-weight: 700; color: var(--color-accent); font-variant-numeric: tabular-nums; } .ds-stepper-val small { font-size: 11px; color: var(--color-ink-5); }"
+    },
+    {
+      "name": "Segmented",
+      "kind": "input",
+      "refersTo": "toggle-on",
+      "description": "한 상자 안의 선택지(1단/2단). 선택 칸은 파랑 면.",
+      "html": "<div class=\"ds-seg\"><button aria-pressed=\"false\">1단</button><button aria-pressed=\"true\">2단</button></div>",
+      "css": ".ds-seg { font-family: var(--font-sans); display: inline-flex; border: 1px solid var(--color-line); border-radius: var(--radius-md); overflow: hidden; } .ds-seg button { height: 36px; padding: 0 12px; border: none; background: var(--color-bg); color: var(--color-ink-3); font-size: 13px; cursor: pointer; } .ds-seg button + button { border-left: 1px solid var(--color-line); } .ds-seg button:hover { background: var(--color-surface-2); } .ds-seg button[aria-pressed=\"true\"] { background: var(--color-accent); color: var(--color-accent-ink); font-weight: 500; } .ds-seg button:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -2px; }"
+    },
+    {
+      "name": "Meta & Status Chips",
+      "kind": "chip",
+      "refersTo": "chip-meta",
+      "description": "곡 머리의 메타 칩(회색 면), 상태 칩, 태그 칩.",
+      "html": "<span class=\"ds-chip\"><span class=\"ds-chip-k\">Key</span><b>G</b><span class=\"ds-chip-k\">→</span><b class=\"ds-chip-now\">A</b><span class=\"ds-chip-k\">+2</span></span> <span class=\"ds-chip\"><span class=\"ds-chip-k\">Capo</span><b>2프렛</b></span> <span class=\"ds-chip ds-chip-practicing\">연습중</span> <span class=\"ds-chip ds-chip-done\">완료</span> <a class=\"ds-chip ds-chip-tag\" href=\"#\">#포크</a>",
+      "css": ".ds-chip { font-family: var(--font-sans); height: 28px; padding: 0 10px; display: inline-flex; align-items: center; gap: 6px; border-radius: var(--radius-sm); background: var(--color-surface-2); color: var(--color-ink-2); font-size: 13px; text-decoration: none; } .ds-chip b { font-weight: 700; } .ds-chip-k { color: var(--color-ink-5); } .ds-chip-now { color: var(--color-accent); } .ds-chip-practicing { background: var(--color-accent-soft); color: var(--color-accent-deep); font-weight: 500; } .ds-chip-done { background: var(--color-done-soft); color: var(--color-done-deep); font-weight: 500; } .ds-chip-tag { background: var(--color-bg); border: 1px solid var(--color-line); color: var(--color-ink-4); } .ds-chip-tag:hover { border-color: var(--color-line-strong); color: var(--color-ink-4); }"
+    },
+    {
+      "name": "Aside Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "300px 카드 열의 카드(카포, 연습 메모). 종이 면 + 1px 선, 그림자 없음.",
+      "html": "<section class=\"ds-card\"><h2><span>카포</span><small>2프렛</small></h2><p>2프렛에 카포를 끼우고 악보의 코드 모양 그대로 잡으세요.</p></section>",
+      "css": ".ds-card { font-family: var(--font-sans); width: 300px; box-sizing: border-box; padding: 16px; display: flex; flex-direction: column; gap: 12px; background: var(--color-bg); border: 1px solid var(--color-line); border-radius: var(--radius-xl); } .ds-card h2 { margin: 0; display: flex; align-items: baseline; justify-content: space-between; gap: 12px; font-size: 14px; font-weight: 700; color: var(--color-ink); } .ds-card h2 small { font-size: 12px; font-weight: 400; color: var(--color-ink-5); } .ds-card p { margin: 0; font-size: 13px; line-height: 1.6; color: var(--color-ink-4); }"
+    },
+    {
+      "name": "Chord Sheet",
+      "kind": "custom",
+      "refersTo": "sheet-chord",
+      "description": "섹션 라벨, 코드 위·가사 아래 쌍, TAB 블록. 코드는 가사와 같은 크기의 굵은 파랑.",
+      "html": "<div class=\"ds-sheet\"><div class=\"ds-sec\">[Verse 1]</div><div class=\"ds-line\"><span class=\"ds-pair\"><span class=\"ds-chord\">G</span><span class=\"ds-lyric\">가로등 하나 </span></span><span class=\"ds-pair\"><span class=\"ds-chord\">Em</span><span class=\"ds-lyric\">꺼지고 남은 자리</span></span></div><div class=\"ds-tab\"><div class=\"ds-tab-h\"><span class=\"ds-tab-tag\">TAB</span><span>메인 리프</span><span class=\"ds-tab-rep\">×3</span></div><div class=\"ds-tab-row\"><span class=\"ds-tab-s\">E</span><span class=\"ds-tab-bar\">|</span><span>-----10-----</span><span class=\"ds-tab-bar\">|</span></div><div class=\"ds-tab-row\"><span class=\"ds-tab-s\">B</span><span class=\"ds-tab-bar\">|</span><span>--13----11--</span><span class=\"ds-tab-bar\">|</span></div></div></div>",
+      "css": ".ds-sheet { font-family: var(--font-sans); font-size: 18px; color: var(--color-ink-2); } .ds-sec { margin: 0 0 10px; font-size: 0.76em; font-weight: 700; letter-spacing: 0.02em; color: var(--color-ink-5); } .ds-line { display: flex; flex-wrap: wrap; align-items: flex-end; line-height: 1.5; margin-bottom: 12px; } .ds-pair { display: inline-flex; flex-direction: column; } .ds-chord { font-size: 1em; font-weight: 700; color: var(--color-accent); min-height: 1.5em; } .ds-lyric { white-space: pre; } .ds-tab { background: var(--color-surface-2); border-radius: var(--radius-lg); padding: 12px 14px; display: flex; flex-direction: column; gap: 7px; } .ds-tab-h { display: flex; align-items: center; gap: 9px; font-size: 0.66em; font-weight: 500; color: var(--color-ink-3); } .ds-tab-tag { font-size: 0.94em; font-weight: 700; letter-spacing: 0.06em; color: var(--color-accent); } .ds-tab-rep { margin-left: auto; font-weight: 700; background: var(--color-bg); border: 1px solid var(--color-line); border-radius: var(--radius-xs); padding: 2px 7px; } .ds-tab-row { display: flex; font-family: var(--font-mono); font-size: 0.66em; line-height: 1.6; color: var(--color-ink-2); white-space: pre; } .ds-tab-s { width: 1.3em; color: var(--color-ink-5); } .ds-tab-bar { color: var(--color-faint); }"
+    },
+    {
+      "name": "Mobile Dock",
+      "kind": "nav",
+      "refersTo": "mobile-dock",
+      "description": "모바일 하단에 떠 있는 컨트롤 독. 44×44 버튼, 유일하게 그림자를 갖는 면.",
+      "html": "<div class=\"ds-dock\"><button class=\"ds-dock-btn\" aria-label=\"오토스크롤 켜고 끄기\" aria-pressed=\"false\"><svg width=\"15\" height=\"15\" viewBox=\"0 0 12 12\"><path d=\"M3 2l7 4-7 4z\" fill=\"currentColor\"/></svg></button><button class=\"ds-dock-btn\" aria-label=\"메트로놈 켜고 끄기\" aria-pressed=\"true\">1</button><span class=\"ds-dock-sep\"></span><button class=\"ds-dock-btn\" aria-label=\"글자 작게\">가−</button><button class=\"ds-dock-btn\" aria-label=\"글자 크게\">가+</button></div>",
+      "css": ".ds-dock { font-family: var(--font-sans); display: inline-flex; align-items: center; gap: 6px; padding: 8px; background: var(--color-bg); border: 1px solid var(--color-line-strong); border-radius: var(--radius-dock); box-shadow: var(--shadow-dock); } .ds-dock-btn { width: 44px; height: 44px; border: none; border-radius: var(--radius-xl); background: var(--color-surface-2); color: var(--color-ink-2); font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center; cursor: pointer; } .ds-dock-btn[aria-pressed=\"true\"] { background: var(--color-accent); color: var(--color-accent-ink); } .ds-dock-btn:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; } .ds-dock-sep { width: 1px; height: 26px; background: var(--color-line-strong); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "흰 종이 위의 파란 코드",
+    "overview": "코드집은 코드 악보 서비스라는 카테고리의 표준 화면을 그대로 받아들이고, 그 표준을 장난 없이 끝까지 다듬는다. 흰 바탕에 짙은 회색 가사, 그 위에 굵은 파란 코드. 기타를 든 사람이 모니터에서 한눈에 읽어야 하는 것은 코드와 가사뿐이므로, 나머지는 회색 면과 1px 선으로 조용히 물러난다. 품질 기준은 Ultimate Guitar다.\n\n이 세계는 이전의 \"어두운 연습실\"(다크 바탕 + 앰버 액센트 + 모노 대문자 라벨)을 의식적으로 버린 결과다. 장식적 라벨, 네온 액센트, 어두운 무대 연출 대신 익숙한 도구의 밀도를 택했다. 컨트롤은 표준 테두리 버튼·스테퍼·세그먼트이며, 무엇을 하는지 버튼과 값 스스로 말한다.\n\n밀도는 중간이다. 툴바는 한 줄, 카드는 16px 안쪽 여백, 악보는 줄 사이 12px. 깊이는 그림자가 아니라 면의 회색 단계와 선으로 만들고, 그림자는 화면 위에 떠 있는 모바일 독과 FAB에만 있다.",
+    "keyCharacteristics": [
+      "흰 단일 테마, 파랑 하나만 액센트",
+      "Noto Sans KR 한 가족이 제목·본문·코드를 모두 맡고, 모노는 TAB과 튜닝 글자에만",
+      "코드는 가사와 같은 크기의 굵은 파랑",
+      "그림자 없는 평면, 1px 선과 회색 면으로 구획",
+      "표준 테두리 컨트롤, 36px(데스크톱) / 44px(모바일) 높이"
+    ],
+    "rules": [
+      {
+        "name": "The One Blue Rule",
+        "body": "액센트는 파랑 하나뿐이다. 두 번째 액센트를 들이지 않는다. 초록·빨강은 상태를 말할 때만 쓴다.",
+        "section": "colors"
+      },
+      {
+        "name": "The Blue Means Chord-or-On Rule",
+        "body": "파랑은 코드 글자이거나 켜진/주요 조작이다. 장식 제목, 아이콘 꾸밈, 배경 면에 파랑을 쓰지 않는다(옅은 파랑은 상태 칩과 선택 영역에만).",
+        "section": "colors"
+      },
+      {
+        "name": "The One Family Rule",
+        "body": "제목·본문·코드·컨트롤 모두 Noto Sans KR. 모노는 칸 맞춤이 필요한 TAB과 튜닝 글자에만 쓰고, 라벨·제목·수치 일반에는 쓰지 않는다. 수치 정렬은 `tabular-nums`로 한다.",
+        "section": "typography"
+      },
+      {
+        "name": "The Same-Size Chord Rule",
+        "body": "코드는 가사와 같은 크기(1em)의 굵은 파랑이다. 코드를 작게 줄이거나 다른 가족으로 바꾸지 않는다.",
+        "section": "typography"
+      },
+      {
+        "name": "The Only-Floating-Things-Cast Rule",
+        "body": "그림자는 내용 위에 고정되어 떠 있는 요소(독, FAB)만 갖는다. 카드·버튼·칩·툴바에는 그림자를 주지 않고 선과 면으로 구분한다.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** 새 화면도 흰 바탕 + 회색 잉크 + 파랑 하나로 만든다. 기존 `@theme` 변수(`--color-*`, `--radius-*`)만 쓰고 새 hex를 만들지 않는다.",
+      "**Do** 코드는 가사와 같은 1em의 굵은 파랑으로, 악보 크기는 컨테이너 글자 크기 하나로 조절한다.",
+      "**Do** 구획은 1px 선(line)과 회색 면(surface-2)으로 한다.",
+      "**Do** 컨트롤은 표준 테두리 버튼·스테퍼·세그먼트로 만들고 데스크톱 36px, 모바일 터치 타깃 44px 이상을 지킨다. 아이콘 전용 버튼에는 `aria-label`을 단다.",
+      "**Do** 컨트롤 묶음의 이름이 필요하면 화면 글자 대신 `role=\"group\"` + `aria-label`로 준다.",
+      "**Do** 수치는 Noto Sans KR + `tabular-nums`로 정렬하고, 모노는 TAB과 튜닝 글자에만 쓴다."
+    ],
+    "donts": [
+      "**Don't** 다크 바탕, 네온/앰버 같은 두 번째 액센트, 어두운 무대 연출로 돌아가지 않는다(2026-10-24 사용자 결정).",
+      "**Don't** 모노 대문자 자간 라벨(예: \"CONTINUE PRACTICE\", \"SOURCE · CHORDPRO\")을 제목 위 표시나 컨트롤 이름으로 쓰지 않는다.",
+      "**Don't** 카드·버튼·칩·툴바에 그림자를 주지 않는다. 그림자는 떠 있는 독과 FAB만.",
+      "**Don't** 코드를 가사보다 작게 하거나 모노·다른 가족으로 쓰지 않는다.",
+      "**Don't** 희미한 회색(faint)을 읽어야 하는 글자에 쓰지 않는다."
+    ]
+  }
+}

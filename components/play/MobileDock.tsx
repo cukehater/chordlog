@@ -3,7 +3,6 @@
 import type { Song } from '@/lib/types';
 import type { usePlayView } from '@/lib/ui/playView';
 import { transposeChord, keyLabel } from '@/lib/chordpro/transpose';
-import { MicroLabel } from '@/components/ui/MicroLabel';
 import { Stepper } from '@/components/ui/Stepper';
 import { PlayIcon, PauseIcon, MetronomeIcon } from '@/components/icons';
 
@@ -11,12 +10,13 @@ type View = ReturnType<typeof usePlayView>;
 
 export function MobileDock({ song, view }: { song: Song; view: View }) {
   const current = transposeChord(song.key, view.semi);
-  const dockBtn = 'w-[46px] h-[44px] flex items-center justify-center border-0 rounded-xl cursor-pointer';
+  // 390px 폭에 44px 버튼 6개 + 값 2칸이 한 줄에 들어가도록 좌우 여백·간격을 최소로 둔다
+  const dockBtn = 'w-11 h-11 shrink-0 flex items-center justify-center border-0 rounded-xl cursor-pointer';
 
   return (
-    <div className="fixed left-[14px] right-[14px] bottom-6 flex flex-col gap-[6px] bg-surface-3 border border-line-strong rounded-dock p-2 shadow-dock">
+    <div className="fixed left-2 right-2 bottom-6 flex flex-col gap-[6px] bg-surface-3 border border-line-strong rounded-dock p-2 shadow-dock">
       {/* 위 — 오토스크롤 · 속도 · 메트로놈 · BPM */}
-      <div className="flex items-center gap-[5px]">
+      <div className="flex items-center justify-between gap-[3px]">
         <button
           type="button"
           aria-label="오토스크롤 켜고 끄기"
@@ -32,7 +32,7 @@ export function MobileDock({ song, view }: { song: Song; view: View }) {
           decLabel="스크롤 속도 낮추기" incLabel="스크롤 속도 높이기"
         />
 
-        <span className="w-px h-[26px] bg-line-strong mx-px" />
+        <span className="w-px h-[26px] bg-line-strong" />
 
         <button
           type="button"
@@ -58,18 +58,13 @@ export function MobileDock({ song, view }: { song: Song; view: View }) {
 
       {/* 아래 — 키 · 글자 크기 */}
       <div className="flex items-center gap-[6px]">
-        <button type="button" aria-label="키 반음 내리기" onClick={view.keyDown}
-          className={`${dockBtn} bg-control text-ink text-[20px]`}>−</button>
-        <span className="grow flex flex-col items-center gap-px">
-          <MicroLabel>KEY</MicroLabel>
-          <span className="font-mono text-[19px] font-bold leading-[1.1] text-accent">
-            {current}{' '}
-            {view.semi !== 0 ? <span className="text-[11px] text-ink-4">{keyLabel(view.semi)}</span> : null}
-          </span>
-        </span>
-        <button type="button" aria-label="키 반음 올리기" onClick={view.keyUp}
-          className={`${dockBtn} bg-control text-ink text-[20px]`}>+</button>
+        <Stepper
+          size="dock" value={current} sub={view.semi === 0 ? '원키' : keyLabel(view.semi)}
+          onDec={view.keyDown} onInc={view.keyUp}
+          decLabel="키 반음 내리기" incLabel="키 반음 올리기"
+        />
 
+        <span className="grow" />
         <span className="w-px h-[26px] bg-line-strong mx-[2px]" />
 
         <button type="button" aria-label="글자 작게" onClick={view.fontDown}

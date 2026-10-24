@@ -10,10 +10,11 @@ function Harness() {
 }
 
 describe('ControlBar', () => {
-  it('두 단의 마이크로 라벨 KEY / PLAY를 보여준다', () => {
+  it('조작을 이조·오토스크롤·글자·메트로놈 그룹으로 묶는다', () => {
     render(<Harness />);
-    expect(screen.getByText('KEY')).toBeInTheDocument();
-    expect(screen.getByText('PLAY')).toBeInTheDocument();
+    for (const name of ['Transpose', 'Autoscroll', 'Font', 'Metronome']) {
+      expect(screen.getByRole('group', { name })).toBeInTheDocument();
+    }
   });
 
   it('키 스테퍼가 현재 키를 바꾼다', async () => {
@@ -22,18 +23,19 @@ describe('ControlBar', () => {
     expect(screen.getByText('G#')).toBeInTheDocument();
   });
 
-  it('RESET은 원키로 되돌린다', async () => {
+  it('이조하면 원키로 버튼이 나타나고 누르면 원키로 되돌린다', async () => {
     render(<Harness />);
+    expect(screen.queryByRole('button', { name: '원키로' })).toBeNull();
     await userEvent.click(screen.getByRole('button', { name: '키 반음 올리기' }));
-    await userEvent.click(screen.getByRole('button', { name: 'RESET' }));
+    await userEvent.click(screen.getByRole('button', { name: '원키로' }));
     expect(screen.getByText('G')).toBeInTheDocument();
+    expect(screen.getByText('원키')).toBeInTheDocument();
   });
 
-  it('오토스크롤을 켜면 안내 문구가 바뀐다', async () => {
+  it('오토스크롤을 켜면 버튼이 멈춤으로 바뀐다', async () => {
     render(<Harness />);
-    expect(screen.getByText(/오토스크롤을 켜면 1단 보기로 전환됩니다/)).toBeInTheDocument();
-    await userEvent.click(screen.getByRole('button', { name: /오토스크롤/ }));
-    expect(screen.getByText(/1단으로 바뀌고 악보가 저절로 내려갑니다/)).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: '오토스크롤' }));
+    expect(screen.getByRole('button', { name: '멈춤' })).toHaveAttribute('aria-pressed', 'true');
   });
 
   it('박자 점 4개를 그린다', () => {
@@ -49,6 +51,6 @@ describe('ControlBar', () => {
 
   it('음소거 버튼에 aria-label이 있다', () => {
     render(<Harness />);
-    expect(screen.getByRole('button', { name: '메트로놈 소리 켜고 끄기' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: '메트로놈 음소거' })).toBeInTheDocument();
   });
 });

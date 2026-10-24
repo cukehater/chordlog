@@ -10,9 +10,13 @@ UI 작업(새 화면, 컴포넌트, 스타일 수정) 전에 반드시 읽을 �
 참고용이며 그대로 복사해 쓰지 않는다. 브라우저에서 바로 볼 수 있는 4개 화면은
 `docs/design/artboards/standalone/`에 있다.
 
+시각 규칙의 정본은 루트 `DESIGN.md`다(2026-10-24 리디자인: 흰 바탕 + 파랑 하나의 카테고리 표준,
+품질 기준 Ultimate Guitar). README의 색·폰트·앰버 서술은 이전 디자인이라 `DESIGN.md`가 이긴다.
+
 규칙:
-- 액센트 색은 `--gc-accent` 하나뿐이다. 두 번째 액센트를 도입하지 말 것
-- 곡 제목은 Hahmlet, 모든 수치(키·BPM·프렛·TAB)는 JetBrains Mono
+- 액센트 색은 `--color-accent`(파랑 #2563EB) 하나뿐이다. 두 번째 액센트를 도입하지 말 것
+- 폰트는 Noto Sans KR 한 가족(제목·본문·코드). Noto Sans Mono는 TAB·튜닝 글자처럼 폭 정렬이 필요한 곳만
+- 장식용 모노 대문자 라벨, 그라데이션, 독·FAB 외의 그림자를 쓰지 않는다
 - 모바일 터치 타깃 최소 44px, 아이콘 버튼에 aria-label 필수
 - `body`는 언제나 원키 기준. 이조·카포 결과를 저장하지 않는다
 - TAB과 스트러밍 패턴은 이조 대상이 아니다
@@ -31,3 +35,13 @@ UI 작업(새 화면, 컴포넌트, 스타일 수정) 전에 반드시 읽을 �
 - 설치: `pnpm install`. **`npm install` / `npm ci`를 돌리지 마라** — `package-lock.json`이 되살아나 전환이 깨진다.
 - 스크립트: `pnpm dev` · `pnpm build` · `pnpm lint` · `pnpm test`
 - `docs/superpowers/plans/`의 npm 명령은 전환 이전에 실제로 실행된 기록이라 그대로 둔다.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

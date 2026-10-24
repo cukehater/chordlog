@@ -5,12 +5,6 @@ import { MicroLabel } from '@/components/ui/MicroLabel';
 export default function LoginPage() {
   return (
     <div className="relative min-h-dvh flex flex-col bg-bg overflow-hidden">
-      <div
-        aria-hidden="true"
-        className="absolute inset-0"
-        style={{ background: 'radial-gradient(680px 340px at 50% 22%, rgba(255,157,77,0.11), rgba(255,157,77,0) 72%)' }}
-      />
-
       <div className="relative">
         <SiteHeader variant="bare" />
       </div>
@@ -31,7 +25,7 @@ export default function LoginPage() {
               id="pw"
               type="password"
               autoComplete="current-password"
-              className="h-[44px] p-0 border-0 border-b border-line-strong bg-transparent font-mono text-[20px] tracking-[0.14em] text-ink outline-none"
+              className="h-[44px] p-0 border-0 border-b border-line-strong bg-transparent font-mono text-[20px] tracking-[0.14em] text-ink outline-none focus:border-accent"
             />
           </div>
 

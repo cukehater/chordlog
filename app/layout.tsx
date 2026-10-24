@@ -1,21 +1,16 @@
 import type { Metadata } from 'next';
-import { Hahmlet, Gothic_A1, JetBrains_Mono } from 'next/font/google';
+import { Noto_Sans_KR, Noto_Sans_Mono } from 'next/font/google';
 import './globals.css';
 
-const hahmlet = Hahmlet({
-  subsets: ['latin'],
-  weight: ['500', '600', '700'],
-  variable: '--font-hahmlet',
-});
-const gothicA1 = Gothic_A1({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '700'],
-  variable: '--font-gothic-a1',
-});
-const jetbrainsMono = JetBrains_Mono({
+const notoSansKr = Noto_Sans_KR({
   subsets: ['latin'],
   weight: ['400', '500', '700'],
-  variable: '--font-jetbrains-mono',
+  variable: '--font-noto-sans-kr',
+});
+const notoSansMono = Noto_Sans_Mono({
+  subsets: ['latin'],
+  weight: ['400', '600'],
+  variable: '--font-noto-sans-mono',
 });
 
 export const metadata: Metadata = {
@@ -25,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ko" className={`${hahmlet.variable} ${gothicA1.variable} ${jetbrainsMono.variable}`}>
+    <html lang="ko" className={`${notoSansKr.variable} ${notoSansMono.variable}`}>
       <body className="bg-bg text-ink font-sans antialiased">{children}</body>
     </html>
   );

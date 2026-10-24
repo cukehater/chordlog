@@ -69,7 +69,7 @@ export function TrackList({ songs }: { songs: Song[] }) {
               <span className="font-mono text-[11.5px] text-dim w-5">{num}</span>
               <span className="flex flex-col gap-[3px] grow min-w-0">
                 <span className="font-display text-[17px] font-semibold tracking-[-0.015em] truncate">{song.title}</span>
-                <span className="font-mono text-[11px] text-ink-5 truncate">{mobileMeta(song)}</span>
+                <span className="font-mono text-[11px] text-ink-4 truncate">{mobileMeta(song)}</span>
               </span>
               <span className="shrink-0 flex items-center">
                 <span aria-hidden="true" className={`w-[6px] h-[6px] rounded-full ${DOT[song.status]}`} />

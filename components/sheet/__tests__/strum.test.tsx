@@ -52,7 +52,7 @@ describe('StrumGrid', () => {
 
 describe('patternName', () => {
   it('순서대로 A, B를 붙인다', () => {
-    expect(patternName(0)).toBe('PATTERN A');
-    expect(patternName(1)).toBe('PATTERN B');
+    expect(patternName(0)).toBe('패턴 A');
+    expect(patternName(1)).toBe('패턴 B');
   });
 });
