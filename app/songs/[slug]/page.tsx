@@ -1,6 +1,6 @@
-import { notFound } from 'next/navigation';
-import { getSong } from '@/lib/mock/songs';
-import { SongDetailView } from '@/components/play/SongDetailView';
+import { notFound } from "next/navigation";
+import { getSong } from "@/lib/mock/songs";
+import { SongDetailView } from "@/components/play/SongDetailView";
 
 function parseSemi(raw: string | string[] | undefined): number {
   const v = Array.isArray(raw) ? raw[0] : raw;
@@ -10,7 +10,8 @@ function parseSemi(raw: string | string[] | undefined): number {
 }
 
 export default async function SongPage({
-  params, searchParams,
+  params,
+  searchParams,
 }: {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ key?: string | string[] }>;

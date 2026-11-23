@@ -1,8 +1,12 @@
-import { SiteHeader } from '@/components/chrome/SiteHeader';
-import { TrackList } from '@/components/song/TrackList';
-import { MOCK_SONGS } from '@/lib/mock/songs';
+import { SiteHeader } from "@/components/chrome/SiteHeader";
+import { TrackList } from "@/components/song/TrackList";
+import { MOCK_SONGS } from "@/lib/mock/songs";
 
-export default async function TagPage({ params }: { params: Promise<{ name: string }> }) {
+export default async function TagPage({
+  params,
+}: {
+  params: Promise<{ name: string }>;
+}) {
   const { name } = await params;
   const tag = decodeURIComponent(name);
   const songs = MOCK_SONGS.filter((s) => s.tags.includes(tag));
@@ -12,7 +16,9 @@ export default async function TagPage({ params }: { params: Promise<{ name: stri
       <SiteHeader variant="list" />
       <main className="grow flex flex-col gap-[26px] px-5 md:px-[48px] pt-[56px] md:pt-10 pb-11">
         <div className="flex flex-col gap-[10px]">
-          <span className="font-mono text-[11px] tracking-[0.16em] text-accent">{songs.length} SONGS</span>
+          <span className="font-mono text-[11px] tracking-[0.16em] text-accent">
+            {songs.length} SONGS
+          </span>
           <h1 className="m-0 font-display text-[32px] md:text-[46px] font-bold tracking-[-0.03em] leading-none">
             #{tag}
           </h1>

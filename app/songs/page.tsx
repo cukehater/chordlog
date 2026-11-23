@@ -1,12 +1,12 @@
-import Link from 'next/link';
-import { SiteHeader } from '@/components/chrome/SiteHeader';
-import { Wordmark } from '@/components/chrome/Wordmark';
-import { ContinueCard } from '@/components/song/ContinueCard';
-import { TrackList } from '@/components/song/TrackList';
-import { FilterChips } from '@/components/song/FilterChips';
-import { SearchIcon, ThemeIcon, PlusIcon } from '@/components/icons';
-import { MOCK_SONGS, MOCK_STATS, CONTINUE_SONG } from '@/lib/mock/songs';
-import { IS_ADMIN } from '@/lib/mock/flags';
+import Link from "next/link";
+import { SiteHeader } from "@/components/chrome/SiteHeader";
+import { Wordmark } from "@/components/chrome/Wordmark";
+import { ContinueCard } from "@/components/song/ContinueCard";
+import { TrackList } from "@/components/song/TrackList";
+import { FilterChips } from "@/components/song/FilterChips";
+import { SearchIcon, ThemeIcon, PlusIcon } from "@/components/icons";
+import { MOCK_SONGS, MOCK_STATS, CONTINUE_SONG } from "@/lib/mock/songs";
+import { IS_ADMIN } from "@/lib/mock/flags";
 
 export default function HomePage() {
   return (
@@ -17,9 +17,13 @@ export default function HomePage() {
           <>
             <div className="w-[280px] relative flex items-center">
               <SearchIcon className="absolute left-3 text-ink-5" />
-              <label htmlFor="q" className="sr-only">곡 검색</label>
+              <label htmlFor="q" className="sr-only">
+                곡 검색
+              </label>
               <input
-                id="q" type="search" placeholder="제목 · 아티스트"
+                id="q"
+                type="search"
+                placeholder="제목 · 아티스트"
                 className="w-full h-[36px] pl-9 pr-3 border border-line rounded-md bg-surface-2 text-[13.5px] text-ink outline-none focus:border-accent"
               />
             </div>
@@ -40,21 +44,30 @@ export default function HomePage() {
         <div className="flex items-center gap-[10px]">
           <Wordmark />
           <button
-            type="button" aria-label="화면 테마 전환"
+            type="button"
+            aria-label="화면 테마 전환"
             className="ml-auto w-11 h-11 flex items-center justify-center border-0 bg-transparent text-ink-3 cursor-pointer"
           >
             <ThemeIcon size={18} />
           </button>
         </div>
         <div className="flex flex-col gap-2">
-          <span className="font-mono text-[10px] tracking-[0.18em] text-accent">{MOCK_STATS.total} SONGS</span>
-          <h1 className="m-0 font-display text-[32px] font-bold tracking-[-0.03em] leading-none">내 코드 악보</h1>
+          <span className="font-mono text-[10px] tracking-[0.18em] text-accent">
+            {MOCK_STATS.total} SONGS
+          </span>
+          <h1 className="m-0 font-display text-[32px] font-bold tracking-[-0.03em] leading-none">
+            내 코드 악보
+          </h1>
         </div>
         <div className="relative flex items-center">
           <SearchIcon className="absolute left-[14px] text-ink-5" />
-          <label htmlFor="mq" className="sr-only">곡 검색</label>
+          <label htmlFor="mq" className="sr-only">
+            곡 검색
+          </label>
           <input
-            id="mq" type="search" placeholder="제목 · 아티스트"
+            id="mq"
+            type="search"
+            placeholder="제목 · 아티스트"
             className="w-full h-[46px] pl-10 pr-[14px] border border-line rounded-lg bg-surface-2 text-[15px] text-ink outline-none focus:border-accent"
           />
         </div>
@@ -66,12 +79,24 @@ export default function HomePage() {
             <span className="font-mono text-[11px] tracking-[0.16em] text-accent">
               {MOCK_STATS.total} SONGS · {MOCK_STATS.practicing} IN PRACTICE
             </span>
-            <h1 className="m-0 font-display text-[46px] font-bold tracking-[-0.03em] leading-none">내 코드 악보</h1>
+            <h1 className="m-0 font-display text-[46px] font-bold tracking-[-0.03em] leading-none">
+              내 코드 악보
+            </h1>
           </div>
           <div className="flex items-center gap-[10px] pb-[6px]">
-            <label htmlFor="sort" className="font-mono text-[11px] tracking-[0.1em] text-dim">SORT</label>
-            <select id="sort" className="h-[34px] px-[10px] border border-line rounded-lg bg-surface-2 text-[13px] text-ink-2">
-              <option>최근 수정순</option><option>제목순</option><option>등록순</option>
+            <label
+              htmlFor="sort"
+              className="font-mono text-[11px] tracking-[0.1em] text-dim"
+            >
+              SORT
+            </label>
+            <select
+              id="sort"
+              className="h-[34px] px-[10px] border border-line rounded-lg bg-surface-2 text-[13px] text-ink-2"
+            >
+              <option>최근 수정순</option>
+              <option>제목순</option>
+              <option>등록순</option>
             </select>
           </div>
         </div>
@@ -80,7 +105,12 @@ export default function HomePage() {
           <ContinueCard song={CONTINUE_SONG} />
         </div>
 
-        <FilterChips groups={[{ items: ['전체', '포크', '발라드', '시티팝'] }, { items: ['연습중', '완성', '보관'] }]} />
+        <FilterChips
+          groups={[
+            { items: ["전체", "포크", "발라드", "시티팝"] },
+            { items: ["연습중", "완성", "보관"] },
+          ]}
+        />
 
         <TrackList songs={MOCK_SONGS} />
       </main>
