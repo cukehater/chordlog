@@ -1,61 +1,61 @@
 /* ─────────────────────────────────────────────────────────────
-   코드집 — 디자인 토큰 (라이트 단일 테마, 정본)
-   2026-10-24 리디자인: 다크·앰버 "어두운 연습실"을 버리고
-   코드 악보 서비스의 표준(흰 바탕 + 파랑 하나)으로 바꿨습니다.
+   Chordlog(가칭) — 디자인 토큰 (다크 단일 테마, 정본)
+   2026-11-23 리디자인: 랜딩 산출물(docs/design/landing/) 톤을 앱 전체 기준으로 삼았습니다.
+   어두운 로즈우드 바탕 + 크림 잉크 + 앰버 하나.
    앱의 실제 값은 app/globals.css의 @theme이고, 이 파일은 같은 값을 --gc-* 이름으로 둡니다.
    화면에 하드코딩된 hex를 발견하면 여기로 끌어오세요.
    ───────────────────────────────────────────────────────────── */
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans+Mono:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
 :root {
   /* ── 바탕 ─────────────────────────────────────────────── */
-  --gc-bg:            #FFFFFF;  /* 페이지 바탕 */
-  --gc-surface:       #FFFFFF;  /* 악보 시트, 카드 */
-  --gc-surface-2:     #F3F4F6;  /* 칩, TAB 블록, 검색 입력 */
-  --gc-surface-3:     #FFFFFF;  /* 모바일 하단 플로팅 독 */
-  --gc-surface-sunk:  #F9FAFB;  /* 에디터 소스 패널 */
-  --gc-control:       #F3F4F6;  /* 독 안의 버튼 */
+  --gc-bg:            #120D0A;  /* 페이지 바탕 */
+  --gc-surface:       #17110D;  /* 악보 시트, 카드 */
+  --gc-surface-2:     #1F1712;  /* 칩, TAB 블록, 검색 입력 */
+  --gc-surface-3:     #241B15;  /* 모바일 하단 플로팅 독 */
+  --gc-surface-sunk:  #0E0A08;  /* 에디터 소스 패널 */
+  --gc-control:       #2A2019;  /* 독 안의 버튼 */
 
   /* ── 선 ───────────────────────────────────────────────── */
-  --gc-line:          #E5E7EB;  /* 기본 테두리 */
-  --gc-line-soft:     #E5E7EB;  /* 카드 테두리, 컬럼 구분선 */
-  --gc-line-hair:     #F3F4F6;  /* 리스트 행 구분선 (가장 옅음) */
-  --gc-line-strong:   #D1D5DB;  /* 입력 필드 밑줄, 독 테두리 */
-  --gc-line-grid:     #E5E7EB;  /* 스트럼 그리드 박자 구분선 */
+  --gc-line:          #2E241C;  /* 기본 테두리 */
+  --gc-line-soft:     #2E241C;  /* 카드 테두리, 컬럼 구분선 */
+  --gc-line-hair:     #1F1712;  /* 리스트 행 구분선 (가장 옅음) */
+  --gc-line-strong:   #3E3126;  /* 입력 필드 밑줄, 독 테두리 */
+  --gc-line-grid:     #2E241C;  /* 스트럼 그리드 박자 구분선 */
 
   /* ── 글자 ─────────────────────────────────────────────── */
-  --gc-text:          #111827;  /* 제목, 주요 값 */
-  --gc-text-2:        #1F2937;  /* 버튼 라벨, 보조 값 */
-  --gc-text-3:        #374151;  /* 본문 보조 */
-  --gc-text-4:        #4B5563;  /* 아티스트명, 설명 */
-  --gc-text-5:        #6B7280;  /* 섹션 라벨, 줄 이름 — 흰 바탕 4.8:1 */
-  --gc-text-dim:      #6B7280;  /* 마이크로 라벨 */
-  --gc-text-faint:    #9CA3AF;  /* 장식 전용 (읽어야 하는 글자에 쓰지 말 것) */
-  --gc-lyric:         #1F2937;  /* 가사 본문 */
-  --gc-tab:           #1F2937;  /* TAB 숫자/대시 */
+  --gc-text:          #F4ECDD;  /* 제목, 주요 값 */
+  --gc-text-2:        #E6DAC6;  /* 버튼 라벨, 보조 값 */
+  --gc-text-3:        #CDBFA9;  /* 본문 보조 */
+  --gc-text-4:        #B3A48D;  /* 아티스트명, 설명 */
+  --gc-text-5:        #9A8B75;  /* 섹션 라벨, 줄 이름 — bg 위 4.5:1 이상 */
+  --gc-text-dim:      #9A8B75;  /* 마이크로 라벨 */
+  --gc-text-faint:    #6B5D4D;  /* 장식 전용 (읽어야 하는 글자에 쓰지 말 것) */
+  --gc-lyric:         #E9DFCD;  /* 가사 본문 */
+  --gc-tab:           #DCD0BC;  /* TAB 숫자/대시 */
 
   /* ── 액센트 (하나만 씁니다) ───────────────────────────── */
-  --gc-accent:        #2563EB;  /* 코드 글자, 주요 버튼, 켜진 상태, 카포 바, 강세 */
-  --gc-accent-ink:    #FFFFFF;  /* 액센트 배경 위 글자색 */
-  --gc-accent-soft:   #DBEAFE;  /* 연습중 칩, 선택 배경 */
-  --gc-accent-deep:   #1E40AF;  /* 연습중 칩 글자, 링크 호버 */
-  --gc-accent-mute:   #1D4ED8;  /* TAB 배지 */
+  --gc-accent:        #F0A04B;  /* 코드 글자, 주요 버튼, 켜진 상태, 카포 바, 강세 */
+  --gc-accent-ink:    #1A120C;  /* 액센트 배경 위 글자색 */
+  --gc-accent-soft:   #3A2716;  /* 연습중 칩, 선택 배경 */
+  --gc-accent-deep:   #825229;  /* 3D 운지 점 그림자 쪽. UI 글자·면에는 쓰지 말 것 */
+  --gc-accent-hover:  #F1B066;  /* 주요 버튼·링크 호버 */
+  --gc-accent-mute:   #C9A183;  /* 배지 글자 */
 
   /* ── 상태 ─────────────────────────────────────────────── */
   --gc-practicing:    var(--gc-accent); /* 연습중 */
-  --gc-done:          #059669;          /* 완성 */
-  --gc-done-soft:     #D1FAE5;
-  --gc-done-deep:     #065F46;
-  --gc-archived:      #9CA3AF;          /* 보관 */
-  --gc-danger:        #DC2626;          /* 파싱 오류 */
-  --gc-danger-text:   #B91C1C;
-  --gc-danger-bg:     rgba(220, 38, 38, 0.07);
+  --gc-done:          #6CC89A;          /* 완성 */
+  --gc-done-soft:     #183326;
+  --gc-archived:      #6B5D4D;          /* 보관 */
+  --gc-danger:        #FF7A66;          /* 파싱 오류 */
+  --gc-danger-text:   #FF9A8E;
+  --gc-danger-bg:     rgba(255, 122, 102, 0.07);
 
   /* ── 타이포 ───────────────────────────────────────────── */
-  --gc-font-display: 'Noto Sans KR', system-ui, sans-serif;  /* 제목 — 본문과 같은 가족 */
-  --gc-font-ui:      'Noto Sans KR', system-ui, sans-serif;  /* 본문·UI·코드 */
-  --gc-font-mono:    'Noto Sans Mono', ui-monospace, monospace; /* TAB·튜닝 글자만 */
+  --gc-font-display: 'Fraunces', 'IBM Plex Sans KR', Georgia, serif;  /* 워드마크·랜딩 타이틀 (라틴 전용, 한글은 Plex로) */
+  --gc-font-ui:      'IBM Plex Sans KR', system-ui, sans-serif;        /* 본문·UI·코드 */
+  --gc-font-mono:    'IBM Plex Mono', ui-monospace, monospace;         /* TAB·튜닝 글자만 */
 
   /* 마이크로 라벨: 12px / 500 / letter-spacing .04em / uppercase / --gc-text-dim */
   --gc-label-size:    12px;
@@ -71,8 +71,8 @@
   --gc-r-pill: 999px;
 
   /* ── 그림자 (딱 두 군데만) ────────────────────────────── */
-  --gc-shadow-dock: 0 8px 24px rgba(17, 24, 39, 0.12), 0 1px 2px rgba(17, 24, 39, 0.06);
-  --gc-shadow-fab:  0 6px 16px rgba(37, 99, 235, 0.3);
+  --gc-shadow-dock: 0 14px 34px rgba(0, 0, 0, 0.6);
+  --gc-shadow-fab:  0 10px 30px rgba(0, 0, 0, 0.55);
 
   /* ── 치수 ─────────────────────────────────────────────── */
   --gc-header-h:      60px;   /* 데스크톱 헤더 */
@@ -96,7 +96,7 @@ body {
 }
 
 a { color: var(--gc-accent); }
-a:hover { color: var(--gc-accent-deep); }
+a:hover { color: var(--gc-accent-hover); }
 ::selection { background: var(--gc-accent-soft); }
 
 /* 악보 렌더링 원자 단위 — 코드 한 개 + 붙는 가사 조각 */

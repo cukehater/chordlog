@@ -42,7 +42,7 @@ export default function LoginPage() {
           </button>
 
           <div className="flex items-center justify-between pt-[6px] border-t border-line-header">
-            <Link href="/" className="text-[13px] no-underline pt-4">← 곡 목록으로</Link>
+            <Link href="/songs" className="text-[13px] no-underline pt-4">← 곡 목록으로</Link>
             <span className="font-mono text-[11px] text-faint pt-4">SINGLE ACCOUNT</span>
           </div>
         </form>

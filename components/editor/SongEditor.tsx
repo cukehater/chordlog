@@ -35,7 +35,7 @@ export function SongEditor({ song }: { song?: Song }) {
 
   const saveBar = (
     <>
-      <Link href={song ? `/songs/${song.slug}` : '/'}
+      <Link href={song ? `/songs/${song.slug}` : '/songs'}
         className="h-[34px] flex items-center px-[14px] border border-line rounded-lg text-ink-4 text-[13px] no-underline">
         취소
       </Link>
@@ -52,7 +52,7 @@ export function SongEditor({ song }: { song?: Song }) {
 
       {/* 모바일 상단 — 상태바 자리 52px */}
       <header className="md:hidden shrink-0 pt-[52px] px-3 pb-[10px] flex items-center gap-2">
-        <Link href={song ? `/songs/${song.slug}` : '/'} className="h-11 flex items-center px-2 text-[14px] text-ink-4 no-underline">취소</Link>
+        <Link href={song ? `/songs/${song.slug}` : '/songs'} className="h-11 flex items-center px-2 text-[14px] text-ink-4 no-underline">취소</Link>
         <span className="grow text-center font-mono text-[11px] tracking-[0.14em] text-ink-4">
           {song ? 'EDIT SONG' : 'NEW SONG'}
         </span>

@@ -21,7 +21,7 @@ export function MobilePlayView({ song, view }: { song: Song; view: View }) {
     <div className="h-dvh flex flex-col bg-bg">
       <header className="shrink-0 pt-[52px] px-3 pb-[10px] flex flex-col gap-2 border-b border-line-hair">
         <div className="flex items-center gap-1">
-          <Link href="/" aria-label="목록으로" className="w-11 h-11 flex items-center justify-center no-underline text-ink-3">
+          <Link href="/songs" aria-label="목록으로" className="w-11 h-11 flex items-center justify-center no-underline text-ink-3">
             <ChevronLeftIcon />
           </Link>
           <span className="flex flex-col gap-[2px] grow min-w-0">

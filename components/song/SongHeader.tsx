@@ -5,8 +5,8 @@ import { STATUS_LABEL } from '@/lib/types';
 import { transposeChord, keyLabel } from '@/lib/chordpro/transpose';
 
 const STATUS_CHIP: Record<Song['status'], string> = {
-  practicing: 'bg-accent-soft text-accent-deep',
-  done: 'bg-done-soft text-done-deep',
+  practicing: 'bg-accent-soft text-accent',
+  done: 'bg-done-soft text-done',
   archived: 'bg-surface-2 text-ink-5',
 };
 
@@ -25,7 +25,7 @@ export function SongHeader({ song, semi, actions }: { song: Song; semi: number; 
   return (
     <header className="shrink-0 w-full max-w-[1360px] mx-auto box-border px-10 pt-7 pb-5">
       <nav aria-label="경로" className="text-[13px] text-ink-5 mb-2">
-        <Link href="/" className="text-ink-5 no-underline hover:text-ink-2">내 곡</Link>
+        <Link href="/songs" className="text-ink-5 no-underline hover:text-ink-2">내 곡</Link>
         <span className="mx-[6px]">/</span>
         {song.artist}
       </nav>

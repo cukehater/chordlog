@@ -38,7 +38,7 @@ export function SongDetailView({ song, initialSemi }: { song: Song; initialSemi:
                 actions={
                   IS_ADMIN ? (
                     <Link href="/songs/new"
-                      className="h-9 flex items-center gap-[7px] px-4 bg-accent text-accent-ink rounded-md text-[14px] font-medium no-underline hover:bg-accent-deep hover:text-accent-ink">
+                      className="h-9 flex items-center gap-[7px] px-4 bg-accent text-accent-ink rounded-md text-[14px] font-medium no-underline hover:bg-accent-hover hover:text-accent-ink">
                       <PlusIcon />새 곡
                     </Link>
                   ) : null

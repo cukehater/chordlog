@@ -4,7 +4,7 @@ import { SiteHeader } from '@/components/chrome/SiteHeader';
 describe('SiteHeader', () => {
   it('워드마크는 목록으로 가는 링크다', () => {
     render(<SiteHeader variant="list" />);
-    expect(screen.getByRole('link', { name: /코드집/ })).toHaveAttribute('href', '/');
+    expect(screen.getByRole('link', { name: /Chordlog/ })).toHaveAttribute('href', '/songs');
   });
 
   it('아이콘 전용 버튼에 aria-label이 있다', () => {

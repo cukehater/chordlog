@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // 랜딩 시안 원본(별도 Next 프로젝트, git 제외)
+    "docs/design/landing/**",
   ]),
 ]);
 

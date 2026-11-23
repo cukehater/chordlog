@@ -53,7 +53,7 @@ export function StrumGrid({
           );
         })}
       </div>
-      <p className="m-0 text-[11.5px] text-ink-5">↓ 다운 · ↑ 업 · 파란색은 강세</p>
+      <p className="m-0 text-[11.5px] text-ink-5">↓ 다운 · ↑ 업 · 앰버색은 강세</p>
     </section>
   );
 }

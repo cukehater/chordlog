@@ -1,9 +1,12 @@
 import Link from 'next/link';
+import { splitName } from '@/lib/site';
 
 export function Wordmark() {
+  const [head, tail] = splitName();
   return (
-    <Link href="/" className="no-underline text-ink text-[20px] font-bold tracking-[-0.02em]">
-      코드<span className="text-accent">집</span>
+    <Link href="/songs" className="no-underline text-ink font-display text-[22px] font-semibold tracking-[-0.03em]">
+      {head}
+      {tail ? <span className="font-medium italic text-accent">{tail}</span> : null}
     </Link>
   );
 }
