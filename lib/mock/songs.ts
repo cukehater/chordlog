@@ -1,6 +1,5 @@
 // ⚠ 이 파일의 곡·아티스트·가사·TAB·연주 메모는 전부 지어낸 가상 데이터다.
 // 저작권 문제를 피하려고 만든 시안 데이터이므로 실제 시드로 승격하지 말 것.
-// (docs/design/README.md §7)
 
 import type { Block, Slot, Song } from '@/lib/types';
 

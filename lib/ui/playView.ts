@@ -69,7 +69,7 @@ export function usePlayView({ tempo, initialSemi = 0 }: { tempo: number; initial
   /* ── 메트로놈 ── 지금은 시각 박자만 돈다.
      ponytail: setInterval 시각 전용. 소리를 붙일 때는 Web Audio 스케줄러
      (ctx.currentTime 기준 lookahead ~100ms)로 바꾼다 — 탭이 백그라운드로 가면
-     setInterval은 박자가 흔들린다. (docs/design/README.md §5-5)
+     setInterval은 박자가 흔들린다.
      ponytail: bpm이 바뀔 때마다 이 effect가 재실행되어 interval이 처음부터
      다시 시작한다 — 재생 중 BPM을 조정하면 박자 간격이 흔들린다. Web Audio
      스케줄러로 옮길 때 함께 해결된다. */

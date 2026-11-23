@@ -1,4 +1,4 @@
-// ⚠ 가상 데이터. docs/design/chordpro-spec.md §2의 예시를 그대로 옮겼다.
+// ⚠ 가상 데이터.
 export const SAMPLE_SOURCE = `{title: 새벽 두 시의 골목}
 {artist: 무렵}
 {key: G}

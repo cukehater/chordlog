@@ -1,16 +1,13 @@
 # Dependencies
 node_modules/
 .pnp
-.pnp.js
+.pnp.*
 
-# Build output
-dist/
-build/
-out/
+# Next.js
 .next/
-.nuxt/
-.output/
-.vite/
+out/
+build/
+next-env.d.ts
 *.tsbuildinfo
 
 # Environment
@@ -18,19 +15,14 @@ out/
 .env.*
 !.env.example
 
+# Vercel
+.vercel
+
 # Logs
-logs/
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
 
 # Cache
-.cache/
-.turbo/
 .eslintcache
-coverage/
 
 # Editor / OS
 .vscode/*
@@ -38,18 +30,4 @@ coverage/
 .idea/
 .DS_Store
 Thumbs.db
-
-.playwright-mcp/
-
-# Claude Code 로컬 설정 (머신별)
-.claude/settings.local.json
-.claude/scheduled_tasks.lock
-
-# understand-anything 지식 그래프 캐시
-.ua/
-
-# impeccable 작업 부산물
-.impeccable/mocks/
-.impeccable/review/
-.impeccable/questions/
-.impeccable/hook.cache.json
+*.pem

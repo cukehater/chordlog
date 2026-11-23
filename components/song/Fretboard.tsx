@@ -9,8 +9,7 @@ type Geo = {
   showNumbers: boolean;
 };
 
-// 값 출처: docs/design/artboards/SongDetail.dc.html(rail), Main.html(hero),
-// 컨트롤 바 칩(bar), MobilePlay.dc.html(row), Editor.html(editor)
+// 값 출처: 시안 rail·hero·컨트롤 바 칩(bar)·모바일 연주 row·편집기 editor
 const GEO: Record<FretboardSize, Geo> = {
   rail:   { w: 254, h: 46, nutX: 6, nutY: 6, nutW: 5, nutH: 34, firstFret: 58, spacing: 52, fretTop: 6, fretBottom: 40, stringX: 11, stringTop: 9.5, stringGap: 6.8, stringCount: 5, stringWidth: 1.1, barW: 10, barGap: 6, barY: 2, barH: 42, showNumbers: true },
   hero:   { w: 92,  h: 30, nutX: 3, nutY: 2, nutW: 4, nutH: 26, firstFret: 26, spacing: 20, fretTop: 2, fretBottom: 28, stringX: 7,  stringTop: 5,   stringGap: 5,   stringCount: 5, stringWidth: 1,   barW: 7,  barGap: 4, barY: 0, barH: 30, showNumbers: false },
