@@ -1,0 +1,1 @@
+export { metadata, RootLayout, viewport } from './root-layout'

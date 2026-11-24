@@ -1,5 +1,1 @@
-import { SongEditor } from '@/components/editor/SongEditor';
-
-export default function NewSongPage() {
-  return <SongEditor />;
-}
+export { NewSongPage as default } from '@/_pages/song-editor'
