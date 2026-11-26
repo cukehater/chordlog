@@ -3,6 +3,7 @@ import '../styles/globals.css'
 import type { Metadata, Viewport } from 'next'
 
 import { fraunces, plexMono, plexSansKr, siteConfig } from '@/shared/config'
+import { THEME_SCRIPT } from '@/shared/lib/color-theme'
 
 export const metadata: Metadata = {
   title: siteConfig.name,
@@ -10,7 +11,10 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#120D0A',
+  themeColor: [
+    { media: '(prefers-color-scheme: dark)', color: '#120d0a' },
+    { media: '(prefers-color-scheme: light)', color: '#f2ece3' },
+  ],
 }
 
 /**
@@ -27,6 +31,7 @@ export const RootLayout = ({ children }: { children: React.ReactNode }) => {
       lang="ko"
     >
       <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
         <script dangerouslySetInnerHTML={{ __html: INTRO_SCRIPT }} />
       </head>
       <body className="bg-bg text-ink font-sans antialiased">{children}</body>

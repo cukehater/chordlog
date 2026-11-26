@@ -87,7 +87,7 @@ export const ParallaxLayers = () => {
       <div
         ref={farRef}
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 text-ink/24 will-change-transform"
+        className="pointer-events-none absolute inset-0 text-deco-far will-change-transform"
         data-intro-part="parallax-far"
       >
         <svg
@@ -140,7 +140,7 @@ export const ParallaxLayers = () => {
       <div
         ref={midRef}
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 text-ink/42 will-change-transform"
+        className="pointer-events-none absolute inset-0 text-deco-mid will-change-transform"
         data-intro-part="parallax-mid"
       >
         <span className="absolute top-[25%] left-[70%] font-display text-[clamp(57px,5.278vw,95px)] leading-none font-medium italic portrait:top-[6.5%] portrait:left-[6.5%] portrait:text-[min(11.2vw,67.2px)]">

@@ -14,12 +14,12 @@ import { getIntroSnapshot, setIntroPhase, subscribeIntro, useIntro } from '../mo
 
 /** 로딩 화면의 줄 6가닥. 위에서부터 1번 줄(e). y는 220×72 줄 상자 안 중심, delay가 null이면 울리지 않는다(C 코드의 x). */
 const LOADER_STRINGS = [
-  { y: 8, thickness: 1, rgb: '236 229 216', alpha: 0.8, delay: 0.4 },
-  { y: 19, thickness: 1.2, rgb: '236 229 216', alpha: 0.8, delay: 0.3 },
-  { y: 30, thickness: 1.5, rgb: '214 172 110', alpha: 0.85, delay: 0.2 },
-  { y: 41, thickness: 1.8, rgb: '214 172 110', alpha: 0.85, delay: 0.1 },
-  { y: 52, thickness: 2.1, rgb: '214 172 110', alpha: 0.85, delay: 0 },
-  { y: 63, thickness: 2.4, rgb: '214 172 110', alpha: 0.4, delay: null },
+  { y: 8, thickness: 1, rgb: 'var(--intro-string-plain)', alpha: 0.8, delay: 0.4 },
+  { y: 19, thickness: 1.2, rgb: 'var(--intro-string-plain)', alpha: 0.8, delay: 0.3 },
+  { y: 30, thickness: 1.5, rgb: 'var(--intro-string-wound)', alpha: 0.85, delay: 0.2 },
+  { y: 41, thickness: 1.8, rgb: 'var(--intro-string-wound)', alpha: 0.85, delay: 0.1 },
+  { y: 52, thickness: 2.1, rgb: 'var(--intro-string-wound)', alpha: 0.85, delay: 0 },
+  { y: 63, thickness: 2.4, rgb: 'var(--intro-string-wound)', alpha: 0.4, delay: null },
 ] as const
 
 const BOX_WIDTH = 220
@@ -191,11 +191,11 @@ export const HeroIntro = () => {
         {/* 너트·새들 표시 */}
         <div
           aria-hidden="true"
-          className="intro-chrome absolute top-[calc(var(--intro-box-top)+4px)] left-[calc(50vw-110px)] h-16 w-px bg-[rgb(244_236_221/0.22)]"
+          className="intro-chrome absolute top-[calc(var(--intro-box-top)+4px)] left-[calc(50vw-110px)] h-16 w-px bg-loader-mark"
         />
         <div
           aria-hidden="true"
-          className="intro-chrome absolute top-[calc(var(--intro-box-top)+4px)] left-[calc(50vw+109px)] h-16 w-px bg-[rgb(244_236_221/0.22)]"
+          className="intro-chrome absolute top-[calc(var(--intro-box-top)+4px)] left-[calc(50vw+109px)] h-16 w-px bg-loader-mark"
         />
 
         <p

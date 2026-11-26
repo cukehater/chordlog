@@ -52,6 +52,11 @@
   --color-dock-well: #1a130f;
   --color-danger-ink: #1a120c;
 
+  /* 랜딩 장식 — 패럴랙스 레이어와 로딩 화면 눈금 */
+  --color-deco-far: color-mix(in oklab, var(--color-ink) 24%, transparent);
+  --color-deco-mid: color-mix(in oklab, var(--color-ink) 42%, transparent);
+  --color-loader-mark: rgb(244 236 221 / 0.22);
+
   /* 타이포 — 한글은 IBM Plex Sans KR. Fraunces는 라틴 전용이라 한글은 sans로 떨어진다 */
   --font-display: var(--font-fraunces), var(--font-plex-kr), Georgia, serif;
   --font-sans: var(--font-plex-kr), 'Apple SD Gothic Neo', system-ui, sans-serif;
@@ -136,20 +141,176 @@
   padding-inline: var(--page-gutter);
 }
 
-/* 랜딩 히어로 — 지판 뒤 스포트라이트와 가장자리 비네트. 그라데이션은 랜딩에만 허용 */
-@utility bg-hero {
-  background:
+/*
+ * 테마 — @theme 값이 다크 기본값이다. 라이트는 OS 설정을 따르고, <html data-theme>가 있으면 그 값이 우선한다.
+ * 라이트 블록이 두 번 나오는 건 감수한다(미디어 쿼리와 속성 선택자를 한 규칙으로 묶을 수 없다).
+ * 이 블록은 레이어 밖이라 Tailwind theme 레이어의 변수보다 우선한다.
+ */
+:root {
+  color-scheme: dark;
+  --hero-bg:
     radial-gradient(ellipse 52% 60% at 70% 62%, rgb(160 96 50 / 0.22) 0%, rgb(160 96 50 / 0) 72%),
     radial-gradient(ellipse 120% 95% at 42% 38%, rgb(0 0 0 / 0) 52%, rgb(0 0 0 / 0.5) 100%),
     var(--color-bg);
+  --hero-fallback:
+    radial-gradient(ellipse 50% 56% at 70% 68%, rgb(196 112 52 / 0.38) 0%, rgb(196 112 52 / 0) 72%),
+    radial-gradient(ellipse 36% 40% at 88% 20%, rgb(240 160 75 / 0.1) 0%, rgb(240 160 75 / 0) 70%),
+    linear-gradient(160deg, #22170f 0%, var(--color-bg) 55%, #0b0806 100%);
+  /* 로딩 화면 줄 색(rgb 세 값). 쓰는 곳에서 알파를 붙인다 */
+  --intro-string-plain: 236 229 216;
+  --intro-string-wound: 214 172 110;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    color-scheme: light;
+    /* 바탕 — 따뜻한 악보 종이 */
+    --color-bg: #f2ece3;
+    --color-surface: #f7f2ea;
+    --color-surface-2: #eae2d6;
+    --color-surface-3: #e3d9cb;
+    --color-sunk: #e9e1d4;
+    --color-control: #e0d6c8;
+    --color-line: #d8cdbd;
+    --color-line-soft: #d8cdbd;
+    --color-line-hair: #e3d9cb;
+    --color-line-strong: #c4b6a2;
+    --color-line-grid: #d8cdbd;
+    /* 글자 — ink-5·dim까지 bg·surface-2에서 4.5:1 이상. faint만 장식 전용 */
+    --color-ink: #1f1712;
+    --color-ink-2: #3d3026;
+    --color-ink-3: #6b5b4b;
+    --color-ink-4: #6f5f4f;
+    --color-ink-5: #736352;
+    --color-dim: #736352;
+    --color-faint: #a8998a;
+    --color-lyric: #2a2019;
+    --color-tab: #3d3026;
+    /* 액센트 — 번트 앰버. 밝은 배경에서 호버는 어두워진다 */
+    --color-accent: #b4561b;
+    --color-accent-hover: #934514;
+    --color-accent-ink: #fff8ee;
+    --color-accent-mute: #8a5530;
+    --color-accent-soft: #f0d8bc;
+    --color-accent-deep: #64320f;
+    --color-done: #2b7550;
+    --color-done-soft: #d6ebdd;
+    --color-archived: #a8998a;
+    --color-danger: #c0392b;
+    --color-danger-text: #a3301f;
+    --color-line-header: #d8cdbd;
+    --color-line-chip: #c4b6a2;
+    --color-fret-nut: #8a7a66;
+    --color-fret-string: #b3a48d;
+    --color-hairline: #cfc2b0;
+    --color-rest: #d8cdbd;
+    --color-dock-well: #eae2d6;
+    --color-danger-ink: #fff8ee;
+    --color-deco-far: color-mix(in oklab, var(--color-ink) 18%, transparent);
+    --color-deco-mid: color-mix(in oklab, var(--color-ink) 32%, transparent);
+    --color-loader-mark: rgb(31 23 18 / 0.22);
+    --shadow-dock: 0 14px 34px rgb(60 40 20 / 0.18);
+    --shadow-fab: 0 10px 30px rgb(60 40 20 / 0.2);
+    --hero-bg:
+      radial-gradient(
+        ellipse 52% 60% at 70% 62%,
+        rgb(255 206 150 / 0.42) 0%,
+        rgb(255 206 150 / 0) 72%
+      ),
+      radial-gradient(
+        ellipse 120% 95% at 42% 38%,
+        rgb(120 88 56 / 0) 55%,
+        rgb(120 88 56 / 0.16) 100%
+      ),
+      var(--color-bg);
+    --hero-fallback:
+      radial-gradient(
+        ellipse 50% 56% at 70% 68%,
+        rgb(232 160 90 / 0.35) 0%,
+        rgb(232 160 90 / 0) 72%
+      ),
+      linear-gradient(160deg, #f7f2ea 0%, var(--color-bg) 55%, #e9e1d4 100%);
+    --intro-string-plain: 74 66 58;
+    --intro-string-wound: 160 112 52;
+  }
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  /* 바탕 — 따뜻한 악보 종이 */
+  --color-bg: #f2ece3;
+  --color-surface: #f7f2ea;
+  --color-surface-2: #eae2d6;
+  --color-surface-3: #e3d9cb;
+  --color-sunk: #e9e1d4;
+  --color-control: #e0d6c8;
+  --color-line: #d8cdbd;
+  --color-line-soft: #d8cdbd;
+  --color-line-hair: #e3d9cb;
+  --color-line-strong: #c4b6a2;
+  --color-line-grid: #d8cdbd;
+  /* 글자 — ink-5·dim까지 bg·surface-2에서 4.5:1 이상. faint만 장식 전용 */
+  --color-ink: #1f1712;
+  --color-ink-2: #3d3026;
+  --color-ink-3: #6b5b4b;
+  --color-ink-4: #6f5f4f;
+  --color-ink-5: #736352;
+  --color-dim: #736352;
+  --color-faint: #a8998a;
+  --color-lyric: #2a2019;
+  --color-tab: #3d3026;
+  /* 액센트 — 번트 앰버. 밝은 배경에서 호버는 어두워진다 */
+  --color-accent: #b4561b;
+  --color-accent-hover: #934514;
+  --color-accent-ink: #fff8ee;
+  --color-accent-mute: #8a5530;
+  --color-accent-soft: #f0d8bc;
+  --color-accent-deep: #64320f;
+  --color-done: #2b7550;
+  --color-done-soft: #d6ebdd;
+  --color-archived: #a8998a;
+  --color-danger: #c0392b;
+  --color-danger-text: #a3301f;
+  --color-line-header: #d8cdbd;
+  --color-line-chip: #c4b6a2;
+  --color-fret-nut: #8a7a66;
+  --color-fret-string: #b3a48d;
+  --color-hairline: #cfc2b0;
+  --color-rest: #d8cdbd;
+  --color-dock-well: #eae2d6;
+  --color-danger-ink: #fff8ee;
+  --color-deco-far: color-mix(in oklab, var(--color-ink) 18%, transparent);
+  --color-deco-mid: color-mix(in oklab, var(--color-ink) 32%, transparent);
+  --color-loader-mark: rgb(31 23 18 / 0.22);
+  --shadow-dock: 0 14px 34px rgb(60 40 20 / 0.18);
+  --shadow-fab: 0 10px 30px rgb(60 40 20 / 0.2);
+  --hero-bg:
+    radial-gradient(
+      ellipse 52% 60% at 70% 62%,
+      rgb(255 206 150 / 0.42) 0%,
+      rgb(255 206 150 / 0) 72%
+    ),
+    radial-gradient(
+      ellipse 120% 95% at 42% 38%,
+      rgb(120 88 56 / 0) 55%,
+      rgb(120 88 56 / 0.16) 100%
+    ),
+    var(--color-bg);
+  --hero-fallback:
+    radial-gradient(ellipse 50% 56% at 70% 68%, rgb(232 160 90 / 0.35) 0%, rgb(232 160 90 / 0) 72%),
+    linear-gradient(160deg, #f7f2ea 0%, var(--color-bg) 55%, #e9e1d4 100%);
+  --intro-string-plain: 74 66 58;
+  --intro-string-wound: 160 112 52;
+}
+
+/* 랜딩 히어로 — 지판 뒤 스포트라이트와 가장자리 비네트. 그라데이션은 랜딩에만 허용. 값은 테마 블록에 있다 */
+@utility bg-hero {
+  background: var(--hero-bg);
 }
 
 /* WebGL을 못 쓸 때 3D 대신 보여주는 정적 배경 */
 @utility bg-hero-fallback {
-  background:
-    radial-gradient(ellipse 50% 56% at 70% 68%, rgb(196 112 52 / 0.38) 0%, rgb(196 112 52 / 0) 72%),
-    radial-gradient(ellipse 36% 40% at 88% 20%, rgb(240 160 75 / 0.1) 0%, rgb(240 160 75 / 0) 70%),
-    linear-gradient(160deg, #22170f 0%, var(--color-bg) 55%, #0b0806 100%);
+  background: var(--hero-fallback);
 }
 
 /*

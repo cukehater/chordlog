@@ -69,6 +69,141 @@ const SIDE_DOTS = [
 export type PaletteType = { accent: string; accentDeep: string }
 export type FontsType = { display: string; mono: string }
 
+type StopType = readonly [offset: number, color: string]
+
+/** 테마별 지판 색. rgb는 'r, g, b' 문자열이고 쓰는 곳에서 알파를 붙인다. */
+export type SurfacePaletteType = {
+  wood: string
+  grain: string
+  grainFine: readonly [dark: string, light: string]
+  across: readonly StopType[]
+  along: readonly StopType[]
+  binding: { size: number; top: string; bottom: string }
+  inlay: readonly StopType[]
+  inlayBorder: string
+  fretShadow: string
+  nutShadow: string
+  stringShadow: readonly [rgb: string, alpha: number]
+  dotShadow: readonly [hex: string, alpha: number]
+  side: readonly StopType[]
+  sideDot: string
+  end: readonly StopType[]
+  floatShadow: readonly [rgb: string, center: number, middle: number]
+  sheen: readonly [rgb: string, alpha: number]
+  dotRing: string
+  dotNumber: string
+  openMark: string
+  mutedMark: string
+  chordName: string
+}
+
+/** 로즈우드 지판, 자개 마커. */
+export const DARK_SURFACE: SurfacePaletteType = {
+  wood: '#4a2b1e',
+  grain: 'rgba(20, 8, 2, 0.22)',
+  grainFine: ['rgba(20, 8, 2, 0.3)', 'rgba(255, 200, 150, 0.06)'],
+  across: [
+    [0, 'rgba(0, 0, 0, 0.34)'],
+    [0.46, 'rgba(255, 214, 170, 0.06)'],
+    [0.54, 'rgba(255, 214, 170, 0.06)'],
+    [1, 'rgba(0, 0, 0, 0.38)'],
+  ],
+  along: [
+    [0, 'rgba(255, 196, 140, 0.14)'],
+    [0.38, 'rgba(255, 196, 140, 0)'],
+    [1, 'rgba(0, 0, 0, 0.3)'],
+  ],
+  binding: { size: 3, top: '#e3d5ba', bottom: '#cdbe9f' },
+  inlay: [
+    [0, '#fffaf0'],
+    [0.4, '#efe6d6'],
+    [0.75, '#c9bda9'],
+    [1, '#a39784'],
+  ],
+  inlayBorder: 'rgba(0, 0, 0, 0.25)',
+  fretShadow: 'rgba(0, 0, 0, 0.45)',
+  nutShadow: 'rgba(0, 0, 0, 0.45)',
+  stringShadow: ['0, 0, 0', 0.45],
+  dotShadow: ['#000000', 0.55],
+  side: [
+    [0, '#e8dcc2'],
+    [3 / BOARD_THICKNESS, '#cbbb9b'],
+    [3 / BOARD_THICKNESS, '#3a2116'],
+    [12 / BOARD_THICKNESS, '#2c190f'],
+    [12 / BOARD_THICKNESS, '#74462b'],
+    [0.55, '#5b3521'],
+    [1, '#2a170e'],
+  ],
+  sideDot: '#efe6d3',
+  end: [
+    [0, '#24130b'],
+    [0.45, '#5b3521'],
+    [0.54, '#74462b'],
+    [0.54, '#2c190f'],
+    [1, '#3a2116'],
+  ],
+  floatShadow: ['0, 0, 0', 0.62, 0.3],
+  sheen: ['255, 224, 186', 0.1],
+  dotRing: 'rgba(18, 13, 10, 0.6)',
+  dotNumber: '#1b120b',
+  openMark: 'rgba(244, 236, 221, 0.8)',
+  mutedMark: 'rgba(244, 236, 221, 0.8)',
+  chordName: '#f4ecdd',
+}
+
+/** 메이플 지판, 검은 점 마커. */
+export const LIGHT_SURFACE: SurfacePaletteType = {
+  wood: '#E4C48E',
+  grain: 'rgba(150, 96, 36, 0.14)',
+  grainFine: ['rgba(150, 96, 36, 0.18)', 'rgba(255, 240, 210, 0.2)'],
+  across: [
+    [0, 'rgba(120, 78, 30, 0.2)'],
+    [0.46, 'rgba(255, 246, 228, 0.12)'],
+    [0.54, 'rgba(255, 246, 228, 0.12)'],
+    [1, 'rgba(120, 78, 30, 0.24)'],
+  ],
+  along: [
+    [0, 'rgba(255, 248, 232, 0.28)'],
+    [0.4, 'rgba(255, 248, 232, 0)'],
+    [1, 'rgba(110, 70, 25, 0.18)'],
+  ],
+  binding: { size: 2, top: 'rgba(90, 58, 24, 0.55)', bottom: 'rgba(90, 58, 24, 0.65)' },
+  inlay: [
+    [0, '#4A3A2E'],
+    [0.45, '#241A13'],
+    [1, '#120C08'],
+  ],
+  inlayBorder: 'rgba(255, 240, 215, 0.25)',
+  fretShadow: 'rgba(90, 58, 24, 0.35)',
+  nutShadow: 'rgba(0, 0, 0, 0.45)',
+  stringShadow: ['80, 50, 20', 0.32],
+  dotShadow: ['#502D0F', 0.38],
+  side: [
+    [0, '#8A6436'],
+    [2 / BOARD_THICKNESS, '#8A6436'],
+    [2 / BOARD_THICKNESS, '#D9B57A'],
+    [12 / BOARD_THICKNESS, '#CFA86C'],
+    [12 / BOARD_THICKNESS, '#C99D5E'],
+    [0.55, '#B58A4E'],
+    [1, '#8E6A3C'],
+  ],
+  sideDot: '#1F1712',
+  end: [
+    [0, '#8E6A3C'],
+    [0.45, '#BE945A'],
+    [0.54, '#D4AF74'],
+    [0.54, '#CBA368'],
+    [1, '#DDBB82'],
+  ],
+  floatShadow: ['92, 60, 28', 0.34, 0.14],
+  sheen: ['255, 255, 255', 0.28],
+  dotRing: 'rgba(255, 248, 236, 0.85)',
+  dotNumber: '#FFF6E8',
+  openMark: 'rgba(31, 23, 18, 0.7)',
+  mutedMark: 'rgba(31, 23, 18, 0.8)',
+  chordName: '#1F1712',
+}
+
 type DrawType = (ctx: CanvasRenderingContext2D, scale: number) => void
 
 const paint = (width: number, height: number, scale: number, draw: DrawType) => {
@@ -84,8 +219,6 @@ const paint = (width: number, height: number, scale: number, draw: DrawType) => 
   texture.anisotropy = 8
   return texture
 }
-
-type StopType = readonly [offset: number, color: string]
 
 const gradient = (
   ctx: CanvasRenderingContext2D,
@@ -164,91 +297,78 @@ const withAlpha = (hex: string, alpha: number) => {
   return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${alpha})`
 }
 
-const pearl = (ctx: CanvasRenderingContext2D, cx: number, cy: number) => {
+const inlay = (
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  surface: SurfacePaletteType,
+) => {
   const g = ctx.createRadialGradient(cx - 2.4, cy - 3.2, 0, cx - 2.4, cy - 3.2, 15.3)
-  g.addColorStop(0, '#fffaf0')
-  g.addColorStop(0.4, '#efe6d6')
-  g.addColorStop(0.75, '#c9bda9')
-  g.addColorStop(1, '#a39784')
+  for (const [offset, color] of surface.inlay) g.addColorStop(offset, color)
   ctx.beginPath()
   ctx.arc(cx, cy, 8, 0, Math.PI * 2)
   ctx.fillStyle = g
   ctx.fill()
   ctx.beginPath()
   ctx.arc(cx, cy, 7.5, 0, Math.PI * 2)
-  ctx.strokeStyle = 'rgba(0, 0, 0, 0.25)'
+  ctx.strokeStyle = surface.inlayBorder
   ctx.lineWidth = 1
   ctx.stroke()
 }
 
-/** 지판 윗면: 로즈우드 결, 바인딩, 자개 마커, 프렛·줄·운지 점의 그림자까지 한 장에 굽는다. */
-const woodTexture = () => {
+/** 지판 윗면: 나뭇결, 바인딩, 포지션 마커, 프렛·줄·운지 점의 그림자까지 한 장에 굽는다. */
+const woodTexture = (surface: SurfacePaletteType) => {
   const W = BOARD_LENGTH
   const H = BOARD_WIDTH
   return paint(W, H, 2, (ctx, scale) => {
-    ctx.fillStyle = '#4a2b1e'
+    ctx.fillStyle = surface.wood
     ctx.fillRect(0, 0, W, H)
-    grain(ctx, W, H, 0.6, 23, [[9, 10.5, 'rgba(20, 8, 2, 0.22)']])
+    grain(ctx, W, H, 0.6, 23, [[9, 10.5, surface.grain]])
     grain(ctx, W, H, -0.7, 15, [
-      [5, 6, 'rgba(20, 8, 2, 0.3)'],
-      [13, 15, 'rgba(255, 200, 150, 0.06)'],
+      [5, 6, surface.grainFine[0]],
+      [13, 15, surface.grainFine[1]],
     ])
-    ctx.fillStyle = gradient(ctx, 0, 0, 0, H, [
-      [0, 'rgba(0, 0, 0, 0.34)'],
-      [0.46, 'rgba(255, 214, 170, 0.06)'],
-      [0.54, 'rgba(255, 214, 170, 0.06)'],
-      [1, 'rgba(0, 0, 0, 0.38)'],
-    ])
+    ctx.fillStyle = gradient(ctx, 0, 0, 0, H, surface.across)
     ctx.fillRect(0, 0, W, H)
-    ctx.fillStyle = gradient(ctx, 0, 0, W, 0, [
-      [0, 'rgba(255, 196, 140, 0.14)'],
-      [0.38, 'rgba(255, 196, 140, 0)'],
-      [1, 'rgba(0, 0, 0, 0.3)'],
-    ])
+    ctx.fillStyle = gradient(ctx, 0, 0, W, 0, surface.along)
     ctx.fillRect(0, 0, W, H)
 
-    ctx.fillStyle = '#e3d5ba'
-    ctx.fillRect(0, 0, W, 3)
-    ctx.fillStyle = '#cdbe9f'
-    ctx.fillRect(0, H - 3, W, 3)
+    const { size, top, bottom } = surface.binding
+    ctx.fillStyle = top
+    ctx.fillRect(0, 0, W, size)
+    ctx.fillStyle = bottom
+    ctx.fillRect(0, H - size, W, size)
 
-    for (const inlay of INLAYS) pearl(ctx, inlay.x, inlay.y)
+    for (const mark of INLAYS) inlay(ctx, mark.x, mark.y, surface)
 
-    softRect(ctx, scale, [5, 0, NUT_WIDTH, H], 8, 'rgba(0, 0, 0, 0.45)')
-    for (const x of FRET_X) softRect(ctx, scale, [x + 1, 2, 4, H], 4, 'rgba(0, 0, 0, 0.45)')
+    softRect(ctx, scale, [5, 0, NUT_WIDTH, H], 8, surface.nutShadow)
+    for (const x of FRET_X) softRect(ctx, scale, [x + 1, 2, 4, H], 4, surface.fretShadow)
 
+    const [shadowRgb, shadowAlpha] = surface.stringShadow
     for (const s of STRINGS) {
       const h = s.gauge + 3
       const top = s.y + 4 - h / 2
       ctx.fillStyle = gradient(ctx, 0, top, 0, top + h, [
-        [0, 'rgba(0, 0, 0, 0)'],
-        [0.5, 'rgba(0, 0, 0, 0.45)'],
-        [1, 'rgba(0, 0, 0, 0)'],
+        [0, `rgba(${shadowRgb}, 0)`],
+        [0.5, `rgba(${shadowRgb}, ${shadowAlpha})`],
+        [1, `rgba(${shadowRgb}, 0)`],
       ])
       ctx.fillRect(NUT_WIDTH, top, W - NUT_WIDTH, h)
     }
 
     for (const note of CHORD.fretted) {
-      softDisc(ctx, noteX(note.fret) + 4, STRINGS[note.string]!.y + 8, 19, '#000000', 0.55)
+      softDisc(ctx, noteX(note.fret) + 4, STRINGS[note.string]!.y + 8, 19, ...surface.dotShadow)
     }
   })
 }
 
-/** 관객 쪽 옆면: 바인딩, 로즈우드, 마호가니 넥, 사이드 도트. */
-const sideTexture = () => {
+/** 관객 쪽 옆면: 바인딩, 지판, 넥, 사이드 도트. */
+const sideTexture = (surface: SurfacePaletteType) => {
   const H = BOARD_THICKNESS
   return paint(BOARD_LENGTH, H, 2, (ctx) => {
-    ctx.fillStyle = gradient(ctx, 0, 0, 0, H, [
-      [0, '#e8dcc2'],
-      [3 / H, '#cbbb9b'],
-      [3 / H, '#3a2116'],
-      [12 / H, '#2c190f'],
-      [12 / H, '#74462b'],
-      [0.55, '#5b3521'],
-      [1, '#2a170e'],
-    ])
+    ctx.fillStyle = gradient(ctx, 0, 0, 0, H, surface.side)
     ctx.fillRect(0, 0, BOARD_LENGTH, H)
-    ctx.fillStyle = '#efe6d3'
+    ctx.fillStyle = surface.sideDot
     for (const x of SIDE_DOTS) {
       ctx.beginPath()
       ctx.arc(x, 7.5, 2, 0, Math.PI * 2)
@@ -258,16 +378,10 @@ const sideTexture = () => {
 }
 
 /** 너트 쪽 끝면. 오른쪽 끝이 지판 윗면과 닿는다. */
-const endTexture = () => {
+const endTexture = (surface: SurfacePaletteType) => {
   const W = BOARD_THICKNESS
   return paint(W, BOARD_WIDTH, 2, (ctx) => {
-    ctx.fillStyle = gradient(ctx, 0, 0, W, 0, [
-      [0, '#24130b'],
-      [0.45, '#5b3521'],
-      [0.54, '#74462b'],
-      [0.54, '#2c190f'],
-      [1, '#3a2116'],
-    ])
+    ctx.fillStyle = gradient(ctx, 0, 0, W, 0, surface.end)
     ctx.fillRect(0, 0, W, BOARD_WIDTH)
   })
 }
@@ -275,16 +389,17 @@ const endTexture = () => {
 export const SHADOW_SIZE = [1460, 350] as const
 
 /** 지판 아래 떠 있는 그림자. */
-const shadowTexture = () => {
+const shadowTexture = (surface: SurfacePaletteType) => {
+  const [rgb, center, middle] = surface.floatShadow
   const [W, H] = SHADOW_SIZE
   return paint(W, H, 0.25, (ctx) => {
     ctx.translate(W / 2, H / 2)
     ctx.scale(1, H / W)
     const r = W / 2
     const g = ctx.createRadialGradient(0, 0, 0, 0, 0, r)
-    g.addColorStop(0, 'rgba(0, 0, 0, 0.62)')
-    g.addColorStop(0.55, 'rgba(0, 0, 0, 0.3)')
-    g.addColorStop(1, 'rgba(0, 0, 0, 0)')
+    g.addColorStop(0, `rgba(${rgb}, ${center})`)
+    g.addColorStop(0.55, `rgba(${rgb}, ${middle})`)
+    g.addColorStop(1, `rgba(${rgb}, 0)`)
     ctx.fillStyle = g
     ctx.fillRect(-r, -r, W, W)
   })
@@ -293,7 +408,8 @@ const shadowTexture = () => {
 /** 기울일 때 지판 위를 지나가는 은은한 광택. offset.x를 움직여 쓴다. */
 export const SHEEN_SPAN = 2.2
 
-const sheenTexture = () => {
+const sheenTexture = (surface: SurfacePaletteType) => {
+  const [rgb, alpha] = surface.sheen
   const W = BOARD_LENGTH * SHEEN_SPAN
   const H = BOARD_WIDTH
   const texture = paint(W, H, 0.25, (ctx) => {
@@ -308,9 +424,9 @@ const sheenTexture = () => {
       W / 2 + dx * half,
       H / 2 + dy * half,
       [
-        [0.34, 'rgba(255, 224, 186, 0)'],
-        [0.47, 'rgba(255, 224, 186, 0.1)'],
-        [0.6, 'rgba(255, 224, 186, 0)'],
+        [0.34, `rgba(${rgb}, 0)`],
+        [0.47, `rgba(${rgb}, ${alpha})`],
+        [0.6, `rgba(${rgb}, 0)`],
       ],
     )
     ctx.fillRect(0, 0, W, H)
@@ -343,7 +459,12 @@ const windingTexture = () => {
 /** 운지 점: 바깥 빛 번짐, 어두운 테두리, 앰버 원판, 손가락 번호. 80×80 평면에 그린다. */
 export const DOT_PLANE = 80
 
-const dotTexture = (finger: number, palette: PaletteType, fonts: FontsType) => {
+const dotTexture = (
+  finger: number,
+  palette: PaletteType,
+  fonts: FontsType,
+  surface: SurfacePaletteType,
+) => {
   const S = DOT_PLANE
   const c = S / 2
   return paint(S, S, 3, (ctx) => {
@@ -355,7 +476,7 @@ const dotTexture = (finger: number, palette: PaletteType, fonts: FontsType) => {
 
     ctx.beginPath()
     ctx.arc(c, c, 17, 0, Math.PI * 2)
-    ctx.fillStyle = 'rgba(18, 13, 10, 0.6)'
+    ctx.fillStyle = surface.dotRing
     ctx.fill()
 
     const fx = c - 15 + 0.34 * 30
@@ -369,7 +490,7 @@ const dotTexture = (finger: number, palette: PaletteType, fonts: FontsType) => {
     ctx.fillStyle = body
     ctx.fill()
 
-    ctx.fillStyle = '#1b120b'
+    ctx.fillStyle = surface.dotNumber
     ctx.font = `600 14px ${fonts.mono}`
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
@@ -380,25 +501,25 @@ const dotTexture = (finger: number, palette: PaletteType, fonts: FontsType) => {
 export const MARKER_PLANE = 12
 
 /** 개방현 표시(o). */
-const openTexture = () => {
+const openTexture = (surface: SurfacePaletteType) => {
   return paint(MARKER_PLANE, MARKER_PLANE, 4, (ctx) => {
     ctx.beginPath()
     ctx.arc(6, 6, 5, 0, Math.PI * 2)
-    ctx.strokeStyle = 'rgba(244, 236, 221, 0.8)'
+    ctx.strokeStyle = surface.openMark
     ctx.lineWidth = 2
     ctx.stroke()
   })
 }
 
 /** 소리 내지 않는 줄 표시(x). */
-const mutedTexture = () => {
+const mutedTexture = (surface: SurfacePaletteType) => {
   return paint(MARKER_PLANE, MARKER_PLANE, 4, (ctx) => {
     ctx.beginPath()
     ctx.moveTo(2, 2)
     ctx.lineTo(10, 10)
     ctx.moveTo(10, 2)
     ctx.lineTo(2, 10)
-    ctx.strokeStyle = 'rgba(244, 236, 221, 0.8)'
+    ctx.strokeStyle = surface.mutedMark
     ctx.lineWidth = 2
     ctx.lineCap = 'round'
     ctx.stroke()
@@ -411,12 +532,12 @@ export const LABEL_SIZE = [240, 90] as const
 export const LABEL_ORIGIN = [140, -96] as const
 const LABEL_PAD = 10
 
-const labelTexture = (palette: PaletteType, fonts: FontsType) => {
+const labelTexture = (palette: PaletteType, fonts: FontsType, surface: SurfacePaletteType) => {
   const [W, H] = LABEL_SIZE
   return paint(W, H, 3, (ctx) => {
     const baseline = LABEL_PAD + 55
     ctx.textBaseline = 'alphabetic'
-    ctx.fillStyle = '#f4ecdd'
+    ctx.fillStyle = surface.chordName
     ctx.font = `italic 600 64px ${fonts.display}`
     ctx.fillText(CHORD.name, LABEL_PAD, baseline)
 
@@ -430,25 +551,29 @@ const labelTexture = (palette: PaletteType, fonts: FontsType) => {
   })
 }
 
-/** 글꼴과 무관한 텍스처. 한 번만 만든다. */
-export const createSurfaceTextures = () => {
+/** 글꼴과 무관한 텍스처. 테마가 바뀔 때만 다시 만든다. */
+export const createSurfaceTextures = (surface: SurfacePaletteType) => {
   return {
-    wood: woodTexture(),
-    side: sideTexture(),
-    end: endTexture(),
-    shadow: shadowTexture(),
-    sheen: sheenTexture(),
+    wood: woodTexture(surface),
+    side: sideTexture(surface),
+    end: endTexture(surface),
+    shadow: shadowTexture(surface),
+    sheen: sheenTexture(surface),
     winding: windingTexture(),
-    open: openTexture(),
-    muted: mutedTexture(),
+    open: openTexture(surface),
+    muted: mutedTexture(surface),
   }
 }
 
-/** 글꼴이 들어가는 텍스처. 웹폰트가 로드되면 다시 만든다. */
-export const createLabelTextures = (palette: PaletteType, fonts: FontsType) => {
+/** 글꼴이 들어가는 텍스처. 웹폰트가 로드되거나 테마가 바뀌면 다시 만든다. */
+export const createLabelTextures = (
+  palette: PaletteType,
+  fonts: FontsType,
+  surface: SurfacePaletteType,
+) => {
   return {
-    dots: CHORD.fretted.map((note) => dotTexture(note.finger, palette, fonts)),
-    label: labelTexture(palette, fonts),
+    dots: CHORD.fretted.map((note) => dotTexture(note.finger, palette, fonts, surface)),
+    label: labelTexture(palette, fonts, surface),
   }
 }
 

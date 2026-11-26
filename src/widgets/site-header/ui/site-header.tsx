@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react'
 
-import { ThemeIcon } from '@/shared/ui/icons'
 import { Wordmark } from '@/shared/ui/wordmark'
+
+import { ThemeToggle } from './theme-toggle'
 
 export const SiteHeader = ({
   variant,
@@ -30,15 +31,7 @@ export const SiteHeader = ({
 
         <div className="ml-auto flex items-center gap-[10px]">
           {actions}
-          {variant !== 'bare' ? (
-            <button
-              aria-label="화면 테마 전환"
-              className="w-9 h-9 flex items-center justify-center bg-bg border border-line rounded-md text-ink-4 cursor-pointer hover:bg-surface-2"
-              type="button"
-            >
-              <ThemeIcon />
-            </button>
-          ) : null}
+          {variant !== 'bare' ? <ThemeToggle /> : null}
         </div>
       </div>
     </header>

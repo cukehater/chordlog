@@ -13,6 +13,7 @@ import {
 } from 'three'
 
 import { fraunces, plexMono } from '@/shared/config'
+import { useColorTheme } from '@/shared/lib/color-theme'
 
 import {
   BOARD_LENGTH,
@@ -21,6 +22,7 @@ import {
   CHORD,
   createLabelTextures,
   createSurfaceTextures,
+  DARK_SURFACE,
   disposeTextures,
   DOT_PLANE,
   type FontsType,
@@ -28,6 +30,7 @@ import {
   LABEL_ORIGIN,
   LABEL_PADDING,
   LABEL_SIZE,
+  LIGHT_SURFACE,
   MARKER_PLANE,
   noteX,
   NUT_WIDTH,
@@ -127,11 +130,14 @@ const Fretboard = () => {
   // 인트로가 끝나기 전에는 기울지 않는다(착지 좌표가 기본 자세 기준이다)
   const target = usePointerTarget(!reduced && phase === 'done', invalidate)
   const fontsReady = useWebFontsReady()
+  // 테마가 바뀌면 새 텍스처를 먼저 만들어 끼우고, 이전 것은 아래 effect 정리에서 버린다
+  const theme = useColorTheme()
+  const surfacePalette = theme === 'light' ? LIGHT_SURFACE : DARK_SURFACE
 
-  const surface = useMemo(() => createSurfaceTextures(), [])
+  const surface = useMemo(() => createSurfaceTextures(surfacePalette), [surfacePalette])
   const labels = useMemo(
-    () => createLabelTextures(readPalette(), fontsReady ? FONTS : FALLBACK_FONTS),
-    [fontsReady],
+    () => createLabelTextures(readPalette(), fontsReady ? FONTS : FALLBACK_FONTS, surfacePalette),
+    [fontsReady, surfacePalette],
   )
   const materials = useMemo(
     () => ({
@@ -151,7 +157,7 @@ const Fretboard = () => {
   useEffect(() => () => disposeTextures(surface), [surface])
   useEffect(() => () => disposeTextures(labels), [labels])
   useEffect(() => () => Object.values(materials).forEach((m) => m.dispose()), [materials])
-  useEffect(() => invalidate(), [labels, phase, invalidate])
+  useEffect(() => invalidate(), [surface, labels, phase, invalidate])
 
   useFrame((_, delta) => {
     const group = rig.current
