@@ -6,6 +6,7 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import {
   type Group,
   MathUtils,
+  type Mesh,
   type MeshBasicMaterial,
   MeshStandardMaterial,
   type PerspectiveCamera,
@@ -37,45 +38,26 @@ import {
   STRING_START,
   STRINGS,
 } from '../lib/fretboard-model'
+import { strumProgress } from '../lib/intro-timeline'
 import { easeFactor, usePointerTarget, usePrefersReducedMotion } from '../lib/pointer'
+import {
+  applyStageCamera,
+  BASE_TILT,
+  BOARD_TURN,
+  PERSPECTIVE,
+  projectStringEnds,
+  RIG_POSITION,
+  toBoard,
+} from '../lib/stage'
+import { getIntroSnapshot, markIntroReady, setIntroLanding, useIntro } from '../model/intro-store'
 
-/*
- * 장면은 1440×900 "무대" 좌표로 짜여 있다. 카메라는 무대 중심에서 1600px 떨어진 원근 카메라이고,
- * 화면 크기에 맞춰 무대를 k배로 줄이거나 키우고 옮긴다(stageLayout).
- */
-const STAGE_W = 1440
-const STAGE_H = 900
-const PERSPECTIVE = 1600
-/** 지판 중심이 놓이는 무대 좌표(px, y 아래로). */
-const RIG_AT = [1247, 420] as const
-/** 기본 자세: 뒤로 40° 눕히고 화면에서 32° 돌린다. 마우스로 ±10°까지 더 기운다. */
-const BASE_TILT = 40
-const BOARD_TURN = 32
+/** 마우스로 기본 자세에서 ±10°까지 더 기운다. */
 const MAX_TILT = 10
 const EASE = 0.08
 
 const deg = MathUtils.degToRad
 
-/** 지판 좌표(px, 좌상단 원점, y 아래로)를 three.js 로컬 좌표(중심 원점, y 위로)로 바꾼다. */
-const toBoard = (x: number, y: number): [number, number] => [
-  x - BOARD_LENGTH / 2,
-  BOARD_WIDTH / 2 - y,
-]
-
-const stageLayout = (width: number, height: number) => {
-  if (height >= width) {
-    const k = Math.max(0.5, Math.min(0.9, width / 700))
-    return {
-      k,
-      left: width * 0.32 - 700 * k,
-      top: Math.min(height * 0.8, height * 0.5 + 300) - 720 * k,
-    }
-  }
-  const k = Math.min(width / STAGE_W, (height / STAGE_H) * 1.1)
-  return { k, left: width - STAGE_W * k, top: height - STAGE_H * k }
-}
-
-/** 무대 중심을 원근 중심으로 유지한 채 화면 안 원하는 위치로 옮긴다(setViewOffset). */
+/** 화면 크기에 맞춰 카메라를 옮기고, 인트로 줄이 내려앉을 지판 줄 좌표를 다시 잰다. */
 const StageCamera = () => {
   const width = useThree((s) => s.size.width)
   const height = useThree((s) => s.size.height)
@@ -84,17 +66,8 @@ const StageCamera = () => {
   useLayoutEffect(() => {
     const { camera, invalidate } = get()
     const cam = camera as PerspectiveCamera
-    const { k, left, top } = stageLayout(width, height)
-    const cx = left + (STAGE_W / 2) * k
-    const cy = top + (STAGE_H / 2) * k
-    const fullW = 2 * Math.max(cx, width - cx)
-    const fullH = 2 * Math.max(cy, height - cy)
-
-    cam.fov = MathUtils.radToDeg(2 * Math.atan(fullH / (2 * k * PERSPECTIVE)))
-    cam.aspect = fullW / fullH
-    cam.position.set(0, 0, PERSPECTIVE)
-    cam.setViewOffset(fullW, fullH, fullW / 2 - cx, fullH / 2 - cy, width, height)
-    cam.updateProjectionMatrix()
+    applyStageCamera(cam, width, height)
+    setIntroLanding(projectStringEnds(cam, width, height))
     invalidate()
   }, [width, height, get])
 
@@ -133,13 +106,26 @@ const useWebFontsReady = () => {
   return ready
 }
 
+/** 지금 시각의 운지 점·라벨 상태. 인트로를 건너뛴 경우(done인데 strum 기록 없음)는 끝난 상태다. */
+const strumStep = (reduced: boolean) => {
+  const { phase, strumAt } = getIntroSnapshot()
+  if (strumAt === null)
+    return strumProgress(phase === 'done' ? Infinity : null, CHORD.fretted.length)
+  return strumProgress(reduced ? Infinity : performance.now() - strumAt, CHORD.fretted.length)
+}
+
 const Fretboard = () => {
   const rig = useRef<Group>(null)
   const sheen = useRef<MeshBasicMaterial>(null)
+  const dots = useRef<(Mesh | null)[]>([])
+  const label = useRef<MeshBasicMaterial>(null)
+  const readySent = useRef(false)
   const current = useRef({ x: 0, y: 0 })
   const invalidate = useThree((s) => s.invalidate)
   const reduced = usePrefersReducedMotion()
-  const target = usePointerTarget(!reduced, invalidate)
+  const { phase } = useIntro()
+  // 인트로가 끝나기 전에는 기울지 않는다(착지 좌표가 기본 자세 기준이다)
+  const target = usePointerTarget(!reduced && phase === 'done', invalidate)
   const fontsReady = useWebFontsReady()
 
   const surface = useMemo(() => createSurfaceTextures(), [])
@@ -165,7 +151,7 @@ const Fretboard = () => {
   useEffect(() => () => disposeTextures(surface), [surface])
   useEffect(() => () => disposeTextures(labels), [labels])
   useEffect(() => () => Object.values(materials).forEach((m) => m.dispose()), [materials])
-  useEffect(() => invalidate(), [labels, invalidate])
+  useEffect(() => invalidate(), [labels, phase, invalidate])
 
   useFrame((_, delta) => {
     const group = rig.current
@@ -197,7 +183,22 @@ const Fretboard = () => {
     const sheenMap = sheen.current?.map
     if (sheenMap) sheenMap.offset.x = ((SHEEN_SPAN - 1) / SHEEN_SPAN) * (0.5 + c.x * 0.35)
 
-    if (!settled) invalidate()
+    // 웹폰트 텍스처로 그린 첫 프레임이 화면에 나간 뒤 인트로에 준비를 알린다
+    if (fontsReady && !readySent.current) {
+      readySent.current = true
+      requestAnimationFrame(markIntroReady)
+    }
+
+    const strum = strumStep(reduced)
+    strum.dots.forEach(({ scale, opacity }, i) => {
+      const mesh = dots.current[i]
+      if (!mesh) return
+      mesh.scale.setScalar(scale)
+      ;(mesh.material as MeshBasicMaterial).opacity = opacity
+    })
+    if (label.current) label.current.opacity = strum.label
+
+    if (!settled || !strum.settled) invalidate()
   })
 
   const [labelX, labelY] = toBoard(
@@ -208,7 +209,7 @@ const Fretboard = () => {
   return (
     <group
       ref={rig}
-      position={[RIG_AT[0] - STAGE_W / 2, STAGE_H / 2 - RIG_AT[1], 0]}
+      position={RIG_POSITION}
       rotation={[deg(-BASE_TILT), 0, deg(BOARD_TURN), 'YXZ']}
     >
       {/* 아래로 떨어진 그림자 */}
@@ -277,7 +278,13 @@ const Fretboard = () => {
       {CHORD.fretted.map((note, i) => {
         const [x, y] = toBoard(noteX(note.fret), STRINGS[note.string]!.y)
         return (
-          <mesh key={note.string} position={[x, y, 22]}>
+          <mesh
+            key={note.string}
+            ref={(mesh) => {
+              dots.current[i] = mesh
+            }}
+            position={[x, y, 22]}
+          >
             <planeGeometry args={[DOT_PLANE, DOT_PLANE]} />
             <meshBasicMaterial transparent depthWrite={false} map={labels.dots[i]!} />
           </mesh>
@@ -287,7 +294,7 @@ const Fretboard = () => {
       {/* 코드 이름 */}
       <mesh position={[labelX, labelY, 36]}>
         <planeGeometry args={LABEL_SIZE} />
-        <meshBasicMaterial transparent depthWrite={false} map={labels.label} />
+        <meshBasicMaterial ref={label} transparent depthWrite={false} map={labels.label} />
       </mesh>
     </group>
   )

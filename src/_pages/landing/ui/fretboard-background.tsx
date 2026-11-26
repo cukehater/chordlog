@@ -1,7 +1,9 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { Component, type ReactNode, useSyncExternalStore } from 'react'
+import { Component, type ReactNode, useEffect, useSyncExternalStore } from 'react'
+
+import { markIntroFallback } from '../model/intro-store'
 
 const FretboardScene = dynamic(() => import('./fretboard-scene'), { ssr: false })
 
@@ -21,7 +23,9 @@ const detectWebGL2 = () => {
 
 const subscribeNever = () => () => {}
 
+/** WebGL2가 없거나 장면이 실패했을 때. 인트로에는 3D 없이 끝난다고 알린다. */
 const StaticBackdrop = () => {
+  useEffect(() => markIntroFallback(), [])
   return <div aria-hidden="true" className="bg-hero-fallback absolute inset-0" />
 }
 

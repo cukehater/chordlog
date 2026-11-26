@@ -137,3 +137,297 @@
     radial-gradient(ellipse 36% 40% at 88% 20%, rgb(240 160 75 / 0.1) 0%, rgb(240 160 75 / 0) 70%),
     linear-gradient(160deg, #22170f 0%, var(--color-bg) 55%, #0b0806 100%);
 }
+
+/*
+ * 랜딩 인트로 — 3D 지판이 준비되는 동안의 로딩 화면과 히어로 전환.
+ * 단계는 <html data-intro>에 적고(_pages/landing/ui/hero-intro.tsx), 요소는 data-intro-part로 고른다.
+ * 속성이 없으면(JS 꺼짐, 다른 페이지) 아래 규칙은 하나도 걸리지 않는다.
+ */
+:root {
+  --intro-fs0: clamp(40px, 10vw, 56px);
+  --intro-top0: calc(50vh - (var(--intro-fs0) + 148px) / 2);
+  --intro-word-y: calc(var(--intro-top0) + var(--intro-fs0) / 2);
+  --intro-box-top: calc(var(--intro-top0) + var(--intro-fs0) + 28px);
+  /* 히어로 타이틀을 로딩 워드마크 자리로: 50%는 h1 자기 크기 기준이라 글자 폭을 재지 않아도 가운데로 간다 */
+  --intro-title-from: translate(
+      calc(50vw - clamp(24px, 7vw, 112px) - 50%),
+      calc(var(--intro-word-y) - clamp(88px, 24dvh, 240px) - 50%)
+    )
+    scale(var(--intro-scale, 1));
+  --intro-ease-move: cubic-bezier(0.65, 0, 0.2, 1);
+  --intro-ease-rise: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+[data-intro-part='tagline'] {
+  --intro-delay: 80ms;
+}
+[data-intro-part='cta'],
+[data-intro-part='parallax-near'] {
+  --intro-delay: 200ms;
+}
+[data-intro-part='parallax-mid'] {
+  --intro-delay: 100ms;
+}
+
+/* 아직 나오지 않은 요소 */
+:root:is([data-intro='pending'], [data-intro='loading'], [data-intro='morph'])
+  [data-intro-part='scene'],
+:root:is(
+    [data-intro='pending'],
+    [data-intro='loading'],
+    [data-intro='morph'],
+    [data-intro='reveal']
+  )
+  :is([data-intro-part='tagline'], [data-intro-part='cta'], [data-intro-part^='parallax']) {
+  opacity: 0;
+}
+:root:is(
+    [data-intro='pending'],
+    [data-intro='loading'],
+    [data-intro='morph'],
+    [data-intro='reveal']
+  )
+  :is([data-intro-part='tagline'], [data-intro-part='cta']) {
+  transform: translateY(12px);
+}
+/* 보이지 않는 CTA는 클릭·포커스를 막는다 */
+:root:is(
+    [data-intro='pending'],
+    [data-intro='loading'],
+    [data-intro='morph'],
+    [data-intro='reveal']
+  )
+  [data-intro-part='cta'] {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* 로딩: 타이틀이 워드마크 자리에 선다. pending에서는 JS를 기다리지 않고 150ms 뒤에 로딩 화면과 함께 나타난다 */
+:root:is([data-intro='pending'], [data-intro='loading']) [data-intro-part='title'] {
+  transform: var(--intro-title-from);
+  transition: opacity 200ms ease;
+}
+:root[data-intro='pending'] :is([data-intro-part='title'], [data-intro-part='loader']) {
+  animation: cl-intro-appear 200ms ease 150ms both;
+}
+
+/* 빠른 경로: 로딩 화면 없이 타이틀은 제자리에서 나타난다 */
+:root[data-intro-path='fast'] {
+  & [data-intro-part='loader'] {
+    display: none;
+  }
+}
+/* 전환 규칙보다 우선하도록 [data-intro]를 더한다. 보이지 않을 때 자리를 옮기고 페이드만 한다 */
+:root[data-intro-path='fast'][data-intro] [data-intro-part='title'] {
+  transition: opacity 600ms ease;
+}
+
+/* 전환 */
+:root:is([data-intro='morph'], [data-intro='reveal'], [data-intro='text'], [data-intro='strum']) {
+  & [data-intro-part='title'] {
+    transition:
+      transform 1100ms var(--intro-ease-move),
+      opacity 600ms ease;
+  }
+  & [data-intro-part='scene'] {
+    transition: opacity 600ms ease;
+  }
+  & :is([data-intro-part='tagline'], [data-intro-part='cta']) {
+    transition:
+      opacity 500ms ease var(--intro-delay),
+      transform 600ms var(--intro-ease-rise) var(--intro-delay);
+  }
+  & [data-intro-part^='parallax'] {
+    transition: opacity 700ms ease var(--intro-delay, 0ms);
+  }
+  & .intro-string {
+    transition:
+      transform 1000ms var(--intro-ease-move) var(--fly-delay),
+      width 1000ms var(--intro-ease-move) var(--fly-delay),
+      opacity 200ms ease;
+  }
+}
+
+/* 로딩 화면 */
+/* JS가 꺼졌거나 다른 페이지에서 넘어왔거나 끝났으면 상태 문구까지 통째로 뺀다 */
+:root:is(:not([data-intro]), [data-intro='done']) [data-intro-part='loader'] {
+  display: none;
+}
+[data-intro-part='loader'] {
+  transition: opacity 400ms ease;
+}
+:root:is([data-intro='text'], [data-intro='strum'], [data-intro='done']) [data-intro-part='loader'],
+:root:not([data-intro='pending'], [data-intro='loading']) .intro-chrome,
+.intro-string[data-fade] {
+  opacity: 0;
+}
+.intro-chrome {
+  transition: opacity 200ms ease;
+}
+.intro-string {
+  /* 빛 띠가 줄 상자 밖으로 나가지 않게 가로만 자른다. 세로 잔상은 남는다 */
+  clip-path: inset(-6px 0);
+}
+.intro-vib,
+.intro-sweep {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root:is([data-intro='pending'], [data-intro='loading']) {
+    & .intro-line {
+      animation: cl-jitter 2.4s var(--strum-delay) infinite both;
+    }
+    & .intro-vib {
+      animation: cl-vib 2.4s var(--strum-delay) infinite both;
+    }
+    & .intro-sweep {
+      animation: cl-sweep 2.4s var(--strum-delay) infinite both;
+    }
+    & .intro-dot {
+      animation: cl-ellipsis 1.4s linear var(--dot-delay) infinite both;
+    }
+  }
+}
+
+/* 움직임 줄이기: 날아가지 않고 로딩 요소를 걷은 뒤 히어로를 한 번에 드러낸다 */
+@media (prefers-reduced-motion: reduce) {
+  :root[data-intro] :is([data-intro-part='tagline'], [data-intro-part='cta']) {
+    transform: none;
+  }
+  :root[data-intro='morph'] {
+    & [data-intro-part='title'] {
+      transform: var(--intro-title-from);
+      opacity: 0;
+      transition: opacity 250ms ease;
+    }
+    & [data-intro-part='loader'] {
+      opacity: 0;
+      transition: opacity 250ms ease;
+    }
+  }
+  :root:is([data-intro='text'], [data-intro='strum']) {
+    &
+      :is(
+        [data-intro-part='title'],
+        [data-intro-part='scene'],
+        [data-intro-part='tagline'],
+        [data-intro-part='cta'],
+        [data-intro-part^='parallax']
+      ) {
+      transition: opacity 300ms ease;
+    }
+  }
+}
+
+@keyframes cl-intro-appear {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes cl-vib {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  2% {
+    transform: scaleY(1);
+    opacity: 0.9;
+  }
+  5% {
+    transform: scaleY(0.5);
+    opacity: 0.85;
+  }
+  8% {
+    transform: scaleY(0.85);
+    opacity: 0.8;
+  }
+  12% {
+    transform: scaleY(0.42);
+    opacity: 0.7;
+  }
+  16% {
+    transform: scaleY(0.6);
+    opacity: 0.6;
+  }
+  22% {
+    transform: scaleY(0.3);
+    opacity: 0.45;
+  }
+  30% {
+    transform: scaleY(0.34);
+    opacity: 0.32;
+  }
+  42% {
+    transform: scaleY(0.12);
+    opacity: 0.15;
+  }
+  55%,
+  100% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+}
+@keyframes cl-jitter {
+  0% {
+    transform: translateY(0);
+  }
+  2% {
+    transform: translateY(-1.2px);
+  }
+  4% {
+    transform: translateY(1px);
+  }
+  6% {
+    transform: translateY(-0.8px);
+  }
+  8.5% {
+    transform: translateY(0.6px);
+  }
+  11% {
+    transform: translateY(-0.45px);
+  }
+  14% {
+    transform: translateY(0.3px);
+  }
+  18% {
+    transform: translateY(-0.18px);
+  }
+  24% {
+    transform: translateY(0.08px);
+  }
+  30%,
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes cl-sweep {
+  0% {
+    transform: translateX(-64px);
+    opacity: 0;
+  }
+  3% {
+    opacity: 1;
+  }
+  30% {
+    transform: translateX(232px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(232px);
+    opacity: 0;
+  }
+}
+@keyframes cl-ellipsis {
+  0%,
+  15% {
+    opacity: 0.25;
+  }
+  35% {
+    opacity: 1;
+  }
+  65%,
+  100% {
+    opacity: 0.25;
+  }
+}

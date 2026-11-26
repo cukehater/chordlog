@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react'
 
 import { easeFactor, usePointerTarget, usePrefersReducedMotion } from '../lib/pointer'
+import { useIntro } from '../model/intro-store'
 
 /** 레이어별 최대 이동량(px). 가까운 레이어일수록 많이 움직이고, 마우스 반대 방향으로 간다. */
 const DEPTHS = {
@@ -23,7 +24,9 @@ export const ParallaxLayers = () => {
   const midRef = useRef<HTMLDivElement>(null)
   const nearRef = useRef<HTMLDivElement>(null)
   const kick = useRef(() => {})
-  const target = usePointerTarget(!reduced, () => kick.current())
+  const { phase } = useIntro()
+  // 인트로 전환 중에는 움직이지 않는다
+  const target = usePointerTarget(!reduced && phase === 'done', () => kick.current())
 
   useEffect(() => {
     const layers = [
@@ -85,6 +88,7 @@ export const ParallaxLayers = () => {
         ref={farRef}
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 text-ink/24 will-change-transform"
+        data-intro-part="parallax-far"
       >
         <svg
           className="absolute top-[7%] left-[44%] h-auto w-[clamp(330px,30.556vw,550px)] overflow-visible portrait:top-[6.5%] portrait:left-[42%] portrait:w-[min(61.333vw,368px)]"
@@ -137,6 +141,7 @@ export const ParallaxLayers = () => {
         ref={midRef}
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 text-ink/42 will-change-transform"
+        data-intro-part="parallax-mid"
       >
         <span className="absolute top-[25%] left-[70%] font-display text-[clamp(57px,5.278vw,95px)] leading-none font-medium italic portrait:top-[6.5%] portrait:left-[6.5%] portrait:text-[min(11.2vw,67.2px)]">
           Am
@@ -242,6 +247,7 @@ export const ParallaxLayers = () => {
         ref={nearRef}
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 will-change-transform"
+        data-intro-part="parallax-near"
       >
         <span className="absolute top-[74%] left-[7%] font-display text-[clamp(96px,8.889vw,160px)] leading-none font-semibold text-accent italic opacity-50 blur-[2px] portrait:top-[88.5%] portrait:left-[5%] portrait:text-[min(13.867vw,83.2px)]">
           G7
