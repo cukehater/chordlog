@@ -41,7 +41,7 @@ export const HomePage = () => {
       />
 
       {/* 모바일 상단 — 상태바 자리 52px를 비워 둔다 */}
-      <header className="md:hidden shrink-0 pt-[56px] px-5 pb-4 flex flex-col gap-[18px]">
+      <header className="md:hidden shrink-0 pt-[56px] page-grid pb-4 flex flex-col gap-[18px]">
         <div className="flex items-center gap-[10px]">
           <Wordmark />
           <button
@@ -74,7 +74,7 @@ export const HomePage = () => {
         </div>
       </header>
 
-      <main className="grow flex flex-col gap-[26px] px-5 md:px-[48px] pt-0 md:pt-10 pb-[44px]">
+      <main className="grow flex flex-col gap-[26px] page-grid pt-0 md:pt-10 pb-[44px]">
         <div className="hidden md:flex items-end justify-between gap-6">
           <div className="flex flex-col gap-[10px]">
             <span className="font-mono text-[11px] tracking-[0.16em] text-accent">

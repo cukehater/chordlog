@@ -66,7 +66,7 @@ export const SongDetailView = ({ song, initialSemi }: { song: SongType; initialS
 
           <ControlBar song={song} view={view} />
 
-          <main className="grow min-h-0 w-full max-w-[1360px] mx-auto box-border px-10 pt-7 flex gap-8 min-[1100px]:gap-[60px]">
+          <main className="grow min-h-0 page-grid pt-7 flex gap-8 min-[1100px]:gap-[60px]">
             <Sheet
               blocks={song.blocks}
               cols={view.cols}

@@ -27,7 +27,7 @@ export const MetaForm = ({ song }: { song?: SongType | undefined }) => {
     : (Object.keys(TUNING_PRESETS).find((k) => TUNING_PRESETS[k] === tuning) ?? '직접 입력')
 
   return (
-    <section className="shrink-0 box-border p-[22px_20px_20px] md:p-[22px_48px_20px] border-b border-line-header grid grid-cols-1 md:grid-cols-12 gap-x-6 gap-y-5">
+    <section className="shrink-0 page-grid pt-[22px] pb-5 border-b border-line-header grid grid-cols-1 md:grid-cols-12 gap-x-6 gap-y-5">
       <UnderlineField htmlFor="title" label="TITLE *" span={4}>
         <input
           className={`${UNDERLINE} font-display text-[20px] font-semibold`}

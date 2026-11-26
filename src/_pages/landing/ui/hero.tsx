@@ -23,7 +23,7 @@ export const Hero = () => {
       <ParallaxLayers />
       <HeroIntro />
 
-      <div className="relative z-10 flex flex-col items-start gap-[clamp(28px,4.4dvh,44px)] px-[clamp(24px,7vw,112px)] pt-[clamp(88px,24dvh,240px)]">
+      <div className="relative z-10 flex flex-col items-start gap-[clamp(28px,4.4dvh,44px)] page-grid pt-[clamp(88px,24dvh,240px)]">
         <div className="flex flex-col gap-[clamp(14px,2.4dvh,24px)]">
           <h1
             className="self-start font-display text-[clamp(60px,11vw,176px)] leading-[0.9] font-semibold tracking-[-0.035em] text-ink"

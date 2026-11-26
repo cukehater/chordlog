@@ -31,7 +31,7 @@ export const SongHeader = ({
   const current = transposeChord(song.key, semi)
 
   return (
-    <header className="shrink-0 w-full max-w-[1360px] mx-auto box-border px-10 pt-7 pb-5">
+    <header className="shrink-0 page-grid pt-7 pb-5">
       <nav aria-label="경로" className="text-[13px] text-ink-5 mb-2">
         <Link className="text-ink-5 no-underline hover:text-ink-2" href="/songs">
           내 곡

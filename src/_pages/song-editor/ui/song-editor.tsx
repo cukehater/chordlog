@@ -59,7 +59,7 @@ export const SongEditor = ({ song }: { song?: SongType }) => {
       <SiteHeader actions={saveBar} crumb={song ? song.title : 'NEW SONG'} variant="editor" />
 
       {/* 모바일 상단 — 상태바 자리 52px */}
-      <header className="md:hidden shrink-0 pt-[52px] px-3 pb-[10px] flex items-center gap-2">
+      <header className="md:hidden shrink-0 pt-[52px] page-grid pb-[10px] flex items-center gap-2">
         <Link
           className="h-11 flex items-center px-2 text-[14px] text-ink-4 no-underline"
           href={song ? `/songs/${song.slug}` : '/songs'}

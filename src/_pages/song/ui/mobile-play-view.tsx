@@ -26,7 +26,7 @@ export const MobilePlayView = ({ song, view }: { song: SongType; view: ViewType 
 
   return (
     <div className="h-dvh flex flex-col bg-bg">
-      <header className="shrink-0 pt-[52px] px-3 pb-[10px] flex flex-col gap-2 border-b border-line-hair">
+      <header className="shrink-0 pt-[52px] page-grid pb-[10px] flex flex-col gap-2 border-b border-line-hair">
         <div className="flex items-center gap-1">
           <Link
             aria-label="목록으로"
@@ -64,7 +64,7 @@ export const MobilePlayView = ({ song, view }: { song: SongType; view: ViewType 
         </div>
       </header>
 
-      <div className="grow flex flex-col gap-4 px-3 pt-3 pb-[150px] overflow-hidden">
+      <div className="grow flex flex-col gap-4 page-grid pt-3 pb-[150px] overflow-hidden">
         {pattern ? (
           <StrumGrid
             action={

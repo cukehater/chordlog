@@ -10,7 +10,7 @@ export const LoginPage = () => {
         <SiteHeader variant="bare" />
       </div>
 
-      <main className="relative grow flex flex-col items-center justify-center gap-[40px] px-5 pb-[70px]">
+      <main className="relative grow flex flex-col items-center justify-center gap-[40px] page-grid pb-[70px]">
         <div className="flex flex-col items-center gap-[14px] text-center">
           <span className="font-mono text-[11px] tracking-[0.22em] text-accent">ADMIN ACCESS</span>
           <h1 className="m-0 font-display text-[36px] md:text-[52px] font-bold tracking-[-0.035em] leading-none">

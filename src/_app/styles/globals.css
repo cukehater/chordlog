@@ -122,6 +122,20 @@
   color: var(--color-lyric);
 }
 
+/* 페이지 기본 그리드 — 모든 라우트가 같은 양옆 여백을 쓴다. 랜딩 인트로 좌표도 이 값을 쓴다 */
+:root {
+  --page-gutter: 20px;
+  @variant md {
+    --page-gutter: 48px;
+  }
+}
+
+@utility page-grid {
+  width: 100%;
+  box-sizing: border-box;
+  padding-inline: var(--page-gutter);
+}
+
 /* 랜딩 히어로 — 지판 뒤 스포트라이트와 가장자리 비네트. 그라데이션은 랜딩에만 허용 */
 @utility bg-hero {
   background:
@@ -150,7 +164,7 @@
   --intro-box-top: calc(var(--intro-top0) + var(--intro-fs0) + 28px);
   /* 히어로 타이틀을 로딩 워드마크 자리로: 50%는 h1 자기 크기 기준이라 글자 폭을 재지 않아도 가운데로 간다 */
   --intro-title-from: translate(
-      calc(50vw - clamp(24px, 7vw, 112px) - 50%),
+      calc(50vw - var(--page-gutter) - 50%),
       calc(var(--intro-word-y) - clamp(88px, 24dvh, 240px) - 50%)
     )
     scale(var(--intro-scale, 1));

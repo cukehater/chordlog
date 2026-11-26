@@ -9,7 +9,7 @@ export const TagPage = async ({ params }: { params: Promise<{ name: string }> })
   return (
     <div className="min-h-dvh flex flex-col bg-bg">
       <SiteHeader variant="list" />
-      <main className="grow flex flex-col gap-[26px] px-5 md:px-[48px] pt-[56px] md:pt-10 pb-11">
+      <main className="grow flex flex-col gap-[26px] page-grid pt-[56px] md:pt-10 pb-11">
         <div className="flex flex-col gap-[10px]">
           <span className="font-mono text-[11px] tracking-[0.16em] text-accent">
             {songs.length} SONGS

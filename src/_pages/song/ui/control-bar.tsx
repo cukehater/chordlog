@@ -41,7 +41,7 @@ export const ControlBar = ({ song, view }: { song: SongType; view: ViewType }) =
 
   return (
     <div className="shrink-0 border-y border-line bg-bg">
-      <div className="w-full max-w-[1360px] mx-auto box-border px-10 py-[10px] flex items-center gap-x-3 gap-y-2 flex-wrap">
+      <div className="page-grid py-[10px] flex items-center gap-x-3 gap-y-2 flex-wrap">
         <Group label="Transpose">
           <Stepper
             decLabel="키 반음 내리기"

@@ -16,7 +16,7 @@ export const SiteHeader = ({
 
   return (
     <header className={`hidden md:block shrink-0 ${bordered ? 'border-b border-line-header' : ''}`}>
-      <div className="h-[60px] w-full max-w-[1360px] mx-auto box-border px-10 flex items-center gap-[20px]">
+      <div className="h-[60px] page-grid flex items-center gap-[20px]">
         <Wordmark />
 
         {variant === 'list' ? <span className="text-[13px] text-ink-5">개인 아카이브</span> : null}
