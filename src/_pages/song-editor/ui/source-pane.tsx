@@ -13,8 +13,8 @@ export const SourcePane = ({
   value: string
   onChange: (v: string) => void
   toolbar?: ReactNode
-  errorLine?: number
-  errorMessage?: string
+  errorLine?: number | undefined
+  errorMessage?: string | undefined
   textareaRef?: Ref<HTMLTextAreaElement>
 }) => {
   const lines = value.split('\n').length

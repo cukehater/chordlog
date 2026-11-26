@@ -27,13 +27,13 @@ const StaticBackdrop = () => {
 
 /** 컨텍스트 생성 실패처럼 장면 안에서 난 에러를 받아 정적 배경으로 바꾼다. */
 class SceneErrorBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
-  state = { failed: false }
+  override state = { failed: false }
 
   static getDerivedStateFromError() {
     return { failed: true }
   }
 
-  render() {
+  override render() {
     return this.state.failed ? <StaticBackdrop /> : this.props.children
   }
 }

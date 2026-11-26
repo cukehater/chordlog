@@ -90,7 +90,7 @@ const SIMPLE_BLOCKS: BlockType[] = [
   line(['Dm7', '다음 차가 '], ['G', '올 때까지']),
 ]
 
-export const MOCK_SONGS: SongType[] = [
+export const MOCK_SONGS: [SongType, ...SongType[]] = [
   {
     slug: 'saebyeok-du-siui-golmok',
     title: '새벽 두 시의 골목',

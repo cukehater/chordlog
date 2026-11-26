@@ -29,7 +29,7 @@ export const transposeChord = (name: string, semi: number): string => {
   const m = /^([A-G][#b]?)([\s\S]*)$/.exec(name ?? '')
   if (!m) return name
 
-  const root = m[1]
+  const root = m[1]!
   let rest = m[2] ?? ''
   let bass = ''
   const slash = rest.indexOf('/')

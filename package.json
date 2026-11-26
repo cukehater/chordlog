@@ -16,7 +16,11 @@
     "test:watch": "vitest",
     "steiger": "steiger ./src --fail-on-warnings",
     "knip": "knip",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test:e2e": "playwright test",
+    "browser": "agent-browser",
+    "check": "pnpm typecheck && pnpm lint && pnpm test && pnpm steiger && pnpm knip",
+    "verify": "pnpm check && pnpm build && pnpm test:e2e"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.9",
@@ -30,6 +34,7 @@
     "@commitlint/cli": "^21.2.4",
     "@eslint/js": "^10.0.1",
     "@feature-sliced/steiger-plugin": "^0.8.2",
+    "@playwright/test": "^1.65.1",
     "@tailwindcss/postcss": "^4.3.5",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^8.0.0",
@@ -39,6 +44,7 @@
     "@types/react-dom": "^19.3.0",
     "@types/three": "^0.187.0",
     "@vitejs/plugin-react": "^6.3.0",
+    "agent-browser": "^0.44.0",
     "eslint": "^10.15.0",
     "eslint-config-next": "16.4.6",
     "eslint-config-prettier": "^10.1.8",

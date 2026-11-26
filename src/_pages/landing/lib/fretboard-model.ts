@@ -46,12 +46,12 @@ export const CHORD = {
   muted: [5],
 } as const
 
-const fretStart = (fret: number) => (fret <= 1 ? NUT_WIDTH : FRET_X[fret - 2])
+const fretStart = (fret: number) => (fret <= 1 ? NUT_WIDTH : FRET_X[fret - 2]!)
 
 /** 운지 점 x. 앞 프렛에서 해당 프렛 쪽으로 60% 지점이다. */
-export const noteX = (fret: number) => fretStart(fret) + 0.6 * (FRET_X[fret - 1] - fretStart(fret))
+export const noteX = (fret: number) => fretStart(fret) + 0.6 * (FRET_X[fret - 1]! - fretStart(fret))
 
-const betweenFrets = (fret: number) => (FRET_X[fret - 2] + FRET_X[fret - 1]) / 2
+const betweenFrets = (fret: number) => (FRET_X[fret - 2]! + FRET_X[fret - 1]!) / 2
 const SINGLE_DOT_FRETS = [3, 5, 7, 9]
 
 const INLAYS = [
@@ -229,7 +229,7 @@ const woodTexture = () => {
     }
 
     for (const note of CHORD.fretted) {
-      softDisc(ctx, noteX(note.fret) + 4, STRINGS[note.string].y + 8, 19, '#000000', 0.55)
+      softDisc(ctx, noteX(note.fret) + 4, STRINGS[note.string]!.y + 8, 19, '#000000', 0.55)
     }
   })
 }

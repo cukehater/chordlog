@@ -68,7 +68,7 @@ export const usePlayView = ({
       last = now
       // scrollTop은 브라우저가 정수로 반올림하므로 프레임당 1px 미만(1.0× = 0.42px)을
       // 더하면 누적되지 않는다. 실수 위치를 따로 들고 그 값을 대입한다.
-      pos += SPEEDS[speedIdx] * BASE_PX_PER_SEC * dt
+      pos += SPEEDS[speedIdx]! * BASE_PX_PER_SEC * dt
       el.scrollTop = pos
       if (pos + el.clientHeight >= el.scrollHeight - 1) {
         setScrolling(false)
@@ -115,7 +115,7 @@ export const usePlayView = ({
     if (taps.current.length > 5) taps.current.shift()
     const gaps: number[] = []
     for (let i = 1; i < taps.current.length; i++) {
-      const g = taps.current[i] - taps.current[i - 1]
+      const g = taps.current[i]! - taps.current[i - 1]!
       if (g < 2000) gaps.push(g)
     }
     if (!gaps.length) return
@@ -130,7 +130,7 @@ export const usePlayView = ({
     })
   }, [])
 
-  const speed = SPEEDS[speedIdx]
+  const speed = SPEEDS[speedIdx]!
 
   return {
     semi,

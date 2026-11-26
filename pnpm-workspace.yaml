@@ -1,5 +1,10 @@
 allowBuilds:
+  sharp: false
   unrs-resolver: false
+  agent-browser: false
+permissions:
+  agent-browser:
+    skills: true
 minimumReleaseAgeExclude:
   - '@next/env@16.3.6'
   - '@next/eslint-plugin-next@16.3.6'

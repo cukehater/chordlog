@@ -263,7 +263,7 @@ const Fretboard = () => {
 
       {/* 개방현(o)과 소리 내지 않는 줄(x) 표시 */}
       {[...CHORD.open, ...CHORD.muted].map((index) => (
-        <mesh key={index} position={[toBoard(-21, 0)[0], toBoard(0, STRINGS[index].y)[1], 3]}>
+        <mesh key={index} position={[toBoard(-21, 0)[0], toBoard(0, STRINGS[index]!.y)[1], 3]}>
           <planeGeometry args={[MARKER_PLANE, MARKER_PLANE]} />
           <meshBasicMaterial
             transparent
@@ -275,11 +275,11 @@ const Fretboard = () => {
 
       {/* C 코드 운지 점 */}
       {CHORD.fretted.map((note, i) => {
-        const [x, y] = toBoard(noteX(note.fret), STRINGS[note.string].y)
+        const [x, y] = toBoard(noteX(note.fret), STRINGS[note.string]!.y)
         return (
           <mesh key={note.string} position={[x, y, 22]}>
             <planeGeometry args={[DOT_PLANE, DOT_PLANE]} />
-            <meshBasicMaterial transparent depthWrite={false} map={labels.dots[i]} />
+            <meshBasicMaterial transparent depthWrite={false} map={labels.dots[i]!} />
           </mesh>
         )
       })}

@@ -15,8 +15,8 @@ const TUNING_PRESETS: Record<string, string> = {
   '오픈 G': 'D G D G B D',
 }
 
-export const MetaForm = ({ song }: { song?: SongType }) => {
-  const [tuning, setTuning] = useState(song?.tuning ?? TUNING_PRESETS['표준'])
+export const MetaForm = ({ song }: { song?: SongType | undefined }) => {
+  const [tuning, setTuning] = useState(song?.tuning ?? TUNING_PRESETS['표준']!)
   const [capo, setCapo] = useState(song?.capo ?? 0)
   const [tags, setTags] = useState<string[]>(song?.tags ?? [])
   const [tuningCustom, setTuningCustom] = useState(
